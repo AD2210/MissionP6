@@ -6,6 +6,7 @@
 <title>Page Title</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <link rel='stylesheet' type='css' media='screen' href='style.css'>
+<script src="https://kit.fontawesome.com/988c8cacf7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>

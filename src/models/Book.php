@@ -7,6 +7,7 @@
  * comment : avis sur le livre
  * available : Vrai / Faux
  * id_member : id du proriétaire du livre
+ * picture : lien vers l'image du livre
  */
 
 class Book
@@ -17,6 +18,7 @@ class Book
     private string $comment;
     private bool $available;
     private int $idMember;
+    private string $picture;
 
     public function getId(): int
     {
@@ -76,5 +78,14 @@ class Book
     public function setIdMember(int $idMember): void
     {
         $this->idMember = $idMember;
+    }
+    public function getPicture(): string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): void
+    {
+        $this->picture = $picture;
     }
 }

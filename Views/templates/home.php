@@ -2,7 +2,6 @@
 /**
  * Affichage de La page d'accueil. 
  */
-
  include 'templates/main.php';
 ?>
 

@@ -9,10 +9,11 @@
  * register_date : date d'inscription
  */
 
- class User{
+class User
+{
     private int $id;
     private string $pseudo;
-    private string $avatar;
+    private ?string $avatar;
     private string $email;
     private string $password;
     private DateTime $registerDate;
@@ -36,12 +37,12 @@
     {
         $this->pseudo = $pseudo;
     }
-    public function getAvatar(): string
+    public function getAvatar(): ?string
     {
         return $this->avatar;
     }
 
-    public function setAvatar(string $avatar): void
+    public function setAvatar(?string $avatar): void
     {
         $this->avatar = $avatar;
     }
@@ -74,4 +75,4 @@
     {
         $this->registerDate = $registerDate;
     }
- }
+}

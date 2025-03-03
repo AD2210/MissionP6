@@ -48,6 +48,7 @@ class DBManager
     }
 
     /**
+     * @todo a voir si utile car pas optimale
      * Méthode qui permet d'exécuter une requête SQL.
      * Si des paramètres sont passés, on utilise une requête préparée.
      * @param string $sql : la requête SQL à exécuter.

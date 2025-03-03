@@ -1,11 +1,13 @@
 <?php
 
 require_once 'config/config.php';
+require_once 'src/controllers/MainController.php';
 // a paramétré à la fin : require_once 'config/autoload.php';
 
 // On récupère l'action demandée par l'utilisateur.
 // Si aucune action n'est demandée, on affiche la page d'accueil.
 //$action = Utils::request('action', 'home');
+$action = 'home';
 
 // Try catch global pour gérer les erreurs
 try {

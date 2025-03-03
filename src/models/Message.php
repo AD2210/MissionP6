@@ -8,13 +8,14 @@
  * send_date : date d'envoi au format jj.mm HH:mm 
  */
 
- class Message{
+class Message
+{
     private int $id;
     private int $idSender;
     private int $idReceiver;
     private string $content;
     private DateTime $sendDate;
- 
+
     public function getId(): int
     {
         return $this->id;
@@ -62,4 +63,4 @@
     {
         $this->sendDate = $sendDate;
     }
- }
+}

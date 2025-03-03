@@ -5,11 +5,11 @@
  * title : Titre du livre
  * author : auteur du livre
  * comment : avis sur le livre
- * available : Vrai / Faux
+ * available : disponibilité du livre Vrai / Faux
  * id_member : id du proriétaire du livre
  * picture : lien vers l'image du livre
  */
-
+#[\AllowDynamicProperties]
 class Book
 {
     private int $id;
@@ -20,6 +20,9 @@ class Book
     private int $idMember;
     private string $picture;
 
+    public function __construct() {
+        $this->id;
+    }
     public function getId(): int
     {
         return $this->id;

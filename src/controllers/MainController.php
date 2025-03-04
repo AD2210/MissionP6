@@ -17,4 +17,14 @@ require_once 'src/models/BookManager.php';
             'books' => $books
         ]);
     }
+
+    public function showAllBooks(): void
+    {
+        $bookManager = new bookManager();
+        $books = $bookManager->getAllbooks();
+        $view = new View("Nos Livres à l'échange");
+        $view->render("allBooks", [
+            'books' => $books
+        ]);
+    }
  }

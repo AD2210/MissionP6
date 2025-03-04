@@ -7,7 +7,8 @@ require_once 'src/controllers/MainController.php';
 // On récupère l'action demandée par l'utilisateur.
 // Si aucune action n'est demandée, on affiche la page d'accueil.
 //$action = Utils::request('action', 'home');
-$action = 'home';
+//$action = 'home';
+$action = 'allBooks';
 
 // Try catch global pour gérer les erreurs
 try {
@@ -17,6 +18,10 @@ try {
         case 'home':
             $articleController = new MainController();
             $articleController->showHome();
+
+        case 'allBooks':
+            $articleController = new MainController();
+            $articleController->showAllBooks();
 
         default:
             throw new Exception("La page demandée n'existe pas.");

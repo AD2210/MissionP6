@@ -25,7 +25,7 @@
             //$pseudo = $book->getIdMember();
         
             // hereDoc pour afficher les variables récupérés
-            $bookCard = <<<BOOK
+            $bookCard = <<<HTML
                     <article class="bookCard">
                         <img src="$picture" alt="photo d'un livre">
                         <div class="bookCardText">
@@ -34,7 +34,7 @@
                             <p>Vendu par : pseudo</p>
                         </div>
                     </article>
-                    BOOK;
+                    HTML;
             echo $bookCard;
         } ?>
     </div>

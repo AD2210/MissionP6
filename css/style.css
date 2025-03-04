@@ -197,13 +197,17 @@ footer img{
     padding-bottom: 64px;
 }
 
+/******** bookCard ********/
+
 .bookCardsContainer {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 914px;
     height: 324px;
-    gap: 48px;
+    gap: 38px;
     margin-top: 80px;
-    margin-bottom: 48px;
+    margin-bottom: 38px;
 }
 
 .bookCardsContainer img {
@@ -215,6 +219,7 @@ footer img{
 .bookCard {
     background-color: white;
     border-radius: 0 0 10px 10px;
+    flex: 1 1 auto;
 }
 
 .bookCardText {
@@ -315,4 +320,59 @@ footer img{
     max-width: 1440px;
     width: 100%;
     object-fit: cover;
+}
+
+/******** nos livres à l'échange ********/
+
+.oursBooksSection {
+    width: 1440px;
+    background-color: var(--backgroundColorSecond);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 64px;
+}
+
+.SectionTitle{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-between;
+    width: 914px;
+}
+
+.searchBar{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-left: 10px;
+    width: 322px;
+    height: 50px;
+    background-color: white;
+    border: solid #F0F0F0 1px;
+    border-radius: 6px;
+    color: #A6A6A6;
+}
+
+.searchBar input{
+    border: none;
+    color: #A6A6A6;
+    height: 100%;
+    width: 100%;
+    font-size: 14px;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    border: none;
+}
+
+.searchBar input::placeholder{
+    color: #A6A6A6;
+    font-size: 14px;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }

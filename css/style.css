@@ -31,7 +31,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: var(--backgroundColorMain);
+
 }
 
 main {
@@ -64,7 +64,8 @@ h2 {
 h3,
 h4,
 p,
-a {
+a,
+span {
     font-family: "Inter", serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -99,6 +100,8 @@ button {
     align-items: center;
     justify-content: space-between;
     padding: 0 150px;
+    background-color: var(--backgroundColorMain);
+    background-size: cover;
 }
 
 .navbar img {
@@ -134,6 +137,25 @@ button {
 
 /****** Footer *****/
 
+footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    height: 61px;
+    justify-content: end;
+    background-color: white;
+    width: 1440px;
+    font-size: 12px;
+    font-weight: 300;
+    padding-right: 46px;
+    color: #292929;
+}
+
+footer img{
+    height: 17.36px;
+    width: 22px;
+}
 
 /****** Sections *****/
 .introContainer {
@@ -156,6 +178,7 @@ button {
     align-items: center;
     padding-bottom: 128px;
     gap: 100px;
+    background-color: var(--backgroundColorMain);
 }
 
 .homePicture {
@@ -225,6 +248,7 @@ button {
     flex-direction: column;
     align-items: center;
     padding-bottom: 44px;
+    background-color: var(--backgroundColorMain);
 }
 
 .howToDoSection h2 {
@@ -265,6 +289,7 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--backgroundColorMain);
 }
 
 .valueContainer{
@@ -273,6 +298,16 @@ button {
     gap: 20px;
     align-items: start;
     width: 392px;
+}
+
+.valueText p{
+    margin-bottom: 20px;
+}
+
+.valueContainer span{
+    font-style: italic;
+    color: #A6A6A6;
+    font-size: 12px;
 }
 
 .valuePicture {

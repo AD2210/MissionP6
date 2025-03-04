@@ -54,8 +54,8 @@
         </main>
         
         <footer>
-            <a href="#">politique de confidentialité</a>
-            <a href="#">mentions légales</a>
+            <a href="#">Politique de confidentialité</a>
+            <a href="#">Mentions légales</a>
             <a href="#">Tom Troc <i class="fa-regular fa-copyright"></i></a>
             <img src="\ressources\Logo_footer.png" alt="Logo double T Tom Troc">
         </footer>

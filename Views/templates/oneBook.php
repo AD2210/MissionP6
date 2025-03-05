@@ -4,7 +4,7 @@ $title = $book->getTitle();
 $picture = $book->getPicture();
 $author = $book->getAuthor();
 $decription = $book->getMessage();
-//$avatar = $member->getAvatar();
+//$avatar = $user->getAvatar();
 //$pseudo = $book->getIdMember();
 
 $dynamicLink = <<<HTML

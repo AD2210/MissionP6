@@ -9,6 +9,7 @@ require_once 'src/controllers/MainController.php';
 //$action = Utils::request('action', 'home');
 //$action = 'home';
 $action = 'allBooks';
+$action = 'oneBook';
 
 // Try catch global pour gérer les erreurs
 try {
@@ -22,6 +23,10 @@ try {
         case 'allBooks':
             $articleController = new MainController();
             $articleController->showAllBooks();
+        
+        case 'oneBook':
+            $articleController = new MainController();
+            $articleController->showOneBook();
 
         default:
             throw new Exception("La page demandée n'existe pas.");

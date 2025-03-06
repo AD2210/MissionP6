@@ -5,7 +5,8 @@
  * id_sender : id du membre qui a envoyé le message
  * id_receiver : id du membre qui a reçu le message
  * content : contenu du message
- * send_date : date d'envoi au format jj.mm HH:mm 
+ * send_date : date d'envoi au format jj.mm HH:mm
+ * @todo ajouter attribut read-flag pour savoir si le message a été lu ou non
  */
 
 class Message

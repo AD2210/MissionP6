@@ -21,10 +21,20 @@ require_once 'src/models/BookManager.php';
     public function showAllBooks(): void
     {
         $bookManager = new bookManager();
-        $books = $bookManager->getAllbooks();
+        $books = $bookManager->getAllBooks();
         $view = new View("Nos Livres à l'échange");
         $view->render("allBooks", [
             'books' => $books
+        ]);
+    }
+
+    public function showOneBook(): void
+    {
+        $bookManager = new bookManager();
+        $book = $bookManager->getOneBookById(1);
+        $view = new View("Nos Livres à l'échange");
+        $view->render("allBooks", [
+            'book' => $book
         ]);
     }
  }

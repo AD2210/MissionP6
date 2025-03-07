@@ -16,7 +16,7 @@ class BookManager
         $sql = "SELECT * FROM book WHERE id = $id" ;
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
-        $result = $pdo->setAttribute(PDO::FETCH_CLASS,"book");
+        $result->setFetchMode(PDO::FETCH_CLASS,"book");
         return $result->fetch();
     }
 }

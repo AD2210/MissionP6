@@ -6,7 +6,7 @@
  * id_receiver : id du membre qui a reçu le message
  * content : contenu du message
  * send_date : date d'envoi au format jj.mm HH:mm
- * @todo ajouter attribut read-flag pour savoir si le message a été lu ou non
+ * read-flag : bool pour savoir si le message a été lu ou non
  */
 
 class Message
@@ -16,6 +16,7 @@ class Message
     private int $idReceiver;
     private string $content;
     private DateTime $sendDate;
+    private bool $readFlag;
 
     public function getId(): int
     {
@@ -63,5 +64,15 @@ class Message
     public function setSendDate(DateTime $sendDate): void
     {
         $this->sendDate = $sendDate;
+    }
+
+    public function getReadFlag(): bool
+    {
+        return $this->readFlag;
+    }
+
+    public function setReadFlag(bool $readFlag): void
+    {
+        $this->readFlag = $readFlag;
     }
 }

@@ -51,6 +51,7 @@ class MessageFixture
     {
         $userManager = new UserManager;
         $array = $userManager->getAllUsersId();
+        var_dump(array_column($array['id']));
 
         if (!isset($idReceiver)) {
             return array_rand($array, 1);

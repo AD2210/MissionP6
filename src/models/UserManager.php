@@ -33,8 +33,8 @@ class UserManager
         $sql = "INSERT INTO user (pseudo, avatar, email, password, register_date) 
             VALUES (:pseudo, :avatar, :email, :password, NOW())";
         $pdo = DBManager::getInstance()->getPDO();
-        $pdo->prepare($sql);
-        $this->$pdo->execute([
+        $result = $pdo->prepare($sql);
+        $result->execute([
             'pseudo' => $user->getPseudo(),
             'avatar' => $user->getAvatar(),
             'email' => $user->getEmail(),
@@ -43,12 +43,12 @@ class UserManager
     }
 
     public function getLastIdUser() : int {
-        //Requête pour sortir tous les id des users
-        $sql = 'SELECT id from user';
+        //Requête pour sortir le dernier ID utilisé
+        $sql = 'SELECT id FROM user';
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
-        $result->fetchAll();
-
-        return count($result);
+        $array = $result->fetchAll();
+        
+        return $array[count($array)-1]['id'];
     }
 }

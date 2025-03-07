@@ -1,6 +1,8 @@
 <?php
 require_once 'views/View.php';
 require_once 'src/models/BookManager.php';
+require_once 'src\models\UserFixture.php';
+require_once 'src\models\MessageFixture.php';
 
 /**
  * Contrôleur Principale qui gère l'acceuil et les methodes communes
@@ -36,5 +38,15 @@ require_once 'src/models/BookManager.php';
         $view->render("allBooks", [
             'book' => $book
         ]);
+    }
+
+    public function GeretateUsers() : void {
+        $userFixture = new UserFixture;
+        $userFixture->createSomeUsers(10);
+    }
+
+    public function GeretateMessages() : void {
+        $userFixture = new MessageFixture;
+        $userFixture->createSomeMessages(10);
     }
  }

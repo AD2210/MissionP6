@@ -14,7 +14,7 @@ function createOneUser() : void{
     $user->setPseudo('user' .$userManager->getLastIdUser()+1);
     $user->setAvatar('https://picsum.photos/200?random=' .$userManager->getLastIdUser()+1);
     $user->setEmail($user->getPseudo() .'@fixture.fr');
-    $user->setPassword(password_hash(random_bytes(10)));
+    $user->setPassword(password_hash($user->getPseudo(),PASSWORD_DEFAULT));
 
     //on enregistre en BDD
     $userManager->addNewUser($user);

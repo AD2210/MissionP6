@@ -44,8 +44,8 @@ class MessageManager
         $sql = "INSERT INTO message (id_sender, id_receiver, content, send_date, read_flag) 
             VALUES (:idSender, :idReceiver, :content, NOW(), 0)";
         $pdo = DBManager::getInstance()->getPDO();
-        $pdo->prepare($sql);
-        $this->$pdo->execute([
+        $result = $pdo->prepare($sql);
+        $result->execute([
             'idSender' => $message->getIdSender(),
             'idReceiver' => $message->getIdReceiver(),
             'content' => $message->getContent()

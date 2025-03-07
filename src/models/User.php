@@ -9,6 +9,7 @@
  * register_date : date d'inscription
  */
 
+ #[\AllowDynamicProperties]
 class User
 {
     private int $id;

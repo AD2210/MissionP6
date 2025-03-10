@@ -47,6 +47,6 @@ require_once 'src\models\MessageFixture.php';
 
     public function GeretateMessages() : void {
         $userFixture = new MessageFixture;
-        $userFixture->createSomeMessages(10);
+        $userFixture->createSomeMessages(100);
     }
  }

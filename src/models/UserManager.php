@@ -51,4 +51,12 @@ class UserManager
         
         return $array[count($array)-1]['id'];
     }
+
+    public function getAllUsersIdExceptOneId(int $id): array
+    {
+        $sql = "SELECT id FROM user EXCEPT SELECT id FROM user WHERE id = $id";
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->query($sql);
+        return $result->fetchAll();
+    }
 }

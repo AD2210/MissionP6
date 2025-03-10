@@ -47,16 +47,18 @@ class MessageFixture
      * @param mixed $idReceiver
      * @return int
      */
-    public function randId(?int $idReceiver = 0): int
+    public function randId(int $idReceiver = 0): int
     {
         $userManager = new UserManager;
         $array = $userManager->getAllUsersId();
-        var_dump(array_column($array['id']));
+        $array = array_column($array, 'id');
 
-        if (!isset($idReceiver)) {
-            return array_rand($array, 1);
+        if ($idReceiver == 0) {
+            return $array[array_rand($array)];
         } else {
-            return array_rand(array_splice($array, $idReceiver + 1, 1), 1);
+            $array = $userManager->getAllUsersIdExceptOneId($idReceiver);
+            $array = array_column($array, 'id');
+            return $array[array_rand($array)];
         }
     }
 

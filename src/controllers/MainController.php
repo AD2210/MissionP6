@@ -33,11 +33,14 @@ require_once 'src\models\BookFixture.php';
 
     public function showOneBook(): void
     {
-        $bookManager = new bookManager();
+        $bookManager = new bookManager;
+        $userManager = new UserManager;
         $book = $bookManager->getOneBookById(1);
-        $view = new View("Nos Livres à l'échange");
-        $view->render("allBooks", [
-            'book' => $book
+        $user = $userManager->getOneUserById($book->getIdMember());
+        $view = new View("Le livre");
+        $view->render("oneBook", [
+            'book' => $book,
+            'user' => $user
         ]);
     }
 

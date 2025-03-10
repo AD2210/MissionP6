@@ -17,7 +17,7 @@ class Book
     private string $author;
     private string $comment;
     private bool $available;
-    private int $idMember;
+    private int $id_member; //@Todo problème de liaison avec la table lorsque je respect le Camelcase
     private string $picture;
 
     public function getId(): int
@@ -72,12 +72,12 @@ class Book
 
     public function getIdMember(): int
     {
-        return $this->idMember;
+        return $this->id_member;
     }
 
     public function setIdMember(int $idMember): void
     {
-        $this->idMember = $idMember;
+        $this->id_member = $idMember;
     }
     public function getPicture(): string
     {

@@ -8,8 +8,8 @@ require_once 'src/controllers/MainController.php';
 // Si aucune action n'est demandée, on affiche la page d'accueil.
 //$action = Utils::request('action', 'home');
 //$action = 'home';
-$action = 'allBooks';
-//$action = 'oneBook';
+//$action = 'allBooks';
+$action = 'oneBook';
 //$action = 'addUsers';
 //$action = 'addMessages';
 //$action = 'addBooks';

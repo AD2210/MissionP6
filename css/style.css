@@ -202,9 +202,9 @@ footer img{
 .bookCardsContainer {
     display: flex;
     flex-direction: row;
+    
     flex-wrap: wrap;
     max-width: 914px;
-    height: 324px;
     gap: 38px;
     margin-top: 80px;
     margin-bottom: 38px;
@@ -219,7 +219,9 @@ footer img{
 .bookCard {
     background-color: white;
     border-radius: 0 0 10px 10px;
-    flex: 1 1 auto;
+    flex: 0 1 auto;
+    height: 324px;
+    width: 200px;
 }
 
 .bookCardText {

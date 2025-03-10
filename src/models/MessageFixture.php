@@ -28,7 +28,7 @@ class MessageFixture
     }
 
     /**
-     * appelle nb fois la fonction createOneMessage
+     * Methode pour créer des message en lot
      * @param int $nb
      * @return void
      */
@@ -41,8 +41,8 @@ class MessageFixture
     }
 
     /**
-     * Renvoie un id aléatoire à partir de la liste des ID users, 
-     * permet de renvoyé un id aléatoire différent de celui déjà paramétré pour le recepteur du message
+     * Renvoie un id aléatoire à partir de la liste des ID users existant, 
+     * permet de renvoyer un id aléatoire différent de celui déjà paramétré pour le recepteur du message
      * @param array $array
      * @param mixed $idReceiver
      * @return int
@@ -50,12 +50,14 @@ class MessageFixture
     static public function randId(int $idReceiver = 0): int
     {
         $userManager = new UserManager;
-        $array = $userManager->getAllUsersId();
+         //On récupère la liste des id utilisateurs et on transforme en array à 1 dimension
+         $array = $userManager->getAllUsersId();
         $array = array_column($array, 'id');
 
         if ($idReceiver == 0) {
-            return $array[array_rand($array)];
+            return $array[array_rand($array)]; // Retourne un Id aléatoire
         } else {
+            // On récupère la liste des id utilisateurs sans l'id passé en paramètre et on retourne un Id aléatoire
             $array = $userManager->getAllUsersIdExceptOneId($idReceiver);
             $array = array_column($array, 'id');
             return $array[array_rand($array)];

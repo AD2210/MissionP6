@@ -11,8 +11,8 @@ function createOneUser() : void{
     $user = new User;
 
     // création des datas fictives pour allimenter la bdd durant le developpement
-    $user->setPseudo('user' .$userManager->getLastIdUser()+1);
-    $user->setAvatar('https://picsum.photos/200?random=' .$userManager->getLastIdUser()+1);
+    $user->setPseudo('user' .$userManager->getLastUserId()+1);
+    $user->setAvatar('https://picsum.photos/200?random=' .$userManager->getLastUserId()+1);
     $user->setEmail($user->getPseudo() .'@fixture.fr');
     $user->setPassword(password_hash($user->getPseudo(),PASSWORD_DEFAULT));
 

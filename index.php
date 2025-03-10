@@ -8,10 +8,10 @@ require_once 'src/controllers/MainController.php';
 // Si aucune action n'est demandée, on affiche la page d'accueil.
 //$action = Utils::request('action', 'home');
 //$action = 'home';
-//$action = 'allBooks';
+$action = 'allBooks';
 //$action = 'oneBook';
 //$action = 'addUsers';
-$action = 'addMessages';
+//$action = 'addMessages';
 //$action = 'addBooks';
 
 // Try catch global pour gérer les erreurs
@@ -22,23 +22,33 @@ try {
         case 'home':
             $articleController = new MainController();
             $articleController->showHome();
+            break;
 
         case 'allBooks':
             $articleController = new MainController();
             $articleController->showAllBooks();
+            break;
         
         case 'oneBook':
             $articleController = new MainController();
             $articleController->showOneBook();
+            break;
 
         case 'addUsers':
             $articleController = new MainController();
             $articleController->GeretateUsers();
+            break;
 
         case 'addMessages':
             $articleController = new MainController();
             $articleController->GeretateMessages();
-    
+            break;
+
+        case 'addBooks':
+            $articleController = new MainController();
+            $articleController->GeretateBooks();
+            break;
+
         default:
             throw new Exception("La page demandée n'existe pas.");
     }

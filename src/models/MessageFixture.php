@@ -47,7 +47,7 @@ class MessageFixture
      * @param mixed $idReceiver
      * @return int
      */
-    public function randId(int $idReceiver = 0): int
+    static public function randId(int $idReceiver = 0): int
     {
         $userManager = new UserManager;
         $array = $userManager->getAllUsersId();

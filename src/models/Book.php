@@ -20,9 +20,6 @@ class Book
     private int $idMember;
     private string $picture;
 
-    public function __construct() {
-        $this->id;
-    }
     public function getId(): int
     {
         return $this->id;

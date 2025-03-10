@@ -42,7 +42,7 @@ class UserManager
         ]);
     }
 
-    public function getLastIdUser() : int {
+    public function getLastUserId() : int {
         //Requête pour sortir le dernier ID utilisé
         $sql = 'SELECT id FROM user';
         $pdo = DBManager::getInstance()->getPDO();

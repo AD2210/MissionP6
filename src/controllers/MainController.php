@@ -3,6 +3,7 @@ require_once 'views/View.php';
 require_once 'src/models/BookManager.php';
 require_once 'src\models\UserFixture.php';
 require_once 'src\models\MessageFixture.php';
+require_once 'src\models\BookFixture.php';
 
 /**
  * Contrôleur Principale qui gère l'acceuil et les methodes communes
@@ -13,7 +14,7 @@ require_once 'src\models\MessageFixture.php';
     public function showHome(): void
     {
         $bookManager = new bookManager();
-        $books = $bookManager->getAllbooks();
+        $books = $bookManager->getFourLastBooks();
         $view = new View("Accueil");
         $view->render("home", [
             'books' => $books
@@ -48,5 +49,10 @@ require_once 'src\models\MessageFixture.php';
     public function GeretateMessages() : void {
         $userFixture = new MessageFixture;
         $userFixture->createSomeMessages(100);
+    }
+
+    public function GeretateBooks() : void {
+        $userFixture = new BookFixture;
+        $userFixture->createSomeBooks(100);
     }
  }

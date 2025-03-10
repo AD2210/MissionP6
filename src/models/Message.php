@@ -9,6 +9,7 @@
  * read-flag : bool pour savoir si le message a été lu ou non
  */
 
+ #[\AllowDynamicProperties]
 class Message
 {
     private int $id;

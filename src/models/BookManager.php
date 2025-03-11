@@ -11,6 +11,14 @@ class BookManager
         return $result->fetchAll(PDO::FETCH_CLASS,"book");
     }
 
+    public function getAllBooksByIdMember(int $idMember): array
+    {
+        $sql = "SELECT * FROM book WHERE id_member = $idMember";
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->query($sql);
+        return $result->fetchAll(PDO::FETCH_CLASS,"book");
+    }
+
     public function getFourLastBooks(): array
     {
         $sql = "SELECT * FROM book ORDER BY id DESC LIMIT 4";

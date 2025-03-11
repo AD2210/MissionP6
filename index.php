@@ -13,7 +13,8 @@ require_once 'src/controllers/MainController.php';
 //$action = 'addUsers';
 //$action = 'addMessages';
 //$action = 'addBooks';
-$action = 'loginPage';
+//$action = 'loginPage';
+$action = 'privatePage';
 
 // Try catch global pour gérer les erreurs
 try {
@@ -53,6 +54,11 @@ try {
         case 'loginPage':
             $articleController = new MainController();
             $articleController->showLogin();
+            break;
+
+        case 'privatePage':
+            $articleController = new MainController();
+            $articleController->showPrivatePage();
             break;
 
         default:

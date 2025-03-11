@@ -5,7 +5,7 @@
 
 $avatar = $user->getAvatar();
 $pseudo = $user->getPseudo();
-$seniority = $user->getDateCreation(); //@todo faire le calcul ici via methode static dans user manager avec unité
+$seniority = $user->getRegisterDate(); //@todo faire le calcul ici via methode static dans user manager avec unité
 $nbBooks = $book->getNbBooksByIdMember(); //@todo créer la méthode static dans book manager avec unité (livre ou livres)
 $email = $user->getEmail();
 $password = $user->getPassword(); //@todo prévoir le hash si besoin

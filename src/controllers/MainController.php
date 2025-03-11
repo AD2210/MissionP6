@@ -53,6 +53,21 @@ require_once 'src\models\BookFixture.php';
         ]);
     }
 
+    public function showPrivatePage(): void
+    {
+        $userManager = new UserManager;
+        $user = $userManager->getOneUserById(33);
+        $bookManager = new bookManager();
+        $books = $bookManager->getAllBooksByIdMember(33);
+
+        $view = new View("Page personelle de " .$user->getPseudo());
+        $view->render("privatePage", [
+            'user' => $user,
+            'books' => $books
+        ]);
+    }
+
+    /** Methodes pour fixtures */
     public function geretateUsers() : void {
         $userFixture = new UserFixture;
         $userFixture->createSomeUsers(10);

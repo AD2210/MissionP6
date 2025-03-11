@@ -44,17 +44,26 @@ require_once 'src\models\BookFixture.php';
         ]);
     }
 
-    public function GeretateUsers() : void {
+    public function showLogin(): void
+    {
+        $connexion = False;
+        $view = new View("Login");
+        $view->render("loginPage", [
+            'connexion' => $connexion
+        ]);
+    }
+
+    public function geretateUsers() : void {
         $userFixture = new UserFixture;
         $userFixture->createSomeUsers(10);
     }
 
-    public function GeretateMessages() : void {
+    public function geretateMessages() : void {
         $userFixture = new MessageFixture;
         $userFixture->createSomeMessages(100);
     }
 
-    public function GeretateBooks() : void {
+    public function geretateBooks() : void {
         $userFixture = new BookFixture;
         $userFixture->createSomeBooks(100);
     }

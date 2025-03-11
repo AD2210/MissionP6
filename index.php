@@ -9,10 +9,11 @@ require_once 'src/controllers/MainController.php';
 //$action = Utils::request('action', 'home');
 //$action = 'home';
 //$action = 'allBooks';
-$action = 'oneBook';
+//$action = 'oneBook';
 //$action = 'addUsers';
 //$action = 'addMessages';
 //$action = 'addBooks';
+$action = 'loginPage';
 
 // Try catch global pour gérer les erreurs
 try {
@@ -36,17 +37,22 @@ try {
 
         case 'addUsers':
             $articleController = new MainController();
-            $articleController->GeretateUsers();
+            $articleController->geretateUsers();
             break;
 
         case 'addMessages':
             $articleController = new MainController();
-            $articleController->GeretateMessages();
+            $articleController->geretateMessages();
             break;
 
         case 'addBooks':
             $articleController = new MainController();
-            $articleController->GeretateBooks();
+            $articleController->geretateBooks();
+            break;
+
+        case 'loginPage':
+            $articleController = new MainController();
+            $articleController->showLogin();
             break;
 
         default:

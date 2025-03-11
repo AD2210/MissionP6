@@ -360,10 +360,10 @@ footer img{
     color: var(--subtitleColor);
 }
 
-.searchBar input{
+input{
     border: none;
     color: var(--subtitleColor);
-    height: 100%;
+    height: 50px;
     width: 100%;
     font-size: 14px;
     font-family: "Inter", serif;
@@ -459,4 +459,63 @@ footer img{
     width: 48px;
     object-fit: cover;
     border-radius: 100%;
+}
+
+/******** login ********/
+
+.loginPageSection{
+    padding-top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--backgroundColorSecond);
+}
+
+.loginPageSection img{
+    height: 886px;
+    width: 720;
+}
+
+.loginForm{
+    width: 720px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginForm form{
+    padding-top: 56px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 322px;
+}
+
+.loginForm .formField{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--subtitleColor);
+    font-size: 14px;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.loginForm input{
+    background-color: white;
+    border: solid #F0F0F0 1px;
+    border-radius: 6px;
+}
+
+.loginForm button{
+    width: 100%;
+}
+
+.loginForm p{
+    font-size: 14px;
+    color: #292929;
 }

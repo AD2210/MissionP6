@@ -5,21 +5,21 @@ $picture = $book->getPicture();
 $author = $book->getAuthor();
 $decription = $book->getComment();
 $avatar = $user->getAvatar();
-$pseudo = $book->getIdMember();
+$pseudo = $user->getPseudo();
 
 $dynamicLink = <<<HTML
-    <div>
-        <span><a href="#">Nos livres</a> > <a href="#">$title</a></span>
+    <div class="navLink">
+        <span ><a href="#">Nos livres</a> > <a href="#">$title</a></span>
     </div>
     <section class="oneBookSection">
         <img src="$picture" alt="photo du livre : $title">
         <div class="oneBookContainer">
             <h1>$title</h1>
-            <p>par $author</p>
-            <p>___</p>
-            <p>DESCRIPTION</p>
-            <p>$decription</p>
-            <p>PROPRIÉTAIRE</p>
+            <span>par $author</span>
+            <span>——</span>
+            <p class="partTitle">DESCRIPTION</p>
+            <p class="bookDescription">$decription</p>
+            <p class="partTitle">PROPRIÉTAIRE</p>
             <div class="ownerCard">
                 <img src="$avatar" alt="photo du membre : $pseudo">
                 <p>$pseudo</p>

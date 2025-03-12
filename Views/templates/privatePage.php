@@ -5,45 +5,46 @@
 
 $avatar = $user->getAvatar();
 $pseudo = $user->getPseudo();
-$seniority = $user->getRegisterDate(); //@todo faire le calcul ici via methode static dans user manager avec unité
-$nbBooks = $book->getNbBooksByIdMember(); //@todo créer la méthode static dans book manager avec unité (livre ou livres)
+$seniority = UserManager::calculSeniority($user->getRegisterDate());
+$nbBooks = count($books) > 1 ? count($books) .' Livres' : count($books) . 'Livre';
 $email = $user->getEmail();
 $password = $user->getPassword(); //@todo prévoir le hash si besoin
 
 $personalContent = <<<HTML
-    <div class="privatePresentation">
-        <div> 
-            <img src="$avatar" alt="photo du membre : $pseudo">
-            <input type="submit" value="modifier">
-        </div>
-        <div>
-            <h2>$pseudo</h2>
-            <p>Membre depuis $seniority</p>
-            <p>BIBLIOTHEQUE</p>
-            <div>
-                <img src="" alt="">
-                <p>$nbBooks</p>
+    <section class="privatePageSection">
+        <div class="privatePresentation">
+            <div> 
+                <img src="$avatar" alt="photo du membre : $pseudo">
+                <input type="submit" value="modifier">
             </div>
-        </div>   
-    </div>
+            <div>
+                <h2>$pseudo</h2>
+                <p>$seniority</p>
+                <p>BIBLIOTHEQUE</p>
+                <div>
+                    <img src="" alt="">
+                    <p>$nbBooks</p>
+                </div>
+            </div>   
+        </div>
 
-    <div>
-        <p>Vos informations personnelles</p>
-        <form action="#">
-        <label for="pseudo">Pseudo</label>
-            <input type="text" name="pseudo" id="pseudo">
-            <label for="email">Adresse email</label>
-            <input type="email" name="email" id="email">
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password">
-            <input type="submit" value="Enregistrer">
-        </form>
-    </div>
+        <div>
+            <p>Vos informations personnelles</p>
+            <form action="#">
+            <label for="pseudo">Pseudo</label>
+                <input type="text" name="pseudo" id="pseudo">
+                <label for="email">Adresse email</label>
+                <input type="email" name="email" id="email">
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" id="password">
+                <input type="submit" value="Enregistrer">
+            </form>
+        </div>
 HTML;
 
 echo $personalContent;
 ?>
-
+</section>
 <table>
     <thead>
         <tr>

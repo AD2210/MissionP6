@@ -21,7 +21,6 @@ class UserFixture
         $user->setAvatar('https://picsum.photos/200?random=' . $userManager->getLastUserId() + 1);
         $user->setEmail($user->getPseudo() . '@fixture.fr');
         $user->setPassword(password_hash($user->getPseudo(), PASSWORD_DEFAULT));
-
         //on enregistre en BDD
         $userManager->addNewUser($user);
     }

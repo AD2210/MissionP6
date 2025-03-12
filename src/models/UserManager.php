@@ -24,14 +24,14 @@ class UserManager
         $sql = "SELECT * FROM user WHERE id = $id"; // @todo préparer la requette
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
-        $result->setFetchMode(PDO::FETCH_CLASS, "user");
+        $result->setFetchMode(PDO::FETCH_CLASS, User::class);
         return $result->fetch();
     }
 
     public function addNewUser(User $user): void //@todo faire les contrôles de saisie dans l'entité
     {
         $sql = "INSERT INTO user (pseudo, avatar, email, password, register_date) 
-            VALUES (:pseudo, :avatar, :email, :password, NOW())";
+            VALUES (:pseudo, :avatar, :email, :password, now())";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([
@@ -58,5 +58,21 @@ class UserManager
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
         return $result->fetchAll();
+    }
+
+    static public function calculSeniority(DateTime $dateTime):string {
+        $now = new DateTime('now');
+        $dateDiff = date_diff($dateTime,$now);
+        $array = json_decode(json_encode($dateDiff),true); // on convertie l'objet en tableau
+
+        if ($array['y']>0){
+            return $dateDiff->format('Membre depuis %y an');
+        }elseif($array['m']>0){
+            return $dateDiff->format('Membre depuis %m mois');
+        }elseif($array['d']>0){
+            return $dateDiff->format('Membre depuis %d jours');
+        }else{
+            return 'Nouveau membre';
+        }
     }
 }

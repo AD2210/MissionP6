@@ -70,16 +70,16 @@ require_once 'src\models\BookFixture.php';
     /** Methodes pour fixtures */
     public function geretateUsers() : void {
         $userFixture = new UserFixture;
-        $userFixture->createSomeUsers(10);
+        $userFixture->createSomeUsers(1);
     }
 
     public function geretateMessages() : void {
         $userFixture = new MessageFixture;
-        $userFixture->createSomeMessages(100);
+        $userFixture->createSomeMessages(10);
     }
 
     public function geretateBooks() : void {
         $userFixture = new BookFixture;
-        $userFixture->createSomeBooks(100);
+        $userFixture->createSomeBooks(10);
     }
  }

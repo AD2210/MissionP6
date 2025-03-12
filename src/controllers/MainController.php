@@ -46,7 +46,7 @@ require_once 'src\models\BookFixture.php';
 
     public function showLogin(): void
     {
-        $connexion = False;
+        $connexion = true;
         $view = new View("Login");
         $view->render("loginPage", [
             'connexion' => $connexion

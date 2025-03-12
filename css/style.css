@@ -604,3 +604,89 @@ input{
 }
 
 /******** PrivatePage/ Personnal information form ********/
+
+.privatePageContainer > form{
+    padding-top: 0;
+}
+
+.privatePageContainer button{
+    background-color: inherit;
+    color: var(--mainColor);
+    border: solid 1px var(--mainColor);
+    width: fit-content;
+}
+
+/******** PrivatePage/ book table ********/
+
+.bookTable{
+    width: 1140px;
+    padding-left: 66px;
+    padding-right: 66px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.bookTableHead{
+    width: 15%;
+    text-align: start;
+    height: 50px;
+}
+
+.thDesc{
+    width: 25%;
+    text-align: start;
+    height: 50px;
+}
+
+.bookTable img{
+    width: 78px;
+    height: 78px;
+}
+
+.bookTable th{
+    text-align: start;
+    padding-top: 26px;
+    padding-bottom: 26px;
+}
+
+.bookTable td{
+    padding-right: 40px;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+}
+
+.bookTable td .italic{
+    font-style: italic;
+}
+
+.bookStatus{
+    color: white;
+    padding: 3.7px 13.3px;
+    border-radius: 30px;
+    width: fit-content;
+}
+
+.available{
+    background-color: var(--statusColorTrue);
+}
+
+.unavailable{
+    background-color: var(--statusColorFalse);
+}
+
+.actionTable{
+    display: flex;
+    flex-direction: row;
+    gap: 28px;
+}
+
+.actionLink{
+    text-decoration: underline;
+}
+
+.actionDelete{
+    color: #CB2D2D;
+}

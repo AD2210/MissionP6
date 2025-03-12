@@ -50,8 +50,16 @@ class Book
         $this->author = $author;
     }
 
-    public function getComment(): string
+    public function getComment(int $length = -1): string
     {
+        if ($length > 0) {
+            // Ici, on utilise mb_substr et pas substr pour éviter de couper un caractère en deux (caractère multibyte comme les accents).
+            $content = mb_substr($this->comment, 0, $length);
+            if (strlen($this->comment) > $length) {
+                $content .= "...";
+            }
+            return $content;
+        }
         return $this->comment;
     }
 

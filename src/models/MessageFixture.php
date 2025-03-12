@@ -50,8 +50,8 @@ class MessageFixture
     static public function randId(int $idReceiver = 0): int
     {
         $userManager = new UserManager;
-         //On récupère la liste des id utilisateurs et on transforme en array à 1 dimension
-         $array = $userManager->getAllUsersId();
+        //On récupère la liste des id utilisateurs et on transforme en array à 1 dimension
+        $array = $userManager->getAllUsersId();
         $array = array_column($array, 'id');
 
         if ($idReceiver == 0) {

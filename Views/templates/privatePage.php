@@ -6,7 +6,7 @@
 $avatar = $user->getAvatar();
 $pseudo = $user->getPseudo();
 $seniority = UserManager::calculSeniority($user->getRegisterDate());
-$nbBooks = count($books) > 1 ? count($books) .' Livres' : count($books) . 'Livre';
+$nbBooks = count($books) > 1 ? count($books) . ' Livres' : count($books) . 'Livre';
 $email = $user->getEmail();
 $password = $user->getPassword(); //@todo prévoir le hash si besoin
 
@@ -31,66 +31,84 @@ $personalContent = <<<HTML
                 </div>   
             </div>
 
-            <div class="privatePageContainer">
-                <p>Vos informations personnelles</p>
+            <div class="privatePageContainer loginForm">
                 <form action="#">
-                <label for="pseudo">Pseudo</label>
-                    <input type="text" name="pseudo" id="pseudo">
-                    <label for="email">Adresse email</label>
-                    <input type="email" name="email" id="email">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" name="password" id="password">
-                    <input type="submit" value="Enregistrer">
+                    <p>Vos informations personnelles</p>
+                    <div class="formField">
+                        <label for="email">Adresse email</label>
+                        <input type="email" name="email" id="email">
+                    </div>
+                    <div class="formField">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <div class="formField">
+                        <label for="pseudo">Pseudo</label>
+                        <input type="text" name="pseudo" id="pseudo">
+                    </div>
+                    <div class="formField">
+                        <button type="submit">Enregistrer</button>
+                    </div>
                 </form>
             </div>
         </div>
-    </section>
 HTML;
 
 echo $personalContent;
 ?>
-
-<table>
+<table class="bookTable">
     <thead>
         <tr>
-            <th scope="col">PHOTO</th>
-            <th scope="col">TITRE</th>
-            <th scope="col">AUTEUR</th>
-            <th scope="col">DESCRIPTION</th>
-            <th scope="col">DISPONIBILITE</th>
-            <th scope="col">ACTION</th>
+            <th class="bookTableHead" scope="col">
+                <p class="partTitle">PHOTO</p>
+            </th>
+            <th class="bookTableHead" scope="col">
+                <p class="partTitle">TITRE</p>
+            </th>
+            <th class="bookTableHead" scope="col">
+                <p class="partTitle">AUTEUR</p>
+            </th>
+            <th class="bookTableHead thDesc" scope="col">
+                <p class="partTitle">DESCRIPTION</p>
+            </th>
+            <th class="bookTableHead" scope="col">
+                <p class="partTitle">DISPONIBILITE</p>
+            </th>
+            <th class="bookTableHead" scope="col">
+                <p class="partTitle">ACTION</p>
+            </th>
         </tr>
     </thead>
     <tbody>
         <?php
         // On affiche ici la liste des livres possédés par le membre
-        foreach ($books as $book){
+        foreach ($books as $book) {
             // Variable Heredoc pour l'affichage de la page
             $title = $book->getTitle();
             $author = $book->getAuthor();
-            $description = $book->getComment();
+            $description = $book->getComment(100);
             $available = $book->getAvailable() ? 'disponible' : 'non dispo.';
             $availableClass = $book->getAvailable() ? 'available' : 'unavailable';
             $picture = $book->getPicture();
 
             $booksTable = <<<HTML
-                <tr>
-                    <th scope="row"><img src="$picture" alt="Photo du livre : $title"></th>
-                    <td>$title</td>
-                    <td>$author</td>
-                    <td>$decription</td>
-                    <td class ="$availableClass">$available</td>
-                    <td>
-                        <div>
-                            <a href="#">Editer</a>
-                            <a href="#">Supprimer</a>
-                        </div>
-                    </td>
-                </tr>
-            HTML;
+                    <tr>
+                        <th scope="row"><img src="$picture" alt="Photo du livre : $title"></th>
+                        <td>$title</td>
+                        <td>$author</td>
+                        <td><div class="italic">$description</div></td>
+                        <td><div class ="bookStatus $availableClass">$available</div></td>
+                        <td>
+                            <div class="actionTable">
+                                <a class="actionLink actionEdit" href="#">Editer</a>
+                                <a class="actionLink actionDelete" href="#">Supprimer</a>
+                            </div>
+                        </td>
+                    </tr>
+                HTML;
             echo $booksTable;
         }
         ?>
     </tbody>
 </table>
-<a href=""></a>
+</section>

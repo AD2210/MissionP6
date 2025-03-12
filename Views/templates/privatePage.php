@@ -12,39 +12,44 @@ $password = $user->getPassword(); //@todo prévoir le hash si besoin
 
 $personalContent = <<<HTML
     <section class="privatePageSection">
-        <div class="privatePresentation">
-            <div> 
-                <img src="$avatar" alt="photo du membre : $pseudo">
-                <input type="submit" value="modifier">
-            </div>
-            <div>
-                <h2>$pseudo</h2>
-                <p>$seniority</p>
-                <p>BIBLIOTHEQUE</p>
-                <div>
-                    <img src="" alt="">
-                    <p>$nbBooks</p>
+        <h1>Mon Compte</h1>
+        <div class="privatePageTopContainer">
+            <div class="privatePageContainer">
+                <div class="avatarContainer"> 
+                    <img class ="bigAvatar" src="$avatar" alt="photo du membre : $pseudo">
+                    <a href="#">modifier</a>
                 </div>
-            </div>   
-        </div>
+                <span>———————————————</span>
+                <div class="infoMember">
+                    <h2>$pseudo</h2>
+                    <span>$seniority</span>
+                    <p class="partTitle">BIBLIOTHEQUE</p>
+                    <div class="nbBooks">
+                        <img src="ressources\Vector.png" alt="icone livres">
+                        <p>$nbBooks</p>
+                    </div>
+                </div>   
+            </div>
 
-        <div>
-            <p>Vos informations personnelles</p>
-            <form action="#">
-            <label for="pseudo">Pseudo</label>
-                <input type="text" name="pseudo" id="pseudo">
-                <label for="email">Adresse email</label>
-                <input type="email" name="email" id="email">
-                <label for="password">Mot de passe</label>
-                <input type="password" name="password" id="password">
-                <input type="submit" value="Enregistrer">
-            </form>
+            <div class="privatePageContainer">
+                <p>Vos informations personnelles</p>
+                <form action="#">
+                <label for="pseudo">Pseudo</label>
+                    <input type="text" name="pseudo" id="pseudo">
+                    <label for="email">Adresse email</label>
+                    <input type="email" name="email" id="email">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" name="password" id="password">
+                    <input type="submit" value="Enregistrer">
+                </form>
+            </div>
         </div>
+    </section>
 HTML;
 
 echo $personalContent;
 ?>
-</section>
+
 <table>
     <thead>
         <tr>
@@ -88,3 +93,4 @@ echo $personalContent;
         ?>
     </tbody>
 </table>
+<a href=""></a>

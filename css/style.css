@@ -427,7 +427,7 @@ input{
     font-size: 14px;
 }
 
-.oneBookContainer .partTitle{
+.partTitle{
     font-size: 8px;
     letter-spacing: 8%;
     font-weight: 600;
@@ -520,4 +520,87 @@ input{
     color: #292929;
 }
 
-/******** Private Page ********/
+/******** PrivatePage/ Personnal information Card ********/
+
+.privatePageSection{
+    background-color: var(--backgroundColorSecond);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 150px;
+    gap: 40px;
+}
+
+.privatePageSection h1{
+    font-size: 26px;
+}
+
+.privatePageTopContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+}
+
+.privatePageContainer{
+    background-color: white;
+    border-radius: 20px;
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    padding-top: 48px;
+}
+
+.privatePageContainer >span{
+    color: var(--backgroundColorMain);
+}
+
+.bigAvatar{
+    height: 135px;
+    width: 135px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.avatarContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.avatarContainer a{
+    font-size: 14px;
+    color: var(--subtitleColor);
+    text-decoration: underline;
+}
+
+.infoMember{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 11px ;
+}
+
+.infoMember h2{
+    font-size: 24px;
+}
+
+.infoMember span{
+    font-size: 14px;
+    color: var(--subtitleColor);
+}
+
+.nbBooks{
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+
+.nbBooks p{
+    font-size: 14px;
+}
+
+/******** PrivatePage/ Personnal information form ********/

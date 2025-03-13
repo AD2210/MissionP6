@@ -13,9 +13,12 @@ class BookManager
 
     public function getAllBooksByIdMember(int $idMember): array
     {
-        $sql = "SELECT * FROM book WHERE idMember = $idMember";
+        $sql = "SELECT * FROM book WHERE idMember = :idMember";
         $pdo = DBManager::getInstance()->getPDO();
-        $result = $pdo->query($sql);
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'idMember' => $idMember
+        ]);
         return $result->fetchAll(PDO::FETCH_CLASS,Book::class);
     }
 
@@ -39,9 +42,12 @@ class BookManager
 
     public function getOneBookById(int $id): Book
     {
-        $sql = "SELECT * FROM book WHERE id = $id" ;
+        $sql = "SELECT * FROM book WHERE id = :id" ;
         $pdo = DBManager::getInstance()->getPDO();
-        $result = $pdo->query($sql);
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'id' => $id
+        ]);
         $result->setFetchMode(PDO::FETCH_CLASS,Book::class);
         return $result->fetch();
     }

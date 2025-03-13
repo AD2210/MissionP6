@@ -36,15 +36,15 @@ $personalContent = <<<HTML
                     <p>Vos informations personnelles</p>
                     <div class="formField">
                         <label for="email">Adresse email</label>
-                        <input type="email" name="email" id="email">
+                        <input type="email" name="email" id="email" value="$email">
                     </div>
                     <div class="formField">
                         <label for="password">Mot de passe</label>
-                        <input type="password" name="password" id="password">
+                        <input type="password" name="password" id="password" value="$password">
                     </div>
                     <div class="formField">
                         <label for="pseudo">Pseudo</label>
-                        <input type="text" name="pseudo" id="pseudo">
+                        <input type="text" name="pseudo" id="pseudo" value="$pseudo">
                     </div>
                     <div class="formField">
                         <button type="submit">Enregistrer</button>
@@ -81,18 +81,21 @@ echo $personalContent;
     </thead>
     <tbody>
         <?php
+        $i=1;
         // On affiche ici la liste des livres possédés par le membre
         foreach ($books as $book) {
             // Variable Heredoc pour l'affichage de la page
+            $i++;
             $title = $book->getTitle();
             $author = $book->getAuthor();
             $description = $book->getComment(100);
             $available = $book->getAvailable() ? 'disponible' : 'non dispo.';
             $availableClass = $book->getAvailable() ? 'available' : 'unavailable';
             $picture = $book->getPicture();
+            $idClass = $i % 2 == 0 ? 'pair' : 'odd';
 
             $booksTable = <<<HTML
-                    <tr>
+                    <tr class="$idClass">
                         <th scope="row"><img src="$picture" alt="Photo du livre : $title"></th>
                         <td>$title</td>
                         <td>$author</td>

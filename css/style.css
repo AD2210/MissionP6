@@ -620,14 +620,15 @@ input{
 
 .bookTable{
     width: 1140px;
-    padding-left: 66px;
-    padding-right: 66px;
     background-color: white;
     border-radius: 20px;
+    border-collapse: collapse;
 }
 
 .bookTableHead{
-    width: 15%;
+    padding-right: 66px;
+    padding-left: 66px;
+    width: 10%;
     text-align: start;
     height: 50px;
 }
@@ -643,19 +644,34 @@ input{
     height: 78px;
 }
 
-.bookTable th{
+.bookTable tbody th{
     text-align: start;
     padding-top: 26px;
     padding-bottom: 26px;
+    border-top: 1px solid var(--backgroundColorMain);
+    padding-left: 66px;
 }
 
-.bookTable td{
+tbody td{
+    padding-left: 66px;
+}
+
+tbody .pair{
+    background-color: white;
+}
+
+tbody .odd{
+    background-color: #EDF2F6;
+}
+
+.bookTable tbody td{
     padding-right: 40px;
     font-family: "Inter", serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
     font-size: 12px;
+    border-top: 1px solid var(--backgroundColorMain);
 }
 
 .bookTable td .italic{

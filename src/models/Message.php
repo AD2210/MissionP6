@@ -2,11 +2,11 @@
 /**
  * Entité message, définit par les champs :
  * id : identifiant du message
- * id_sender : id du membre qui a envoyé le message
- * id_receiver : id du membre qui a reçu le message
+ * idSender : id du membre qui a envoyé le message
+ * idReceiver : id du membre qui a reçu le message
  * content : contenu du message
- * send_date : date d'envoi au format jj.mm HH:mm
- * read-flag : bool pour savoir si le message a été lu ou non
+ * sendDate : date d'envoi au format jj.mm HH:mm
+ * readFlag : bool pour savoir si le message a été lu ou non
  */
 
  #[\AllowDynamicProperties]

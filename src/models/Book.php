@@ -6,7 +6,7 @@
  * author : auteur du livre
  * comment : avis sur le livre
  * available : disponibilité du livre Vrai / Faux
- * id_member : id du proriétaire du livre
+ * idMember : id du proriétaire du livre
  * picture : lien vers l'image du livre
  */
 #[\AllowDynamicProperties]
@@ -17,7 +17,7 @@ class Book
     private string $author;
     private string $comment;
     private bool $available;
-    private int $id_member; //@Todo problème de liaison avec la table lorsque je respect le Camelcase
+    private int $idMember; //@Todo problème de liaison avec la table lorsque je respect le Camelcase
     private string $picture;
 
     public function getId(): int
@@ -80,12 +80,12 @@ class Book
 
     public function getIdMember(): int
     {
-        return $this->id_member;
+        return $this->idMember;
     }
 
     public function setIdMember(int $idMember): void
     {
-        $this->id_member = $idMember;
+        $this->idMember = $idMember;
     }
     public function getPicture(): string
     {

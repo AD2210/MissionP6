@@ -8,7 +8,7 @@ require 'AbstractEntity.php';
  * avatar : lien vers image représentant le membre
  * email : email du membre
  * password : mot de passe
- * register_date : date d'inscription
+ * registerDate : date d'inscription
  */
 
 #[\AllowDynamicProperties]
@@ -18,11 +18,11 @@ class User extends AbstractEntity
     private ?string $avatar;
     private string $email;
     private string $password;
-    private DateTime|string $register_date; // necessite que l'attribut est un format snake_case pour coller avec la bdd
+    private DateTime|string $registerDate; // necessite que l'attribut est un format snake_case pour coller avec la bdd
 
     public function __construct(){
-        if (is_string($this->register_date)){
-            $this->register_date = new DateTime($this->register_date);
+        if (is_string($this->registerDate)){
+            $this->registerDate = new DateTime($this->registerDate);
         }
     }
 
@@ -66,15 +66,15 @@ class User extends AbstractEntity
     }
     public function getRegisterDate(): DateTime
     {
-        return $this->register_date;
+        return $this->registerDate;
     }
 
     public function setRegisterDate(DateTime|string $registerDate): void
     {
-        if (is_string($this->register_date)){
-            $this->register_date = new DateTime($this->register_date);
+        if (is_string($this->registerDate)){
+            $this->registerDate = new DateTime($this->registerDate);
         }else{
-            $this->register_date = $registerDate;
+            $this->registerDate = $registerDate;
         }
     }
 }

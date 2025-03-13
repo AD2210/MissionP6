@@ -5,7 +5,7 @@
 
 $avatar = $user->getAvatar();
 $pseudo = $user->getPseudo();
-$seniority = UserManager::calculSeniority($user->getRegisterDate());
+$seniority = UserManager::calculationSeniority($user->getRegisterDate());
 $nbBooks = count($books) > 1 ? count($books) . ' Livres' : count($books) . 'Livre';
 $email = $user->getEmail();
 $password = $user->getPassword(); //@todo prévoir le hash si besoin

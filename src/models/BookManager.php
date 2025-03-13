@@ -8,15 +8,15 @@ class BookManager
         $sql = "SELECT * FROM book";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
-        return $result->fetchAll(PDO::FETCH_CLASS,"book");
+        return $result->fetchAll(PDO::FETCH_CLASS,Book::class);
     }
 
     public function getAllBooksByIdMember(int $idMember): array
     {
-        $sql = "SELECT * FROM book WHERE id_member = $idMember";
+        $sql = "SELECT * FROM book WHERE idMember = $idMember";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
-        return $result->fetchAll(PDO::FETCH_CLASS,"book");
+        return $result->fetchAll(PDO::FETCH_CLASS,Book::class);
     }
 
     public function getFourLastBooks(): array
@@ -24,7 +24,7 @@ class BookManager
         $sql = "SELECT * FROM book ORDER BY id DESC LIMIT 4";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
-        return $result->fetchAll(PDO::FETCH_CLASS,"book");
+        return $result->fetchAll(PDO::FETCH_CLASS,Book::class);
     }
 
     public function getLastBookId() : int {
@@ -42,13 +42,13 @@ class BookManager
         $sql = "SELECT * FROM book WHERE id = $id" ;
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
-        $result->setFetchMode(PDO::FETCH_CLASS,"book");
+        $result->setFetchMode(PDO::FETCH_CLASS,Book::class);
         return $result->fetch();
     }
 
     public function addNewBook(Book $book): void //@todo faire les contrôles de saisie dans l'entité
     {
-        $sql = "INSERT INTO book (title, author, comment, available, id_member, picture) 
+        $sql = "INSERT INTO book (title, author, comment, available, idMember, picture) 
             VALUES (:title, :author, :comment, :available, :idMember, :picture)";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);

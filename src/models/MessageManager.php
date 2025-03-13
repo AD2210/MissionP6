@@ -41,7 +41,7 @@ class MessageManager
 
     public function addNewMessage(Message $message): void //@todo faire les contrôles de saisie dans l'entité
     {
-        $sql = "INSERT INTO message (id_sender, id_receiver, content, send_date, read_flag) 
+        $sql = "INSERT INTO message (idSender, idReceiver, content, sendDate, readFlag) 
             VALUES (:idSender, :idReceiver, :content, NOW(), 0)";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);

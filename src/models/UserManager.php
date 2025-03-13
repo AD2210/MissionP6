@@ -30,7 +30,7 @@ class UserManager
 
     public function addNewUser(User $user): void //@todo faire les contrôles de saisie dans l'entité
     {
-        $sql = "INSERT INTO user (pseudo, avatar, email, password, register_date) 
+        $sql = "INSERT INTO user (pseudo, avatar, email, password, registerDate) 
             VALUES (:pseudo, :avatar, :email, :password, now())";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
@@ -60,7 +60,7 @@ class UserManager
         return $result->fetchAll();
     }
 
-    static public function calculSeniority(DateTime $dateTime):string {
+    static public function calculationSeniority(DateTime $dateTime):string {
         $now = new DateTime('now');
         $dateDiff = date_diff($dateTime,$now);
         $array = json_decode(json_encode($dateDiff),true); // on convertie l'objet en tableau

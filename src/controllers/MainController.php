@@ -7,7 +7,6 @@ require_once 'src\models\BookFixture.php';
 
 /**
  * Contrôleur Principale qui gère l'acceuil et les methodes communes
- * @todo faire requetes 4 derniers livres
  */
 
  class MainController{
@@ -62,6 +61,20 @@ require_once 'src\models\BookFixture.php';
 
         $view = new View("Page personelle de " .$user->getPseudo());
         $view->render("privatePage", [
+            'user' => $user,
+            'books' => $books
+        ]);
+    }
+
+    public function showPublicPage(): void
+    {
+        $userManager = new UserManager;
+        $user = $userManager->getOneUserById(33);
+        $bookManager = new BookManager;
+        $books = $bookManager->getAllBooksByIdMember($user->getId());
+
+        $view = new View("Page personelle de " .$user->getPseudo());
+        $view->render("publicPage", [
             'user' => $user,
             'books' => $books
         ]);

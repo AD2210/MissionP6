@@ -23,7 +23,6 @@
     $inscriptionForm = <<<HTML
         HTML;
 
-    //@todo mettre la condition avec le _get récuperé en URL
     if ($connexion){
         $connexionMessage = <<<HTML
                 <div class="formField">

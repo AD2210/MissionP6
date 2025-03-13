@@ -629,16 +629,16 @@ input{
     border-collapse: collapse;
 }
 
-.bookTableHead{
+tHead{
     padding-right: 66px;
     padding-left: 66px;
-    width: 10%;
+    width: 15%;
     text-align: start;
     height: 50px;
 }
 
 .thDesc{
-    width: 25%;
+    width: 20%;
     text-align: start;
     height: 50px;
 }
@@ -653,10 +653,6 @@ input{
     padding-top: 26px;
     padding-bottom: 26px;
     border-top: 1px solid var(--backgroundColorMain);
-    padding-left: 66px;
-}
-
-tbody td{
     padding-left: 66px;
 }
 

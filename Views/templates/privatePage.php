@@ -1,11 +1,14 @@
 <?php
+/**
+ * La PrivatePage affiche les vues HereDoc généré dans le templateMemberpage ainsi que les vue spécifique à cette page
+ * @todo refacto avec le form Login
+ */
 require_once 'templateMemberPage.php';
 
 //Variable HereDoc spécifique page privée
 $email = $user->getEmail();
 $password = $user->getPassword();
 
-echo $personalContent;
 $personalInformations = <<<HTML
             <div class="privatePageContainer loginForm">
                 <form action="#">
@@ -30,6 +33,7 @@ $personalInformations = <<<HTML
         </div>
 HTML;
 
+echo $personalContent;
 echo $personalInformations;
 echo $headerTable;
 echo $booksTable;

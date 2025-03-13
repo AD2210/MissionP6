@@ -1,5 +1,4 @@
 <?php
-require 'AbstractEntity.php';
 
 /**
  * Entité User, défini par les champs :
@@ -12,8 +11,9 @@ require 'AbstractEntity.php';
  */
 
 #[\AllowDynamicProperties]
-class User extends AbstractEntity
+class User
 {
+    private int $id;
     private string $pseudo;
     private ?string $avatar;
     private string $email;
@@ -26,6 +26,15 @@ class User extends AbstractEntity
         }
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
     public function getPseudo(): string
     {
         return $this->pseudo;
@@ -57,7 +66,9 @@ class User extends AbstractEntity
 
     public function getPassword(): string
     {
-        return $this->password;
+            // Ici, on utilise mb_substr et pas substr pour éviter de couper un caractère en deux (caractère multibyte comme les accents).
+            $content = mb_substr($this->password, 0, 8);
+            return $content;
     }
 
     public function setPassword(string $password): void

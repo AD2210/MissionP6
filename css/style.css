@@ -511,6 +511,10 @@ input{
     border-radius: 6px;
 }
 
+.loginForm input[value]{
+    background-color: #EDF2F6;
+}
+
 .loginForm button{
     width: 100%;
 }

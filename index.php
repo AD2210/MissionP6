@@ -13,7 +13,7 @@ require_once 'src/controllers/MainController.php';
 //$action = 'addUsers';
 //$action = 'addMessages';
 //$action = 'addBooks';
-//$action = 'loginPage';
+$action = 'loginPage';
 $action = 'privatePage';
 
 // Try catch global pour gérer les erreurs

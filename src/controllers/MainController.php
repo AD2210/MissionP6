@@ -59,7 +59,6 @@ require_once 'src\models\BookFixture.php';
         $user = $userManager->getOneUserById(33);
         $bookManager = new BookManager;
         $books = $bookManager->getAllBooksByIdMember($user->getId());
-        var_dump($books);
 
         $view = new View("Page personelle de " .$user->getPseudo());
         $view->render("privatePage", [

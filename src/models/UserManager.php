@@ -21,9 +21,12 @@ class UserManager
 
     public function getOneUserById(int $id): User
     {
-        $sql = "SELECT * FROM user WHERE id = $id"; // @todo préparer la requette
+        $sql = "SELECT * FROM user WHERE id = :id";
         $pdo = DBManager::getInstance()->getPDO();
-        $result = $pdo->query($sql);
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'id' => $id
+        ]);
         $result->setFetchMode(PDO::FETCH_CLASS, User::class);
         return $result->fetch();
     }
@@ -54,9 +57,12 @@ class UserManager
 
     public function getAllUsersIdExceptOneId(int $id): array
     {
-        $sql = "SELECT id FROM user EXCEPT SELECT id FROM user WHERE id = $id";
+        $sql = "SELECT id FROM user EXCEPT SELECT id FROM user WHERE id = :id";
         $pdo = DBManager::getInstance()->getPDO();
-        $result = $pdo->query($sql);
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'id' => $id
+        ]);
         return $result->fetchAll();
     }
 

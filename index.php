@@ -14,8 +14,9 @@ require_once 'src/controllers/MainController.php';
 //$action = 'addMessages';
 //$action = 'addBooks';
 //$action = 'loginPage';
-$action = 'privatePage';
-$action = 'publicPage';
+//$action = 'privatePage';
+//$action = 'publicPage';
+$action = 'messaging';
 
 // Try catch global pour gérer les erreurs
 try {
@@ -67,6 +68,11 @@ try {
             $articleController->showPublicPage();
             break;
     
+        case 'messaging':
+            $articleController = new MainController();
+            $articleController->showMessaging();
+            break;
+        
         default:
             throw new Exception("La page demandée n'existe pas.");
     }

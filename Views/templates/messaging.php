@@ -4,12 +4,15 @@
         <?php
         // page d'affichage de la messagerie
 
-        foreach ($idReceivers as $idReceiver){ //Jeu de datas a revoir si pertinent
-            $avatar = $idReceiver->getAvatar(); //@todo liaison a faire en bdd ou dans user manager
-            $pseudo = $idReceiver->getPseudo();
-            $lastMessage = $idReceiver->getLastMessage(); // Methode à créer a voir comment l'appeler, limiter le nombre de caratère affiché
-            $dateLastMessage = $idReceiver->getSendDate(); // prévoir un formatage des dates
-            $messageRead = $idReceiver->getReadFlag() ? 'read' : 'unread'; //affecte la classe correspondante si le message est lu ou non 
+        foreach ($messagesLastReceived as $message){
+            //$avatar = $corresponding->getAvatar();
+            //$pseudo = $corresponding->getPseudo();
+            $lastMessage = MessageManager::getLastMessagesFromOneSenderByIdReceiver(
+                $user->getId(),
+                $corresponding->getId()
+            );
+            $dateLastMessage = $lastMessage->getSendDateStringFormat('H:i');
+            $messageRead = $corresponding->getReadFlag() ? 'read' : 'unread'; //affecte la classe correspondante si le message est lu ou non 
 
             $messaging = <<<HTML
                 <div class="messagingContainer">

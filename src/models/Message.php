@@ -16,9 +16,14 @@ class Message
     private int $idSender;
     private int $idReceiver;
     private string $content;
-    private DateTime $sendDate;
+    private DateTime|string $sendDate;
     private bool $readFlag;
 
+    public function __construct(){
+        if (is_string($this->sendDate)){
+            $this->sendDate = new DateTime($this->sendDate);
+        }
+    }
     public function getId(): int
     {
         return $this->id;
@@ -62,9 +67,13 @@ class Message
         return $this->sendDate;
     }
 
-    public function setSendDate(DateTime $sendDate): void
+    public function setSendDate(DateTime|string $sendDate): void
     {
-        $this->sendDate = $sendDate;
+        if (is_string($this->sendDate)){
+            $this->sendDate = new DateTime($this->sendDate);
+        }else{
+            $this->sendDate = $sendDate;
+        }
     }
 
     public function getReadFlag(): bool
@@ -75,5 +84,11 @@ class Message
     public function setReadFlag(bool $readFlag): void
     {
         $this->readFlag = $readFlag;
+    }
+
+    //Formater de date
+
+    public function getSendDateStringFormat(string $format) : string {
+        return date_format($this->sendDate,$format);
     }
 }

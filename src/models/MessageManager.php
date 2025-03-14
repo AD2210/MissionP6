@@ -9,30 +9,56 @@ class MessageManager
         $sql = "SELECT * FROM message";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
-        return $result->fetchAll(PDO::FETCH_CLASS, "message");
+        return $result->fetchAll(PDO::FETCH_CLASS, Message::class);
     }
 
     public function getAllMessagesByIdReceiver(int $idReceiver): array
     {
-        $sql = "SELECT * FROM message WHERE id = :idReceiver";
+        $sql = "SELECT * FROM message WHERE idReceiver = :idReceiver";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([
             'idReceiver' => $idReceiver
         ]);
-        $result->setFetchMode(PDO::FETCH_CLASS, "message");
+        $result->setFetchMode(PDO::FETCH_CLASS, Message::class);
         return $result->fetchAll();
     }
 
-    public function getLastMessagesFromEachSenderByIdReceiver(int $idReceiver): array //tri a faire
-    {
-        $sql = "SELECT * FROM message WHERE id = :idReceiver";
+    public function getLastMessagesFromEachSenderByIdReceiver(int $idReceiver): array
+    {   // On utilise DISTINCT pour n'avoir que 1 message par correspondant, le fait de les trié par date permet d'avoir le dernier message
+        $sql = "SELECT DISTINCT idSender, id, content, sendDate, readFlag FROM message WHERE idReceiver = :idReceiver ORDER BY sendDate DESC";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([
             'idReceiver' => $idReceiver
         ]);
-        $result->setFetchMode(PDO::FETCH_CLASS, "message");
+        $result->setFetchMode(PDO::FETCH_CLASS, Message::class);
+        return $result->fetchAll();
+    }
+
+    static public function getLastMessagesFromOneSenderByIdReceiver(int $idSender, int $idReceiver): Message
+    {
+        $sql = "SELECT * FROM message WHERE idReceiver = :idReceiver AND idSender = :idSender  ORDER BY sendDate DESC LIMIT 1";
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'idReceiver' => $idReceiver,
+            'idSender' => $idSender
+        ]);
+        $result->setFetchMode(PDO::FETCH_CLASS, Message::class);
+        return $result->fetch();
+    }
+
+    public function getAllMessagesByIdReceiverAndIdSender(int $idReceiver, int $idSender): array
+    {
+        $sql = "SELECT * FROM message WHERE idReceiver = :idReceiver AND idSender = :idSender ORDER BY id DESC";
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'idReceiver' => $idReceiver,
+            'idSender' => $idSender
+        ]);
+        $result->setFetchMode(PDO::FETCH_CLASS, Message::class);
         return $result->fetchAll();
     }
 
@@ -44,7 +70,7 @@ class MessageManager
         $result->execute([
             'id' => $id
         ]);
-        $result->setFetchMode(PDO::FETCH_CLASS, "message");
+        $result->setFetchMode(PDO::FETCH_CLASS, Message::class);
         return $result->fetch();
     }
 

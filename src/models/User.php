@@ -18,7 +18,7 @@ class User
     private ?string $avatar;
     private string $email;
     private string $password;
-    private DateTime|string $registerDate; // necessite que l'attribut est un format snake_case pour coller avec la bdd
+    private DateTime|string $registerDate; // necessite que l'attribut soit strictement identique à la bdd
 
     public function __construct(){
         if (is_string($this->registerDate)){

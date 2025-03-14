@@ -53,7 +53,7 @@ require_once 'src\models\BookFixture.php';
     }
 
     public function showPrivatePage(): void
-    {
+    {   //récuperer le Get avec id member et vérifier connexion
         $userManager = new UserManager;
         $user = $userManager->getOneUserById(33);
         $bookManager = new BookManager;
@@ -67,16 +67,34 @@ require_once 'src\models\BookFixture.php';
     }
 
     public function showPublicPage(): void
-    {
+    {   //récuperer le Get avec id member
         $userManager = new UserManager;
         $user = $userManager->getOneUserById(33);
         $bookManager = new BookManager;
         $books = $bookManager->getAllBooksByIdMember($user->getId());
 
-        $view = new View("Page personelle de " .$user->getPseudo());
+        $view = new View("Page publique de " .$user->getPseudo());
         $view->render("publicPage", [
             'user' => $user,
             'books' => $books
+        ]);
+    }
+
+    public function showMessaging(): void
+    {   //récuperer le Get avec id member et vérifier connexion
+        $userManager = new UserManager;
+        $users = $userManager->getAllUsers();
+        $user = $userManager->getOneUserById(33);
+        $messageManager = new MessageManager;
+        // on récupère un array avec tout les derniers message de correspondant unique
+        $messagesLastReceived = $messageManager->getLastMessagesFromEachSenderByIdReceiver($user->getId());
+        $messagesThread = $messageManager->getAllMessagesByIdReceiverAndIdSender($user->getId(),30);
+        $view = new View("Page publique de " .$user->getPseudo());
+        $view->render("messaging", [
+            'user' => $user,
+            'users' => $users,
+            'messagesLastReceived' => $messagesLastReceived,
+            'messagesThread' => $messagesThread
         ]);
     }
 

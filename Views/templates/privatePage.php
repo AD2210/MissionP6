@@ -10,7 +10,7 @@ $email = $user->getEmail();
 $password = $user->getPassword();
 
 $personalInformations = <<<HTML
-            <div class="privatePageContainer loginForm">
+            <div class="memberPageInformationMember privatePageTopContainer loginForm">
                 <form action="#">
                     <p>Vos informations personnelles</p>
                     <div class="formField">

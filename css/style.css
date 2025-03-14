@@ -524,9 +524,9 @@ input{
     color: #292929;
 }
 
-/******** PrivatePage/ Personnal information Card ********/
+/******** MemberPage/ Personnal information Card ********/
 
-.privatePageSection{
+.memberPageSection{
     background-color: var(--backgroundColorSecond);
     display: flex;
     flex-direction: column;
@@ -535,21 +535,29 @@ input{
     gap: 40px;
 }
 
-.privatePageSection h1{
+.memberPageSection h1{
     font-size: 26px;
 }
 
-.privatePageTopContainer{
+.memberPageTopContainer{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    width: 1140px;
     gap: 40px;
 }
 
-.privatePageContainer{
+.privatePageTopContainer{
+    width: 48%;
+}
+
+.publicPageTopContainer{
+    width: 30%;
+}
+
+.memberPageInformationMember{
     background-color: white;
     border-radius: 20px;
-    width: 550px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -557,7 +565,7 @@ input{
     padding-top: 48px;
 }
 
-.privatePageContainer >span{
+.memberPageInformationMember >span{
     color: var(--backgroundColorMain);
 }
 
@@ -609,11 +617,11 @@ input{
 
 /******** PrivatePage/ Personnal information form ********/
 
-.privatePageContainer > form{
+.memberPageInformationMember > form{
     padding-top: 0;
 }
 
-.privatePageContainer button{
+.memberPageInformationMember button{
     background-color: inherit;
     color: var(--mainColor);
     border: solid 1px var(--mainColor);
@@ -627,6 +635,10 @@ input{
     background-color: white;
     border-radius: 20px;
     border-collapse: collapse;
+}
+
+.publicTableWidth{
+    width: 66%;
 }
 
 tHead{

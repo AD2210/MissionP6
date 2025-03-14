@@ -17,19 +17,21 @@ if ($privatePage){
         <a href="#">modifier</a>
     HTML;
     $buttonWriteMessage =null;
+    $classTopContainer = 'privatePageTopContainer';
 }else{
     $titleH1 = null;
     $modifyLink = null;
     $buttonWriteMessage =<<<HTML
         <button type="submit">Envoyer un message</button>
     HTML;
+    $classTopContainer = 'publicPageTopContainer';
 }
 
 $personalContent = <<<HTML
-    <section class="privatePageSection">
+    <section class="memberPageSection">
         $titleH1
-        <div class="privatePageTopContainer">
-            <div class="privatePageContainer">
+        <div class="memberPageTopContainer">
+            <div class="memberPageInformationMember $classTopContainer">
                 <div class="avatarContainer"> 
                     <img class ="bigAvatar" src="$avatar" alt="photo du membre : $pseudo">
                     $modifyLink
@@ -66,13 +68,15 @@ if ($privatePage){
             <p class="partTitle">ACTION</p>
         </th>
     HTML;
+    $tableWidth = '';
 }else{
     $headerTablePrivate = null;
     $contentTablePrivate = null;
+    $tableWidth = 'publicTableWidth';
 }
 
 $headerTable = <<<HTML
-    <table class="bookTable">
+    <table class="bookTable $tableWidth">
         <thead>
             <tr>
                 <th class="bookTableHead" scope="col">

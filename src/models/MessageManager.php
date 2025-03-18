@@ -26,7 +26,7 @@ class MessageManager
 
     public function getLastMessagesFromEachSenderByIdReceiver(int $idReceiver): array
     {   // On utilise DISTINCT pour n'avoir que 1 message par correspondant, le fait de les trié par date permet d'avoir le dernier message
-        $sql = "SELECT DISTINCT idSender, id, content, sendDate, readFlag FROM message WHERE idReceiver = :idReceiver ORDER BY sendDate DESC";
+        $sql = "SELECT DISTINCT idSender, id, content, sendDate, readFlag FROM message WHERE idReceiver = :idReceiver ORDER BY id DESC";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([
@@ -38,7 +38,7 @@ class MessageManager
 
     static public function getLastMessagesFromOneSenderByIdReceiver(int $idSender, int $idReceiver): Message
     {
-        $sql = "SELECT * FROM message WHERE idReceiver = :idReceiver AND idSender = :idSender  ORDER BY sendDate DESC LIMIT 1";
+        $sql = "SELECT * FROM message WHERE idReceiver = :idReceiver AND idSender = :idSender  ORDER BY id DESC LIMIT 1";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([
@@ -72,6 +72,17 @@ class MessageManager
         ]);
         $result->setFetchMode(PDO::FETCH_CLASS, Message::class);
         return $result->fetch();
+    }
+
+    public function getAllCorrespondingUsersIdByIdReceiver(int $idReceiver):array{
+        $sql = "SELECT DISTINCT idSender FROM message WHERE idReceiver = :idReceiver ORDER BY id DESC";
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'idReceiver' => $idReceiver
+        ]);
+        $result->setFetchMode(PDO::FETCH_DEFAULT); //permet de récuperer un array avec juste les idSender
+        return array_column($result->fetchall(),'idSender');
     }
 
     public function addNewMessage(Message $message): void //@todo faire les contrôles de saisie dans l'entité

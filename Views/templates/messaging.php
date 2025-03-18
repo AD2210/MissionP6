@@ -2,27 +2,33 @@
     <div>
         <h1>Messagerie</h1>
         <?php
-        // page d'affichage de la messagerie
+        //page d'affichage de la messagerie
 
-        foreach ($messagesLastReceived as $message){
-            //$avatar = $corresponding->getAvatar();
-            //$pseudo = $corresponding->getPseudo();
-            $lastMessage = MessageManager::getLastMessagesFromOneSenderByIdReceiver(
+        //On commence par récupérer les derniers correspondant de chaque fil de discussions trié par ordre décroissant d'envoie des messages
+        $correspondingUsersId = $messageManager->getAllCorrespondingUsersIdByIdReceiver($user->getId());
+        $correspondingUsers = $userManager-> getAllUsersByArrayIds($correspondingUsersId);
+        var_dump($correspondingUsers);
+
+        foreach ($correspondingUsers as $correspondingUser){
+            $avatar = $correspondingUser->getAvatar();
+            $pseudo = $correspondingUser->getPseudo();
+            $lastMessage = $messageManager->getLastMessagesFromOneSenderByIdReceiver(
                 $user->getId(),
-                $corresponding->getId()
+                $correspondingUser->getId()
             );
             $dateLastMessage = $lastMessage->getSendDateStringFormat('H:i');
-            $messageRead = $corresponding->getReadFlag() ? 'read' : 'unread'; //affecte la classe correspondante si le message est lu ou non 
+            $messageRead = $lastMessage->getReadFlag() ? 'read' : 'unread'; //affecte la classe correspondante si le message est lu ou non 
+            $contentLastMessage = $lastMessage->getContent(26);
 
             $messaging = <<<HTML
                 <div class="messagingContainer">
-                    <img src="$avatr" alt="photo du membre : $pseudo">
+                    <img src="$avatar" alt="photo du membre : $pseudo">
                     <div>  
                         <div>
                             <p>$pseudo</p>
                             <p>$dateLastMessage</p>
                         </div>
-                        <span>$lastMessage</span>
+                        <span>$contentLastMessage</span>
                     </div>  
                 </div>
             HTML;

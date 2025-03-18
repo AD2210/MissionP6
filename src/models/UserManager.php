@@ -8,7 +8,20 @@ class UserManager
         $sql = "SELECT * FROM user";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
-        return $result->fetchAll(PDO::FETCH_CLASS, "user");
+        return $result->fetchAll(PDO::FETCH_CLASS, USER::class);
+    }
+
+    public function getAllUsersByArrayIds(array $ids): array
+    {
+        //on transforme l'array des ids en string de valeur
+        $listIds = implode(', ',$ids);
+        $sql = "SELECT * FROM user WHERE id IN (:list)";
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'list' => $listIds
+        ]);
+        return $result->fetchAll(PDO::FETCH_CLASS, USER::class);
     }
 
     public function getAllUsersId(): array

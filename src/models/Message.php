@@ -53,8 +53,16 @@ class Message
         $this->idReceiver = $idReceiver;
     }
 
-    public function getContent(): string
+    public function getContent(int $length = -1): string
     {
+        if ($length > 0) {
+            // Ici, on utilise mb_substr et pas substr pour éviter de couper un caractère en deux (caractère multibyte comme les accents).
+            $content = mb_substr($this->content, 0, $length);
+            if (strlen($this->content) > $length) {
+                $content .= "...";
+            }
+            return $content;
+        }
         return $this->content;
     }
 

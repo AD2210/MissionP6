@@ -53,16 +53,8 @@ class Message
         $this->idReceiver = $idReceiver;
     }
 
-    public function getContent(int $length = -1): string
+    public function getContent(): string
     {
-        if ($length > 0) {
-            // Ici, on utilise mb_substr et pas substr pour éviter de couper un caractère en deux (caractère multibyte comme les accents).
-            $content = mb_substr($this->content, 0, $length);
-            if (strlen($this->content) > $length) {
-                $content .= "...";
-            }
-            return $content;
-        }
         return $this->content;
     }
 
@@ -98,5 +90,15 @@ class Message
 
     public function getSendDateStringFormat(string $format) : string {
         return date_format($this->sendDate,$format);
+    }
+
+    // Tronquage de message
+
+    public static function stringTrucator(string $string, int $length) : string{
+            $content = mb_substr($string, 0, $length);
+            if (strlen($string) > $length) {
+                $content .= "...";
+            }
+            return $content;
     }
 }

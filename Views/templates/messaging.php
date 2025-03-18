@@ -4,21 +4,15 @@
         <?php
         //page d'affichage de la messagerie
 
-        //On commence par récupérer les derniers correspondant de chaque fil de discussions trié par ordre décroissant d'envoie des messages
-        $correspondingUsersId = $messageManager->getAllCorrespondingUsersIdByIdReceiver($user->getId());
-        $correspondingUsers = $userManager-> getAllUsersByArrayIds($correspondingUsersId);
-        var_dump($correspondingUsers);
+        //On commence par récupérer les fils de discussions avec les données Users trié par ordre décroissant d'envoie des messages
+        $LastMessagesWithUsers = $userManager-> getAllUsersByLastMessage($user->getId());
 
-        foreach ($correspondingUsers as $correspondingUser){
-            $avatar = $correspondingUser->getAvatar();
-            $pseudo = $correspondingUser->getPseudo();
-            $lastMessage = $messageManager->getLastMessagesFromOneSenderByIdReceiver(
-                $user->getId(),
-                $correspondingUser->getId()
-            );
-            $dateLastMessage = $lastMessage->getSendDateStringFormat('H:i');
-            $messageRead = $lastMessage->getReadFlag() ? 'read' : 'unread'; //affecte la classe correspondante si le message est lu ou non 
-            $contentLastMessage = $lastMessage->getContent(26);
+        foreach ($LastMessagesWithUsers as $lastMessage){
+            $avatar = $lastMessage['avatar'];
+            $pseudo = $lastMessage['pseudo'];
+            $dateLastMessage = $lastMessage['sendDate'];
+            $messageRead = $lastMessage['readFlag'] ? 'read' : 'unread'; //affecte la classe correspondante si le message est lu ou non 
+            $contentLastMessage = Message::stringTrucator($lastMessage['content'],28);
 
             $messaging = <<<HTML
                 <div class="messagingContainer">

@@ -11,17 +11,15 @@ class UserManager
         return $result->fetchAll(PDO::FETCH_CLASS, USER::class);
     }
 
-    public function getAllUsersByArrayIds(array $ids): array
-    {
-        //on transforme l'array des ids en string de valeur
-        $listIds = implode(', ',$ids);
-        $sql = "SELECT * FROM user WHERE id IN (:list)";
+    public function getAllUsersByLastMessage(int $idReceiver): array
+    {        
+        $sql = 'SELECT avatar, pseudo, sendDate, readFlag, content FROM user INNER JOIN message ON user.id = message.idSender WHERE message.idReceiver = :idReceiver ORDER BY message.id DESC';
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([
-            'list' => $listIds
+           'idReceiver' => $idReceiver 
         ]);
-        return $result->fetchAll(PDO::FETCH_CLASS, USER::class);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getAllUsersId(): array

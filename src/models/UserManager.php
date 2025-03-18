@@ -11,7 +11,7 @@ class UserManager
         return $result->fetchAll(PDO::FETCH_CLASS, USER::class);
     }
 
-    public function getAllUsersByLastMessage(int $idReceiver): array
+    public function getAllUsersAndMessageByLastMessage(int $idReceiver): array
     {        
         $sql = 'SELECT avatar, pseudo, sendDate, readFlag, content FROM user INNER JOIN message ON user.id = message.idSender WHERE message.idReceiver = :idReceiver ORDER BY message.id DESC';
         $pdo = DBManager::getInstance()->getPDO();

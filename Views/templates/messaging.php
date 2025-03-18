@@ -5,7 +5,7 @@
         //page d'affichage de la messagerie
 
         //On commence par récupérer les fils de discussions avec les données Users trié par ordre décroissant d'envoie des messages
-        $LastMessagesWithUsers = $userManager-> getAllUsersByLastMessage($user->getId());
+        $LastMessagesWithUsers = $userManager-> getAllUsersAndMessageByLastMessage($user->getId());
 
         foreach ($LastMessagesWithUsers as $lastMessage){
             $avatar = $lastMessage['avatar'];

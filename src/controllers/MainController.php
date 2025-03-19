@@ -85,10 +85,11 @@ require_once 'src\models\BookFixture.php';
         $userManager = new UserManager;
         $user = $userManager->getOneUserById(33);
         $messageManager = new MessageManager;
+        $LastMessagesWithUsers = $userManager-> getAllUsersAndMessageByLastMessage($user->getId());
         $view = new View("Page publique de " .$user->getPseudo());
         $view->render("messaging", [
             'user' => $user,
-            'userManager' => $userManager,
+            'LastMessagesWithUsers' => $LastMessagesWithUsers,
             'messageManager' => $messageManager
         ]);
     }

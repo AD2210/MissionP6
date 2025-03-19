@@ -382,7 +382,7 @@ input{
     font-style: normal;
 }
 
-/******** nos livres à l'échange ********/
+/******** Detail livre ********/
 
 .navLink{
     color: var(--subtitleColor);
@@ -717,4 +717,68 @@ tbody .odd{
 
 .actionDelete{
     color: #CB2D2D;
+}
+
+/******** Messaging/ Inbox ********/
+
+.messagingSection{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--backgroundColorMain);
+    height:auto;
+    padding: 0 150px;
+}
+
+.messagingSection h1{
+    padding-left: 34px;
+    padding-bottom: 27px;
+}
+
+.inbox{
+    display: flex;
+    flex-direction: column;
+    width: 308px;
+    background-color: var(--backgroundColorSecond);
+    padding-top: 65px;
+}
+
+.inboxContainer{
+    height: 84px;
+    padding: 16px 34px ;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.inboxContainer img{
+    height: 48px;
+    width: 48px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.inboxContent{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    color: #292929;
+}
+
+.inboxContent span{
+    font-size: 12px;
+    color: var(--subtitleColor);
+}
+
+.inboxContentInformations{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.unread{
+    background-color: white;
+}
+
+.read{
+    background-color: inherit;
 }

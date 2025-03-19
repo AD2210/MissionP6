@@ -88,8 +88,11 @@ class Message
 
     //Formater de date
 
-    public function getSendDateStringFormat(string $format) : string {
-        return date_format($this->sendDate,$format);
+    public static function getSendDateStringFormat(DateTime|string $date, string $format) : string {
+        if(is_string($date)){
+            $date = new DateTime($date);
+        }
+        return date_format($date,$format);
     }
 
     // Tronquage de message

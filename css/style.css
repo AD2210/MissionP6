@@ -20,7 +20,7 @@
     --backgroundColorMain: #F5F3EF;
     --backgroundColorSecond: #FAF9F7;
     --mainColor: #00AC66;
-    --subtitleColor : #A6A6A6;
+    --subtitleColor: #A6A6A6;
     --statusColorTrue: #6DC5A1;
     --statusColorFalse: #C56D6D;
 }
@@ -31,8 +31,7 @@
 body {
     display: flex;
     align-items: center;
-    flex-direction: column;
-
+    flex-direction: column;    
 }
 
 main {
@@ -140,7 +139,7 @@ button {
 
 /****** Footer *****/
 
-footer{
+footer {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -155,7 +154,7 @@ footer{
     color: #292929;
 }
 
-footer img{
+footer img {
     height: 17.36px;
     width: 22px;
 }
@@ -205,7 +204,7 @@ footer img{
 .bookCardsContainer {
     display: flex;
     flex-direction: row;
-    
+
     flex-wrap: wrap;
     max-width: 914px;
     gap: 38px;
@@ -295,14 +294,14 @@ footer img{
 
 /******** nos valeurs ********/
 
-.valueSection{
+.valueSection {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: var(--backgroundColorMain);
 }
 
-.valueContainer{
+.valueContainer {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -310,11 +309,11 @@ footer img{
     width: 392px;
 }
 
-.valueText p{
+.valueText p {
     margin-bottom: 20px;
 }
 
-.valueContainer span{
+.valueContainer span {
     font-style: italic;
     color: var(--subtitleColor);
     font-size: 12px;
@@ -338,15 +337,15 @@ footer img{
     padding-bottom: 64px;
 }
 
-.SectionTitle{
+.SectionTitle {
     display: flex;
     flex-direction: row;
-    align-items:center;
+    align-items: center;
     justify-content: space-between;
     width: 914px;
 }
 
-.searchBar{
+.searchBar {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -360,7 +359,7 @@ footer img{
     color: var(--subtitleColor);
 }
 
-input{
+input {
     border: none;
     color: var(--subtitleColor);
     height: 50px;
@@ -373,7 +372,7 @@ input{
     border: none;
 }
 
-.searchBar input::placeholder{
+.searchBar input::placeholder {
     color: var(--subtitleColor);
     font-size: 14px;
     font-family: "Inter", serif;
@@ -384,7 +383,7 @@ input{
 
 /******** Detail livre ********/
 
-.navLink{
+.navLink {
     color: var(--subtitleColor);
     background-color: var(--backgroundColorMain);
     width: 100%;
@@ -396,7 +395,7 @@ input{
     font-weight: 300;
 }
 
-.oneBookSection{
+.oneBookSection {
     background-color: var(--backgroundColorSecond);
     padding-top: 0;
     display: flex;
@@ -405,13 +404,13 @@ input{
 }
 
 
-.oneBookSection >img{
+.oneBookSection>img {
     height: 863px;
     width: 720px;
     object-fit: cover;
 }
 
-.oneBookContainer{
+.oneBookContainer {
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -419,29 +418,29 @@ input{
     color: #292929;
 }
 
-.oneBookContainer >span{
+.oneBookContainer>span {
     color: var(--subtitleColor);
 }
 
-.oneBookContainer p{
+.oneBookContainer p {
     font-size: 14px;
 }
 
-.partTitle{
+.partTitle {
     font-size: 8px;
     letter-spacing: 8%;
     font-weight: 600;
 }
 
-.bookDescription{
+.bookDescription {
     margin-bottom: 16px;
 }
 
-.oneBookContainer button{
+.oneBookContainer button {
     width: 485px;
 }
 
-.ownerCard{
+.ownerCard {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -454,7 +453,7 @@ input{
     margin-bottom: 80px;
 }
 
-.ownerCard img{
+.ownerCard img {
     height: 48px;
     width: 48px;
     object-fit: cover;
@@ -463,7 +462,7 @@ input{
 
 /******** login ********/
 
-.loginPageSection{
+.loginPageSection {
     padding-top: 0;
     display: flex;
     flex-direction: row;
@@ -471,12 +470,12 @@ input{
     background-color: var(--backgroundColorSecond);
 }
 
-.loginPageSection img{
+.loginPageSection img {
     height: 886px;
     width: 720;
 }
 
-.loginForm{
+.loginForm {
     width: 720px;
     display: flex;
     flex-direction: column;
@@ -484,7 +483,7 @@ input{
     justify-content: center;
 }
 
-.loginForm form{
+.loginForm form {
     padding-top: 56px;
     padding-bottom: 40px;
     display: flex;
@@ -493,7 +492,7 @@ input{
     width: 322px;
 }
 
-.loginForm .formField{
+.loginForm .formField {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -505,28 +504,28 @@ input{
     font-style: normal;
 }
 
-.loginForm input{
+.loginForm input {
     background-color: white;
     border: solid #F0F0F0 1px;
     border-radius: 6px;
 }
 
-.loginForm input[value]{
+.loginForm input[value] {
     background-color: #EDF2F6;
 }
 
-.loginForm button{
+.loginForm button {
     width: 100%;
 }
 
-.loginForm p{
+.loginForm p {
     font-size: 14px;
     color: #292929;
 }
 
 /******** MemberPage/ Personnal information Card ********/
 
-.memberPageSection{
+.memberPageSection {
     background-color: var(--backgroundColorSecond);
     display: flex;
     flex-direction: column;
@@ -535,11 +534,11 @@ input{
     gap: 40px;
 }
 
-.memberPageSection h1{
+.memberPageSection h1 {
     font-size: 26px;
 }
 
-.memberPageTopContainer{
+.memberPageTopContainer {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -547,15 +546,15 @@ input{
     gap: 40px;
 }
 
-.privatePageTopContainer{
+.privatePageTopContainer {
     width: 48%;
 }
 
-.publicPageTopContainer{
+.publicPageTopContainer {
     width: 30%;
 }
 
-.memberPageInformationMember{
+.memberPageInformationMember {
     background-color: white;
     border-radius: 20px;
     display: flex;
@@ -565,63 +564,63 @@ input{
     padding-top: 48px;
 }
 
-.memberPageInformationMember >span{
+.memberPageInformationMember>span {
     color: var(--backgroundColorMain);
 }
 
-.bigAvatar{
+.bigAvatar {
     height: 135px;
     width: 135px;
     object-fit: cover;
     border-radius: 100%;
 }
 
-.avatarContainer{
+.avatarContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5px;
 }
 
-.avatarContainer a{
+.avatarContainer a {
     font-size: 14px;
     color: var(--subtitleColor);
     text-decoration: underline;
 }
 
-.infoMember{
+.infoMember {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 11px ;
+    gap: 11px;
 }
 
-.infoMember h2{
+.infoMember h2 {
     font-size: 24px;
 }
 
-.infoMember span{
+.infoMember span {
     font-size: 14px;
     color: var(--subtitleColor);
 }
 
-.nbBooks{
+.nbBooks {
     display: flex;
     flex-direction: row;
     gap: 6px;
 }
 
-.nbBooks p{
+.nbBooks p {
     font-size: 14px;
 }
 
 /******** PrivatePage/ Personnal information form ********/
 
-.memberPageInformationMember > form{
+.memberPageInformationMember>form {
     padding-top: 0;
 }
 
-.memberPageInformationMember button{
+.memberPageInformationMember button {
     background-color: inherit;
     color: var(--mainColor);
     border: solid 1px var(--mainColor);
@@ -630,18 +629,18 @@ input{
 
 /******** PrivatePage/ book table ********/
 
-.bookTable{
+.bookTable {
     width: 1140px;
     background-color: white;
     border-radius: 20px;
     border-collapse: collapse;
 }
 
-.publicTableWidth{
+.publicTableWidth {
     width: 66%;
 }
 
-tHead{
+tHead {
     padding-right: 66px;
     padding-left: 66px;
     width: 15%;
@@ -649,18 +648,18 @@ tHead{
     height: 50px;
 }
 
-.thDesc{
+.thDesc {
     width: 20%;
     text-align: start;
     height: 50px;
 }
 
-.bookTable img{
+.bookTable img {
     width: 78px;
     height: 78px;
 }
 
-.bookTable tbody th{
+.bookTable tbody th {
     text-align: start;
     padding-top: 26px;
     padding-bottom: 26px;
@@ -668,15 +667,15 @@ tHead{
     padding-left: 66px;
 }
 
-tbody .pair{
+tbody .pair {
     background-color: white;
 }
 
-tbody .odd{
+tbody .odd {
     background-color: #EDF2F6;
 }
 
-.bookTable tbody td{
+.bookTable tbody td {
     padding-right: 40px;
     font-family: "Inter", serif;
     font-optical-sizing: auto;
@@ -686,99 +685,197 @@ tbody .odd{
     border-top: 1px solid var(--backgroundColorMain);
 }
 
-.bookTable td .italic{
+.bookTable td .italic {
     font-style: italic;
 }
 
-.bookStatus{
+.bookStatus {
     color: white;
     padding: 3.7px 13.3px;
     border-radius: 30px;
     width: fit-content;
 }
 
-.available{
+.available {
     background-color: var(--statusColorTrue);
 }
 
-.unavailable{
+.unavailable {
     background-color: var(--statusColorFalse);
 }
 
-.actionTable{
+.actionTable {
     display: flex;
     flex-direction: row;
     gap: 28px;
 }
 
-.actionLink{
+.actionLink {
     text-decoration: underline;
 }
 
-.actionDelete{
+.actionDelete {
     color: #CB2D2D;
 }
 
 /******** Messaging/ Inbox ********/
 
-.messagingSection{
+.messagingSection {
     display: flex;
     flex-direction: row;
     background-color: var(--backgroundColorMain);
-    height:auto;
+    height: auto;
     padding: 0 150px;
 }
 
-.messagingSection h1{
+.messagingSection h1 {
     padding-left: 34px;
     padding-bottom: 27px;
 }
 
-.inbox{
-    display: flex;
-    flex-direction: column;
+.inbox {
     width: 308px;
     background-color: var(--backgroundColorSecond);
     padding-top: 65px;
 }
 
-.inboxContainer{
+.inboxContent{
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: calc(68vh); /* A faire plus propre car pas robuste avec taille d'ecran et header/footer en dure*/
+}
+
+.inboxContainer {
     height: 84px;
-    padding: 16px 34px ;
+    padding: 16px 34px;
     display: flex;
     flex-direction: row;
     gap: 12px;
 }
 
-.inboxContainer img{
+.avatarMedium {
     height: 48px;
     width: 48px;
     object-fit: cover;
     border-radius: 100%;
 }
 
-.inboxContent{
+.avatarSmall {
+    height: 24px;
+    width: 24px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.inboxContainerContent {
     display: flex;
     flex-direction: column;
     gap: 7px;
     color: #292929;
 }
 
-.inboxContent span{
+.inboxContainerContent span {
     font-size: 12px;
     color: var(--subtitleColor);
 }
 
-.inboxContentInformations{
-    display:flex;
+.inboxContentInformations {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.unread{
+.unread {
     background-color: white;
 }
 
-.read{
+.read {
     background-color: inherit;
+}
+
+/******** Messaging/ tread ********/
+
+.messageTreadSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 832px;
+    padding-left: 50px;
+    padding-top: 35px;
+}
+
+.messageTreadContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 25px;
+    margin: 24px 0;
+    padding-right: 10px;
+    overflow-y: auto;
+    max-height: calc(60vh); /* A faire plus propre car pas robuste avec taille d'ecran et header/footer en dure*/
+}
+
+.senderAvatar {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    font-weight: 600;
+}
+
+.senderInformation{
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+    padding-bottom: 8px;
+}
+
+.message{
+    padding: 10px 18px;
+    border-radius: 3px;
+    width: fit-content;
+}
+
+.receivedMessage{
+    text-align: start;
+    background-color: white;
+}
+
+.sendMessage{
+    text-align: end;
+    background-color:#EDF2F6 ;
+}
+
+.showAvatar{
+    justify-content: start;
+}
+
+.showAvatar img{
+    display: inherit;
+}
+
+.hideAvatar{
+    justify-content: end;
+}
+
+.hideAvatar img{
+    display: none;
+}
+
+.messagingForm{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.messagingForm input {
+    background-color: white;
+    border: solid #F0F0F0 1px;
+    border-radius: 6px;
+    width: 628px;
+    height: 50px;
+    padding-left: 42px;
 }

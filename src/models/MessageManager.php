@@ -51,7 +51,7 @@ class MessageManager
 
     public function getAllMessagesByIdReceiverAndIdSender(int $idReceiver, int $idSender): array
     {
-        $sql = "SELECT * FROM message WHERE idReceiver = :idReceiver AND idSender = :idSender ORDER BY id DESC";
+        $sql = "SELECT * FROM message WHERE (idReceiver = :idReceiver AND idSender = :idSender) OR (idReceiver = :idSender AND idSender = :idReceiver) ORDER BY message.id ASC";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([

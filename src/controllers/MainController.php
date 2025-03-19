@@ -83,14 +83,20 @@ require_once 'src\models\BookFixture.php';
     public function showMessaging(): void
     {   //récuperer le Get avec id member et vérifier connexion
         $userManager = new UserManager;
-        $user = $userManager->getOneUserById(33);
-        $messageManager = new MessageManager;
+        $user = $userManager->getOneUserById(39);
+        $correspondingUser = $userManager->getOneUserById(38);
+
         $LastMessagesWithUsers = $userManager-> getAllUsersAndMessageByLastMessage($user->getId());
+
+        $messageManager = new MessageManager;
+        $messageThread = $messageManager->getAllMessagesByIdReceiverAndIdSender($user->getId(),$correspondingUser->getId());
+
         $view = new View("Page publique de " .$user->getPseudo());
         $view->render("messaging", [
             'user' => $user,
             'LastMessagesWithUsers' => $LastMessagesWithUsers,
-            'messageManager' => $messageManager
+            'messageThread' => $messageThread,
+            'correspondingUser' => $correspondingUser
         ]);
     }
 

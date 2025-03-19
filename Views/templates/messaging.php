@@ -1,75 +1,75 @@
 <section class="messagingSection">
     <div class="inbox">
         <h1>Messagerie</h1>
-        <?php
-        //page d'affichage de la messagerie
-        foreach ($LastMessagesWithUsers as $lastMessage){
-            $avatar = $lastMessage['avatar'];
-            $pseudo = $lastMessage['pseudo'];
-            $dateLastMessage = Message::getSendDateStringFormat($lastMessage['sendDate'],'H:i');
-            $messageReadClass = $lastMessage['readFlag'] ? 'read' : 'unread'; //affecte la classe correspondante si le message est lu ou non 
-            $contentLastMessage = Message::stringTrucator($lastMessage['content'],28);
+        <div class="inboxContent">
+            <?php
+            //page d'affichage de la messagerie
+            foreach ($LastMessagesWithUsers as $lastMessage){
+                $avatar = $lastMessage['avatar'];
+                $pseudo = $lastMessage['pseudo'];
+                $dateLastMessage = Message::getSendDateStringFormat($lastMessage['sendDate'],'H:i');
+                $messageReadClass = $lastMessage['readFlag'] ? 'read' : 'unread'; //affecte la classe correspondante si le message est lu ou non 
+                $contentLastMessage = Message::stringTrucator($lastMessage['content'],28);
 
-            $messaging = <<<HTML
-                <div class="inboxContainer $messageReadClass">
-                    <img src="$avatar" alt="photo du membre : $pseudo">
-                    <div class="inboxContent">  
-                        <div class="inboxContentInformations">
-                            <p>$pseudo</p>
-                            <p>$dateLastMessage</p>
-                        </div>
-                        <span>$contentLastMessage</span>
-                    </div>  
-                </div>
-            HTML;
-            echo $messaging;
-        }
-
-        ?>
+                $messaging = <<<HTML
+                    <div class="inboxContainer $messageReadClass">
+                        <img class ="avatarMedium" src="$avatar" alt="photo du membre : $pseudo">
+                        <div class="inboxContainerContent">  
+                            <div class="inboxContentInformations">
+                                <p>$pseudo</p>
+                                <p>$dateLastMessage</p>
+                            </div>
+                            <span>$contentLastMessage</span>
+                        </div>  
+                    </div>
+                HTML;
+                echo $messaging;
+            }
+            ?>
+        </div>
     </div>
 
     <?php
-        // $avatar = $idReceiver->getAvatar(); // jeu de donnée à construire pour le fil de discussion
-        // $pseudo = $idReceiver->getPseudo();
-        // $idReceiver = $idReceiver->getIdReceiver();
+        $avatar = $correspondingUser->getAvatar();
+        $pseudo = $correspondingUser->getPseudo();
 
-        // $receiver = <<<HTML
-        //     <div>
-        //         <img src="$avatar" alt="photo du membre : $pseudo">
-        //         <p>$pseudo</p>
-        //     </div>
-        // HTML;
+        $sender = <<<HTML
+            <div class="senderAvatar">
+                <img class ="avatarMedium" src="$avatar" alt="photo du membre : $pseudo">
+                <p>$pseudo</p>
+            </div>
+        HTML;
     ?>
-    <!-- <div>
-        <div>
+    <div class="messageTreadSection">
+        <?= $sender;?>
+        <div Class="messageTreadContainer">
             <?php
-            //$receiver
-                // foreach ($messages as $message){
-                //     $sendDate = $message->getSendDate();
-                //     $messageContent = $message->getContent();
-                //     $messageClass = $idReceiver == $message->getIdReceiver() ? 'receivedMessage' : 'sendMessage';
-                //     $avatarClass = $messageClass == 'receivedMessage' ? 'showAvatar' : 'hideAvatar';
+                foreach ($messageThread as $message){
+                    $sendDate = Message::getSendDateStringFormat($message->getSendDate(),'d.m H:i');
+                    $messageContent = $message->getContent();
+                    $messageClass = $user->getId() == $message->getIdReceiver() ? 'receivedMessage' : 'sendMessage';
+                    $avatarClass = $messageClass == 'receivedMessage' ? 'showAvatar' : 'hideAvatar';
 
-                //     $showMessages = <<<HTML
-                //         <div>
-                //             <div>
-                //                 <img class ="$avatarClass" src="$avatar" alt="">
-                //                 <span>$sendDate</span>
-                //             </div>
-                //             <div class="$messageClass">
-                //                 <p>$messageContent</p>
-                //             </div>
-                //         </div>
-                //     HTML;
-                //     echo $showMessages;
-                // }
+                    $showMessages = <<<HTML
+                        <div>
+                            <div class="senderInformation $avatarClass">
+                                <img class ="avatarSmall" src="$avatar" alt="">
+                                <span>$sendDate</span>
+                            </div>
+                            <div class="message $messageClass">
+                                <p>$messageContent</p>
+                            </div>
+                        </div>
+                    HTML;
+                    echo $showMessages;
+                }
             ?>
         </div>
-        <form action="#">
-            <textarea name="message" id="message" placeholder="Tapez votre message ici"></textarea>
+        <form class = "messagingForm" action="#">
+            <input type ="text" name="message" id="message" placeholder="Tapez votre message ici"></input>
             <button type="submit">Envoyer</button>
         </form>
-    </div> -->
+    </div>
 </section>
 
 

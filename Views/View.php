@@ -4,7 +4,6 @@
  * Cette classe génère les vues en fonction de ce que chaque contrôlleur lui passe en paramètre. 
  */
 
- require_once 'src\models\Service.php';
 class View
 {
     /**

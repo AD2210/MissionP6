@@ -3,8 +3,7 @@
  * Template principale qui va inclure les vues générées
  * Doit recevoir en variable : 
  * string $title : Titre de la page
- *  string $content : Contenu du main
- * 
+ * string $content : Contenu du main
  * */
 
 ?>
@@ -13,7 +12,7 @@
     <head>
         <meta charset='utf-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>Tom Troc</title>
+        <title>Tom Troc - <?= $title ?></title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel='stylesheet' href='./css/style.css'>
         <script src="https://kit.fontawesome.com/988c8cacf7.js" crossorigin="anonymous"></script>
@@ -24,8 +23,8 @@
             <nav class="navbar">
                 <img src="\ressources\logo.png" alt="Logo Tom Troc">
                 <div class="navbarNav">
-                    <a href="#">Accueil</a>
-                    <a href="#">Nos livres à l'échange</a>
+                    <a href="index.php">Accueil</a>
+                    <a href="index.php?action=allBooks">Nos livres à l'échange</a>
                 </div>    
                 <div class="navbarNav">
                         <a class ="iconLink" href="#">
@@ -54,9 +53,9 @@
         </main>
         
         <footer>
-            <a href="#">Politique de confidentialité</a>
-            <a href="#">Mentions légales</a>
-            <a href="#">Tom Troc <i class="fa-regular fa-copyright"></i></a>
+            <a href="Politique-de-confidentialite-rgpd.pdf" target="_blank">Politique de confidentialité</a>
+            <a href="Vos mentions légales.pdf" target="_blank">Mentions légales</a>
+            <a href="PHP+Sf+P6+-+Specifications+fonctionnelles.pdf" target="_blank">Tom Troc <i class="fa-regular fa-copyright"></i></a>
             <img src="\ressources\Logo_footer.png" alt="Logo double T Tom Troc">
         </footer>
     </body>

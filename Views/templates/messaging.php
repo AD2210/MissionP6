@@ -49,9 +49,10 @@
                     $messageContent = $message->getContent();
                     $messageClass = $user->getId() == $message->getIdReceiver() ? 'receivedMessage' : 'sendMessage';
                     $avatarClass = $messageClass == 'receivedMessage' ? 'showAvatar' : 'hideAvatar';
+                    $messageContainerClass = $messageClass == 'receivedMessage' ? 'receivedContainer' : 'sendContainer';
 
                     $showMessages = <<<HTML
-                        <div>
+                        <div class="$messageContainerClass">
                             <div class="senderInformation $avatarClass">
                                 <img class ="avatarSmall" src="$avatar" alt="">
                                 <span>$sendDate</span>

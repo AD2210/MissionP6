@@ -84,7 +84,7 @@ require_once 'src\models\BookFixture.php';
     {   //récuperer le Get avec id member et vérifier connexion
         $userManager = new UserManager;
         $user = $userManager->getOneUserById(39);
-        $correspondingUser = $userManager->getOneUserById(38);
+        $correspondingUser = $userManager->getOneUserById(29);
 
         $LastMessagesWithUsers = $userManager-> getAllUsersAndMessageByLastMessage($user->getId());
 

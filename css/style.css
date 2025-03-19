@@ -808,7 +808,6 @@ tbody .odd {
 .messageTreadContainer{
     display: flex;
     flex-direction: column;
-    align-items: end;
     gap: 25px;
     margin: 24px 0;
     padding-right: 10px;
@@ -836,6 +835,15 @@ tbody .odd {
     padding: 10px 18px;
     border-radius: 3px;
     width: fit-content;
+    font-size: 12px;
+}
+
+.receivedContainer{
+    align-items: start;
+}
+
+.sendContainer{
+    align-items: end;
 }
 
 .receivedMessage{

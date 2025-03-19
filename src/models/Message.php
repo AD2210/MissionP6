@@ -152,23 +152,6 @@ class Message
 
     /* -----Methodes autres---- */
 
-    /**
-     * Methode statique permettant de formater une date
-     * @param DateTime|string $date
-     * @param string $format
-     * @annotation Se repporter à la documentation date_format pour les formats acceptés
-     * @link https://www.php.net/manual/fr/datetime.format.php
-     * @return string
-     * @todo renommer en dateFormater et les références
-     */
-    public static function getSendDateStringFormat(DateTime|string $date, string $format) : string {
-        // on vérifie le format d'entreé de la date, si c'est un string on le converti en objet DateTime
-        if(is_string($date)){
-            $date = new DateTime($date);
-        }
-        return date_format($date,$format);
-    }
-
     // Tronquage de message
     //@todo tester avec text overflow en css
 

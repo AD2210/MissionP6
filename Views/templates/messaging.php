@@ -7,7 +7,7 @@
             foreach ($LastMessagesWithUsers as $lastMessage){
                 $avatar = $lastMessage['avatar'];
                 $pseudo = $lastMessage['pseudo'];
-                $dateLastMessage = Message::getSendDateStringFormat($lastMessage['sendDate'],'H:i');
+                $dateLastMessage = Service::dateFormater($lastMessage['sendDate'],'H:i');
                 $messageReadClass = $lastMessage['readFlag'] ? 'read' : 'unread'; //affecte la classe correspondante si le message est lu ou non 
                 $contentLastMessage = Message::stringTrucator($lastMessage['content'],28);
 
@@ -45,7 +45,7 @@
         <div Class="messageTreadContainer">
             <?php
                 foreach ($messageThread as $message){
-                    $sendDate = Message::getSendDateStringFormat($message->getSendDate(),'d.m H:i');
+                    $sendDate = Service::dateFormater($message->getSendDate(),'d.m H:i');
                     $messageContent = $message->getContent();
                     $messageClass = $user->getId() == $message->getIdReceiver() ? 'receivedMessage' : 'sendMessage';
                     $avatarClass = $messageClass == 'receivedMessage' ? 'showAvatar' : 'hideAvatar';

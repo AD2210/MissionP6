@@ -9,6 +9,7 @@
     <div class="bookCardsContainer">
         <?php foreach ($books as $book){
             //Variable pour HereDoc
+            $id = $book->getId();
             $title = $book->getTitle();
             $author = $book->getAuthor();
             $picture = $book->getPicture();
@@ -16,14 +17,16 @@
 
             //Bloc d'affichage
             $bookCard = <<<HTML
-                <article class="bookCard">
-                    <img src="$picture" alt="photo d'un livre">
-                    <div class="bookCardText">
-                        <h3>$title</h3>
-                        <h4>$author</h4>
-                        <p>Vendu par : pseudo</p>
-                    </div>
-                </article>
+                <a href="index.php?action=oneBook&id=$id">
+                    <article class="bookCard">
+                        <img src="$picture" alt="photo d'un livre">
+                        <div class="bookCardText">
+                            <h3>$title</h3>
+                            <h4>$author</h4>
+                            <p>Vendu par : pseudo</p>
+                        </div>
+                    </article>
+                </a>    
             HTML;
             echo $bookCard;
         } ?>

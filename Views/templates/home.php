@@ -10,7 +10,9 @@
         <p>Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture. Nous croyons en
             la
             magie du partage de connaissances et d'histoires à travers les livres.</p>
-        <button type="button">Découvrir</button>
+        <a href="#howToDoSection">
+            <div class="button">Découvrir</div>
+        </a>
     </div>
     <img class="homePicture" src="\ressources\e67398fca2185c7e020225c880309454.jpeg"
         alt="Homme lisant un livre autour de plusieurs piles de livres">
@@ -19,6 +21,7 @@
     <h2>Les derniers livres ajoutés</h2>
     <div class="bookCardsContainer">
         <?php foreach ($books as $book) {
+            $id = $book->getId();
             $title = $book->getTitle();
             $author = $book->getAuthor();
             $picture = $book->getPicture();
@@ -26,6 +29,7 @@
         
             // hereDoc pour afficher les variables récupérés
             $bookCard = <<<HTML
+                <a href="index.php?action=oneBook&id=$id">    
                     <article class="bookCard">
                         <img src="$picture" alt="photo d'un livre">
                         <div class="bookCardText">
@@ -34,13 +38,16 @@
                             <p>Vendu par : pseudo</p>
                         </div>
                     </article>
-                    HTML;
+                </a>
+                HTML;
             echo $bookCard;
         } ?>
     </div>
-    <button type="button">Voir tous les livres</button>
+    <a href="index.php?action=allBooks">
+        <div class="button">Voir tous les livres</div>
+    </a>
 </section>
-<section class="howToDoSection">
+<section class="howToDoSection" id="howToDoSection">
     <h2>Comment ça marche ?</h2>
     <p>Échanger des livres avec TomTroc c’est simple et</p>
     <p>amusant ! Suivez ces étapes pour commencer :</p>
@@ -58,7 +65,9 @@
             <p>Proposez un échange et discutez avec d'autres passionnés de lecture.</p>
         </div>
     </div>
-    <button type="button">Voir tous les livres</button>
+    <a href="index.php?action=allBooks">
+        <div class="button">Voir tous les livres</div>
+    </a>
 </section>
 <img class="valuePicture" src="\ressources\4c3f0a4a254acb5010dd96d3fb7321e4.jpeg"
     alt="Femme cherchant un livre dans une bibliothèque">

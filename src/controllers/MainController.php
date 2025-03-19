@@ -52,9 +52,11 @@ require_once 'src\models\BookFixture.php';
      */
     public function showOneBook(): void
     {
+        $id=Service::request('id');
+        
         $bookManager = new bookManager;
         $userManager = new UserManager;
-        $book = $bookManager->getOneBookById(1);
+        $book = $bookManager->getOneBookById($id);
         $user = $userManager->getOneUserById($book->getIdMember());
         $view = new View("Le livre");
         $view->render("oneBook", [

@@ -9,7 +9,7 @@ $pseudo = $user->getPseudo();
 
 $dynamicLink = <<<HTML
     <div class="navLink">
-        <span ><a href="#">Nos livres</a> > <a href="#">$title</a></span>
+        <span ><a href="index.php?action=allBooks">Nos livres</a> > $title</span>
     </div>
     <section class="oneBookSection">
         <img src="$picture" alt="photo du livre : $title">

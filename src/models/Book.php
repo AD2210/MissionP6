@@ -9,6 +9,8 @@
  * idMember : id du proriétaire du livre
  * picture : lien vers l'image du livre
  */
+
+// Permet la création dynamique d'objet lors des requetes en bdd en affectant les noms de table aux attributs de l'objet Book
 #[\AllowDynamicProperties]
 class Book
 {
@@ -17,39 +19,72 @@ class Book
     private string $author;
     private string $comment;
     private bool $available;
-    private int $idMember; //@Todo problème de liaison avec la table lorsque je respect le Camelcase
+    private int $idMember;
     private string $picture;
 
+    /**
+     * Getter id libre
+     * @return int
+     */
     public function getId(): int
     {
         return $this->id;
     }
 
+    /**
+     * Setter id livre
+     * @param int $id
+     * @return void
+     */
     public function setId(int $id): void
     {
         $this->id = $id;
     }
 
+    /**
+     * Getter titre du Livre
+     * @return string
+     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
+    /**
+     * Setter titre du livre
+     * @param string $title
+     * @return void
+     */
     public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
+    /**
+     * Getter auteur du livre
+     * @return string
+     */
     public function getAuthor(): string
     {
         return $this->author;
     }
 
+    /**
+     * Setter auteur du livre
+     * @param string $author
+     * @return void
+     */
     public function setAuthor(string $author): void
     {
         $this->author = $author;
     }
 
+    /**
+     * Getter commentaire sur le livre
+     * renvoie le commentaire tronquer si necessaire en precisant le nombre de caratères à renvoyer
+     * @param int $length
+     * @return string
+     */
     public function getComment(int $length = -1): string
     {
         if ($length > 0) {
@@ -63,35 +98,68 @@ class Book
         return $this->comment;
     }
 
+    /**
+     * Setter commentaire sur le livre
+     * @param string $comment
+     * @return void
+     */
     public function setComment(string $comment): void
     {
         $this->comment = $comment;
     }
 
+    /**
+     * Getter disponibilité du livre
+     * @return bool
+     */
     public function getAvailable(): bool
     {
         return $this->available;
     }
 
+    /**
+     * Setter disponibilité du livre
+     * @param bool $available
+     * @return void
+     */
     public function setAvailable(bool $available): void
     {
         $this->available = $available;
     }
 
+    /**
+     * Getter id User du propriétaire du livre
+     * @return int
+     */
     public function getIdMember(): int
     {
         return $this->idMember;
     }
 
+    /**
+     * Setter id User du propriétaire du livre
+     * @param int $idMember
+     * @return void
+     */
     public function setIdMember(int $idMember): void
     {
         $this->idMember = $idMember;
     }
+
+    /**
+     * Getter photo du livre sous forme d'url
+     * @return string
+     */
     public function getPicture(): string
     {
         return $this->picture;
     }
 
+    /**
+     * Setter photo du livre sous forme d'url
+     * @param string $picture
+     * @return void
+     */
     public function setPicture(string $picture): void
     {
         $this->picture = $picture;

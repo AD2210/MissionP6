@@ -2,7 +2,7 @@
 /********* Member Card *********/
 
 // Variable HereDoc communes
-$privatePage = false; //quel type de page doit être généré
+$privatePage = true; //quel type de page doit être généré
 $avatar = $user->getAvatar();
 $pseudo = $user->getPseudo();
 $seniority = UserManager::calculationSeniority($user->getRegisterDate());

@@ -882,6 +882,7 @@ tbody .odd {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 50px;
 }
 
 .messagingForm input {
@@ -891,4 +892,12 @@ tbody .odd {
     width: 628px;
     height: 50px;
     padding-left: 42px;
+}
+
+.messagingForm button{
+    width: 132px;
+    height: 49px;
+    padding: 0;
+    text-align: center;
+    
 }

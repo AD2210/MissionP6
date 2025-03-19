@@ -1,9 +1,15 @@
 <?php
-//@todo vérifier si je ne peux pas opitmiser certaines requetes pour limiter le nombre de data transféré
+/**
+ * Classe permettant les échanges en BDD de l'entité Message
+ */
 require_once 'DBManager.php';
 require_once 'Message.php';
 class MessageManager
 {
+    /**
+     * Requête renvoyant tous les messages présent en BDD
+     * @return array
+     */
     public function getAllMessages(): array
     {
         $sql = "SELECT * FROM message";
@@ -12,46 +18,17 @@ class MessageManager
         return $result->fetchAll(PDO::FETCH_CLASS, Message::class);
     }
 
-    public function getAllMessagesByIdReceiver(int $idReceiver): array
-    {
-        $sql = "SELECT * FROM message WHERE idReceiver = :idReceiver";
-        $pdo = DBManager::getInstance()->getPDO();
-        $result = $pdo->prepare($sql);
-        $result->execute([
-            'idReceiver' => $idReceiver
-        ]);
-        $result->setFetchMode(PDO::FETCH_CLASS, Message::class);
-        return $result->fetchAll();
-    }
-
-    public function getLastMessagesFromEachSenderByIdReceiver(int $idReceiver): array
-    {   // On utilise DISTINCT pour n'avoir que 1 message par correspondant, le fait de les trié par date permet d'avoir le dernier message
-        $sql = "SELECT DISTINCT idSender, id, content, sendDate, readFlag FROM message WHERE idReceiver = :idReceiver ORDER BY id DESC";
-        $pdo = DBManager::getInstance()->getPDO();
-        $result = $pdo->prepare($sql);
-        $result->execute([
-            'idReceiver' => $idReceiver
-        ]);
-        $result->setFetchMode(PDO::FETCH_CLASS, Message::class);
-        return $result->fetchAll();
-    }
-
-    static public function getLastMessagesFromOneSenderByIdReceiver(int $idSender, int $idReceiver): Message
-    {
-        $sql = "SELECT * FROM message WHERE idReceiver = :idReceiver AND idSender = :idSender  ORDER BY id DESC LIMIT 1";
-        $pdo = DBManager::getInstance()->getPDO();
-        $result = $pdo->prepare($sql);
-        $result->execute([
-            'idReceiver' => $idReceiver,
-            'idSender' => $idSender
-        ]);
-        $result->setFetchMode(PDO::FETCH_CLASS, Message::class);
-        return $result->fetch();
-    }
-
+    /**
+     * Requête renvoyant tous les messages d'un fil de discussion en 2 Users
+     * le user connecté et le user du fil selectionné
+     * @param int $idReceiver
+     * @param int $idSender
+     * @return array
+     */
     public function getAllMessagesByIdReceiverAndIdSender(int $idReceiver, int $idSender): array
     {
-        $sql = "SELECT * FROM message WHERE (idReceiver = :idReceiver AND idSender = :idSender) OR (idReceiver = :idSender AND idSender = :idReceiver) ORDER BY message.id ASC";
+        $sql = "SELECT * FROM message WHERE (idReceiver = :idReceiver AND idSender = :idSender) OR
+         (idReceiver = :idSender AND idSender = :idReceiver) ORDER BY id ASC";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([
@@ -62,6 +39,11 @@ class MessageManager
         return $result->fetchAll();
     }
 
+    /**
+     * Requête renvoyant un message grâce a son id
+     * @param int $id
+     * @return Message
+     */
     public function getOneMessageById(int $id): Message
     {
         $sql = "SELECT * FROM message WHERE id = :id";
@@ -74,17 +56,11 @@ class MessageManager
         return $result->fetch();
     }
 
-    public function getAllCorrespondingUsersIdByIdReceiver(int $idReceiver):array{
-        $sql = "SELECT DISTINCT idSender FROM message WHERE idReceiver = :idReceiver ORDER BY id DESC";
-        $pdo = DBManager::getInstance()->getPDO();
-        $result = $pdo->prepare($sql);
-        $result->execute([
-            'idReceiver' => $idReceiver
-        ]);
-        $result->setFetchMode(PDO::FETCH_DEFAULT); //permet de récuperer un array avec juste les idSender
-        return array_column($result->fetchall(),'idSender');
-    }
-
+    /**
+     * Requête permettant d'ajouter en BDD un nouveau message
+     * @param Message $message
+     * @return void
+     */
     public function addNewMessage(Message $message): void //@todo faire les contrôles de saisie dans l'entité
     {
         $sql = "INSERT INTO message (idSender, idReceiver, content, sendDate, readFlag) 

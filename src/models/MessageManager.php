@@ -69,6 +69,23 @@ class MessageManager
     }
 
     /**
+     * Requête multi table renvoyant les derniers messages envoyés à un utilisateur donnés
+     * agrégé avec les données des utilisateurs ayant envoyé chacun des messages
+     * @param int $idReceiver
+     * @return array
+     */
+    public function getAllUsersAndMessageByLastMessage(int $idReceiver): array
+    {        
+        $sql = 'SELECT idSender, avatar, pseudo, sendDate, readFlag, content FROM user INNER JOIN message ON user.id = message.idSender WHERE message.idReceiver = :idReceiver GROUP BY idSender ORDER BY message.id DESC';
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->prepare($sql);
+        $result->execute([
+           'idReceiver' => $idReceiver 
+        ]);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
      * Requête permettant d'ajouter en BDD un nouveau message
      * @param Message $message
      * @return void

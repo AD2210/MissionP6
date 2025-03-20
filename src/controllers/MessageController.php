@@ -28,7 +28,8 @@ require_once 'src/models/MessageManager.php';
         $user = $userManager->getOneUserById($_SESSION['idUser']);
         
         //On récupère les derniers messages pour afficher une sorte d'inbox avec les données utilisateurs
-        $LastMessagesWithUsers = $userManager-> getAllUsersAndMessageByLastMessage($user->getId());
+        $messageManager = new MessageManager;
+        $LastMessagesWithUsers = $messageManager-> getAllUsersAndMessageByLastMessage($user->getId());
         
         //On choisi quel fil de discussion doit s'afficher, par défault le dernier reçu
         $corresponding = Service::request('corresponding',

@@ -5,6 +5,7 @@
             <?php
             //page d'affichage de la messagerie
             foreach ($LastMessagesWithUsers as $lastMessage){
+                $idCorresponding = $lastMessage['idSender'];
                 $avatar = $lastMessage['avatar'];
                 $pseudo = $lastMessage['pseudo'];
                 $dateLastMessage = Service::dateFormater($lastMessage['sendDate'],'H:i');
@@ -12,16 +13,18 @@
                 $contentLastMessage = Message::stringTrucator($lastMessage['content'],28);
 
                 $messaging = <<<HTML
-                    <div class="inboxContainer $messageReadClass">
-                        <img class ="avatarMedium" src="$avatar" alt="photo du membre : $pseudo">
-                        <div class="inboxContainerContent">  
-                            <div class="inboxContentInformations">
-                                <p>$pseudo</p>
-                                <p>$dateLastMessage</p>
-                            </div>
-                            <span>$contentLastMessage</span>
-                        </div>  
-                    </div>
+                    <a href="index.php?action=messaging&corresponding=$idCorresponding">
+                        <div class="inboxContainer $messageReadClass">
+                            <img class ="avatarMedium" src="$avatar" alt="photo du membre : $pseudo">
+                            <div class="inboxContainerContent">  
+                                <div class="inboxContentInformations">
+                                    <p>$pseudo</p>
+                                    <p>$dateLastMessage</p>
+                                </div>
+                                <span>$contentLastMessage</span>
+                            </div>  
+                        </div>
+                    </a>
                 HTML;
                 echo $messaging;
             }

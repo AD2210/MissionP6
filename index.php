@@ -1,8 +1,10 @@
 <?php
 
 require_once 'config/config.php';
+require_once 'views/View.php';
 require_once 'src\models\Service.php';
 require_once 'src/controllers/MainController.php';
+require_once 'src/controllers/MessageController.php';
 require_once 'src/controllers/UserController.php';
 // a paramétré à la fin : require_once 'config/autoload.php';
 
@@ -46,8 +48,8 @@ try {
             break;
     
         case 'messaging':
-            $mainController = new MainController();
-            $mainController->showMessaging();
+            $messageController = new MessageController();
+            $messageController->showMessaging();
             break;
         
         //Methode sans affichage, ex : Connexion

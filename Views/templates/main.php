@@ -7,7 +7,7 @@
  * */
 
 require_once 'src\models\MessageManager.php';
-// Variable HereDoc conditionné
+// Variable d'affichage conditionné
 if(isset($_SESSION['user'])){
     $messageManager = new MessageManager;
     $nbMessagesUnread = $messageManager->getNumberOfMessagesByIdReceiver($_SESSION['idUser']);

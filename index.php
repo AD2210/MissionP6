@@ -57,6 +57,11 @@ try {
             $userController->connectUser();
             break;
 
+        case 'disconnectUser':
+            $userController = new UserController();
+            $userController->disconnectUser();
+            break;
+
         //Methodes pour fixture, décommenter pour utiliser
         /*  
         case 'addUsers':

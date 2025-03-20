@@ -15,9 +15,9 @@ class UserController
     public function showPrivatePage(): void
     {   
         $this->checkIfUserIsConnected();
-
+        $userId = $_SESSION['idUser'];
         $userManager = new UserManager;
-        $user = $userManager->getOneUserById(33);
+        $user = $userManager->getOneUserById($userId);
         $bookManager = new BookManager;
         $books = $bookManager->getAllBooksByIdMember($user->getId());
 
@@ -61,7 +61,6 @@ class UserController
         $password = Service::request("password");
 
         // On vérifie que les données sont valides. 
-        // @todo a mettre dans l'entité
         if (empty($email) || empty($password)) {
             throw new Exception("Tous les champs sont obligatoires.");
         }
@@ -76,12 +75,12 @@ class UserController
         // On vérifie que le mot de passe est correct.
         if (!password_verify($password, $user->getPassword())) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            echo 'planté 3';
             throw new Exception("Le mot de passe est incorrect : $hash");
         }
 
         // On connecte l'utilisateur.
         $_SESSION['user'] = $user;
+        $_SESSION['idUser'] = $user->getId();
 
         // On redirige vers la page privée du membre.
         Service::redirect("privatePage");

@@ -14,10 +14,11 @@ class UserController
      */
     public function showPrivatePage(): void
     {   
+        // On vérifie que l'utilisateur est connecté, si non on le renvoie vers la page login
         $this->checkIfUserIsConnected();
-        $userId = $_SESSION['idUser'];
+
         $userManager = new UserManager;
-        $user = $userManager->getOneUserById($userId);
+        $user = $userManager->getOneUserById($_SESSION['idUser']);
         $bookManager = new BookManager;
         $books = $bookManager->getAllBooksByIdMember($user->getId());
 

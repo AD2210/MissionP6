@@ -18,6 +18,18 @@ class MessageManager
         return $result->fetchAll(PDO::FETCH_CLASS, Message::class);
     }
 
+    public function getNumberOfMessagesByIdReceiver(int $idReceiver): int
+    {
+        $sql = "SELECT id FROM message WHERE idReceiver = :idReceiver And readFlag = 0";
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'idReceiver' => $idReceiver
+        ]);
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        return count($result->fetchAll());
+    }
+
     /**
      * Requête renvoyant tous les messages d'un fil de discussion en 2 Users
      * le user connecté et le user du fil selectionné

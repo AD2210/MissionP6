@@ -6,7 +6,15 @@
  * string $content : Contenu du main
  * */
 
-// Variable HereDoc
+require_once 'src\models\MessageManager.php';
+// Variable HereDoc conditionné
+if(isset($_SESSION['user'])){
+    $messageManager = new MessageManager;
+    $nbMessagesUnread = $messageManager->getNumberOfMessagesByIdReceiver($_SESSION['idUser']);
+}else{
+    $nbMessagesUnreadClass = 'noMessageUnread';
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -29,10 +37,10 @@
                     <a href="index.php?action=allBooks">Nos livres à l'échange</a>
                 </div>    
                 <div class="navbarNav">
-                        <a class ="iconLink" href="#">
+                        <a class ="iconLink" href="index.php?action=messaging">
                                 <i class="fa-regular fa-comment"></i>
                                 Messagerie
-                                <span>2</span>
+                                <span class="<?= $nbMessagesUnreadClass ?>"><?= $nbMessagesUnread ?></span>
                         </a>
                     <a class ="iconLink" href="index.php?action=privatePage">
                         <i class="fa-regular fa-user"></i>

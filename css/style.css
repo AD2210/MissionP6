@@ -137,6 +137,10 @@ a {
     border-radius: 6.75px;
 }
 
+.noMessageUnread{
+    display: none;
+}
+
 /****** Footer *****/
 
 footer {

@@ -19,11 +19,15 @@ require_once 'src\models\BookFixture.php';
      */
     public function showHome(): void
     {
-        $bookManager = new bookManager();
+        $bookManager = new BookManager;
         $books = $bookManager->getFourLastBooks();
+
+        $userManager = new UserManager;
+
         $view = new View("Accueil");
         $view->render("home", [
-            'books' => $books
+            'books' => $books,
+            'userManager' => $userManager
         ]);
     }
 
@@ -35,11 +39,15 @@ require_once 'src\models\BookFixture.php';
      */
     public function showAllBooks(): void
     {
-        $bookManager = new bookManager();
+        $bookManager = new BookManager;
         $books = $bookManager->getAllBooks();
+
+        $userManager = new UserManager;
+
         $view = new View("Nos Livres à l'échange");
         $view->render("allBooks", [
-            'books' => $books
+            'books' => $books,
+            'userManager' => $userManager
         ]);
     }
 

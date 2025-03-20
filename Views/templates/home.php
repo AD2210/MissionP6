@@ -25,7 +25,9 @@
             $title = $book->getTitle();
             $author = $book->getAuthor();
             $picture = $book->getPicture();
-            //$pseudo = $book->getIdMember();
+            $pseudo = $userManager
+                ->getOneUserById($book->getIdMember())
+                ->getPseudo();
         
             // hereDoc pour afficher les variables récupérés
             $bookCard = <<<HTML
@@ -35,7 +37,7 @@
                         <div class="bookCardText">
                             <h3>$title</h3>
                             <h4>$author</h4>
-                            <p>Vendu par : pseudo</p>
+                            <p>Vendu par : $pseudo</p>
                         </div>
                     </article>
                 </a>

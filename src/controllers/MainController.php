@@ -26,6 +26,7 @@ require_once 'src\models\BookFixture.php';
 
         $view = new View("Accueil");
         $view->render("home", [
+            'session' => $_SESSION,
             'books' => $books,
             'userManager' => $userManager
         ]);
@@ -82,33 +83,14 @@ require_once 'src\models\BookFixture.php';
      */
     public function showLogin(): void
     {
-        $connexion = true;
+        $connexion = Service::request('connexion',false);
         $view = new View("Login");
         $view->render("loginPage", [
             'connexion' => $connexion
         ]);
     }
 
-    /**
-     * Affichage de la page membre connecté, espace privé necessitant d'être logué
-     * Données d'entrées :
-     * - User connecté : User
-     * - Liste de tous les livres du User connecté : Array(Book)
-     * @return void
-     */
-    public function showPrivatePage(): void
-    {   //récuperer le Get avec id member et vérifier connexion
-        $userManager = new UserManager;
-        $user = $userManager->getOneUserById(33);
-        $bookManager = new BookManager;
-        $books = $bookManager->getAllBooksByIdMember($user->getId());
-
-        $view = new View("Page personelle de " .$user->getPseudo());
-        $view->render("privatePage", [
-            'user' => $user,
-            'books' => $books
-        ]);
-    }
+    
 
     /**
      * Affichage de la page membre public

@@ -1,28 +1,30 @@
 <?php
 /**
- * Contrôleur de la partie user, gère les vues public et privée des fiches membres.
+ * Contrôleur de la partie user, gère les vues public et privée des fiches membres. ainsi que toutes les methodes d'authentification
  */
 
 class UserController
 {
-
     /**
-     * Affiche la page public d'un membre.
+     * Affichage de la page membre connecté, espace privé necessitant d'être logué
+     * Données d'entrées :
+     * - User connecté : User
+     * - Liste de tous les livres du User connecté : Array(Book)
      * @return void
      */
-    public function showPublicPage(): void
-    {
-        // On récupère les livres et les informations du membre.
-        $userManager = new UserManager();
-        $user = $userManager->getUserById();
-        $bookManager = new BookManager();
-        $books = $bookManager->getAllBooksbByMemberId();
+    public function showPrivatePage(): void
+    {   
+        $this->checkIfUserIsConnected();
 
-        // On affiche la page public du membre'.
-        $view = new View("Profil public");
-        $view->render("public_page", [
-            'livres' => $books,
-            'user' => $user
+        $userManager = new UserManager;
+        $user = $userManager->getOneUserById(33);
+        $bookManager = new BookManager;
+        $books = $bookManager->getAllBooksByIdMember($user->getId());
+
+        $view = new View("Page personelle de " .$user->getPseudo());
+        $view->render("privatePage", [
+            'user' => $user,
+            'books' => $books
         ]);
     }
 
@@ -34,7 +36,7 @@ class UserController
     {
         // On vérifie que l'utilisateur est connecté.
         if (!isset($_SESSION['user'])) {
-            Utils::redirect("connectionForm");
+            Service::redirect("loginPage");
         }
     }
 
@@ -42,10 +44,10 @@ class UserController
      * Affichage du formulaire de connexion.
      * @return void
      */
-    public function displayConnectionForm(): void
+    public function displayLoginPage(): void
     {
         $view = new View("Connexion");
-        $view->render("connectionForm");
+        $view->render("loginPage");
     }
 
     /**
@@ -55,17 +57,18 @@ class UserController
     public function connectUser(): void
     {
         // On récupère les données du formulaire.
-        $login = Utils::request("login");
-        $password = Utils::request("password");
+        $email = Service::request("email");
+        $password = Service::request("password");
 
-        // On vérifie que les données sont valides.
-        if (empty($login) || empty($password)) {
-            throw new Exception("Tous les champs sont obligatoires. 1");
+        // On vérifie que les données sont valides. 
+        // @todo a mettre dans l'entité
+        if (empty($email) || empty($password)) {
+            throw new Exception("Tous les champs sont obligatoires.");
         }
 
         // On vérifie que l'utilisateur existe.
         $userManager = new UserManager();
-        $user = $userManager->getUserByLogin($login);
+        $user = $userManager->getUserByEmail($email);
         if (!$user) {
             throw new Exception("L'utilisateur demandé n'existe pas.");
         }
@@ -73,15 +76,15 @@ class UserController
         // On vérifie que le mot de passe est correct.
         if (!password_verify($password, $user->getPassword())) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
+            echo 'planté 3';
             throw new Exception("Le mot de passe est incorrect : $hash");
         }
 
         // On connecte l'utilisateur.
         $_SESSION['user'] = $user;
-        $_SESSION['idUser'] = $user->getId();
 
-        // On redirige vers la page d'administration.
-        Utils::redirect("private_page");
+        // On redirige vers la page privée du membre.
+        Service::redirect("privatePage");
     }
 
     /**
@@ -94,6 +97,6 @@ class UserController
         unset($_SESSION['user']);
 
         // On redirige vers la page d'accueil.
-        Utils::redirect("home");
+        Service::redirect("home");
     }
 }

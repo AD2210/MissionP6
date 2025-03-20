@@ -81,7 +81,7 @@ a {
     color: inherit;
 }
 
-button {
+.button {
     background-color: var(--mainColor);
     color: white;
     font-size: 16px;

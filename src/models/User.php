@@ -110,13 +110,14 @@ class User
 
     /**
      * Getter mot de passe utilisateur, on conserve le hash et l'on renvoie 8 caractères quelque soit la longueur du mot de passe
+     * @todo attention à la vérification MP
      * @return string
      */
     public function getPassword(): string
     {
             // Ici, on utilise mb_substr et pas substr pour éviter de couper un caractère en deux (caractère multibyte comme les accents).
-            $content = mb_substr($this->password, 0, 8);
-            return $content;
+            //$content = mb_substr($this->password, 0, 8);
+            return $this->password;
     }
 
     /**

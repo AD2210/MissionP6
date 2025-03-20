@@ -50,6 +50,18 @@ class UserManager
         return $result->fetchAll();
     }
 
+    public function getUserByEmail(string $email): User|bool
+    {
+        $sql = "SELECT * FROM user WHERE email = :email";
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'email' => $email
+        ]);
+        $result->setFetchMode(PDO::FETCH_CLASS, User::class);
+        return $result->fetch();
+    }
+
     /**
      * Requête renvoyant un utilisateur grâce a son id
      * @param int $id

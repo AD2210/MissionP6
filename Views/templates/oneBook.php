@@ -24,7 +24,9 @@ $dynamicLink = <<<HTML
                 <img src="$avatar" alt="photo du membre : $pseudo">
                 <p>$pseudo</p>
             </div>
-            <button type="submit">Envoyer un message</button>
+            <a href="index.php?action=messaging">
+                <div class="button">Envoyer un message</div>
+            </a>
         </div>
     </section>
     HTML;

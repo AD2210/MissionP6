@@ -6,6 +6,8 @@
  * string $content : Contenu du main
  * */
 
+// Variable HereDoc
+var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,7 +34,7 @@
                                 Messagerie
                                 <span>2</span>
                         </a>
-                    <a class ="iconLink" href="#">
+                    <a class ="iconLink" href="index.php?action=privatePage">
                         <i class="fa-regular fa-user"></i>
                         Mon compte
                     </a>
@@ -41,7 +43,7 @@
                 if (isset($_SESSION['user'])) {
                     echo '<a href="#">Déconnexion</a>';
                 }else{
-                    echo '<a href="#">Connexion</a>';
+                    echo '<a href="index.php?action=loginPage&connexion=true">Connexion</a>';
                 }
                 ?>
                 </div>

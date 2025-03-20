@@ -3,6 +3,7 @@
 require_once 'config/config.php';
 require_once 'src\models\Service.php';
 require_once 'src/controllers/MainController.php';
+require_once 'src/controllers/UserController.php';
 // a paramétré à la fin : require_once 'config/autoload.php';
 
 // On récupère l'action demandée par l'utilisateur.
@@ -13,57 +14,67 @@ $action = Service::request('action', 'home');
 try {
     // Pour chaque action, on appelle le bon contrôleur et la bonne méthode.
     switch ($action) {
-        // Pages accessibles à tous.
+        // Pages d'affichage.
         case 'home':
-            $articleController = new MainController();
-            $articleController->showHome();
+            $mainController = new MainController();
+            $mainController->showHome();
             break;
 
         case 'allBooks':
-            $articleController = new MainController();
-            $articleController->showAllBooks();
+            $mainController = new MainController();
+            $mainController->showAllBooks();
             break;
         
         case 'oneBook':
-            $articleController = new MainController();
-            $articleController->showOneBook();
-            break;
-
-        case 'addUsers':
-            $articleController = new MainController();
-            $articleController->geretateUsers();
-            break;
-
-        case 'addMessages':
-            $articleController = new MainController();
-            $articleController->geretateMessages();
-            break;
-
-        case 'addBooks':
-            $articleController = new MainController();
-            $articleController->geretateBooks();
+            $mainController = new MainController();
+            $mainController->showOneBook();
             break;
 
         case 'loginPage':
-            $articleController = new MainController();
-            $articleController->showLogin();
+            $mainController = new MainController();
+            $mainController->showLogin();
             break;
 
         case 'privatePage':
-            $articleController = new MainController();
-            $articleController->showPrivatePage();
+            $userController = new UserController();
+            $userController->showPrivatePage();
             break;
 
         case 'publicPage':
-            $articleController = new MainController();
-            $articleController->showPublicPage();
+            $mainController = new MainController();
+            $mainController->showPublicPage();
             break;
     
         case 'messaging':
-            $articleController = new MainController();
-            $articleController->showMessaging();
+            $mainController = new MainController();
+            $mainController->showMessaging();
             break;
         
+        //Methode sans affichage, ex : Connexion
+
+        case 'connectUser':
+            $userController = new UserController();
+            $userController->connectUser();
+            break;
+
+        //Methodes pour fixture, décommenter pour utiliser
+        /*  
+        case 'addUsers':
+            $mainController = new MainController();
+            $mainController->geretateUsers();
+            break;
+
+        case 'addMessages':
+            $mainController = new MainController();
+            $mainController->geretateMessages();
+            break;
+
+        case 'addBooks':
+            $mainController = new MainController();
+            $mainController->geretateBooks();
+            break;
+        */
+
         default:
             throw new Exception("La page demandée n'existe pas.");
     }

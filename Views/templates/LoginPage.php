@@ -1,5 +1,5 @@
 <?php
-    // page par défaut : Connexion
+    // page par défaut : inscription
     $title = 'Connexion';
     $ConnexionForm = <<<HTML
             <div class="formField">
@@ -14,7 +14,7 @@
     
     $connexionMessage = <<<HTML
         <div class="formField">
-                <button type="submit">Se connecter</button>
+                <button class="button" type="submit">Se connecter</button>
             </div>
             <p>Pas de compte ? <a href="#">Inscrivez-vous</a></p> 
         </form> 
@@ -23,10 +23,10 @@
     $inscriptionForm = <<<HTML
         HTML;
 
-    if ($connexion){
+    if ($connexion == "false"){
         $connexionMessage = <<<HTML
                 <div class="formField">
-                    <button type="submit">S’inscrire</button>
+                    <button class="button" type="submit">S’inscrire</button>
                 </div>
                 <p>Déjà inscrit ? <a href="#">Connectez-vous</a></p> 
             </form>     
@@ -44,7 +44,7 @@
     $loginPage = <<<HTML
         <div class="loginForm">
             <h1>$title</h1>
-            <form action="#">
+            <form action="index.php?action=connectUser" method="post">
                 $inscriptionForm
                 $ConnexionForm
             $connexionMessage

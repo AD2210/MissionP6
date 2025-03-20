@@ -4,6 +4,7 @@ require_once 'config/config.php';
 require_once 'views/View.php';
 require_once 'src\models\Service.php';
 require_once 'src/controllers/MainController.php';
+require_once 'src/controllers/BookController.php';
 require_once 'src/controllers/MessageController.php';
 require_once 'src/controllers/UserController.php';
 // a paramétré à la fin : require_once 'config/autoload.php';
@@ -23,18 +24,18 @@ try {
             break;
 
         case 'allBooks':
-            $mainController = new MainController;
-            $mainController->showAllBooks();
+            $bookController = new BookController;
+            $bookController->showAllBooks();
             break;
         
         case 'oneBook':
-            $mainController = new MainController;
-            $mainController->showOneBook();
+            $bookController = new BookController;
+            $bookController->showOneBook();
             break;
 
         case 'loginPage':
-            $mainController = new MainController;
-            $mainController->showLogin();
+            $userController = new UserController;
+            $userController->showLogin();
             break;
 
         case 'privatePage':
@@ -43,8 +44,8 @@ try {
             break;
 
         case 'publicPage':
-            $mainController = new MainController;
-            $mainController->showPublicPage();
+            $userController = new UserController;
+            $userController->showPublicPage();
             break;
     
         case 'messaging':

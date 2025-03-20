@@ -30,6 +30,27 @@ class UserController
     }
 
     /**
+     * Affichage de la page membre public
+     * Données d'entrées :
+     * - User selectionné : User
+     * - Liste de tous les livres du User selectionné : Array(Book)
+     * @return void
+     */
+    public function showPublicPage(): void
+    {   //récuperer le Get avec id member
+        $userManager = new UserManager;
+        $user = $userManager->getOneUserById(33);
+        $bookManager = new BookManager;
+        $books = $bookManager->getAllBooksByIdMember($user->getId());
+
+        $view = new View("Page publique de " .$user->getPseudo());
+        $view->render("publicPage", [
+            'user' => $user,
+            'books' => $books
+        ]);
+    }
+
+    /**
      * Vérifie que l'utilisateur est connecté.
      * @return void
      */
@@ -42,13 +63,18 @@ class UserController
     }
 
     /**
-     * Affichage du formulaire de connexion.
+     * Affichage de la page Login/Inscription 
+     * Données d'entrées :
+     * - Flag connexion/inscription : Bool
      * @return void
      */
-    public function displayLoginPage(): void
+    public function showLogin(): void
     {
-        $view = new View("Connexion");
-        $view->render("loginPage");
+        $connexion = Service::request('connexion',false);
+        $view = new View("Login");
+        $view->render("loginPage", [
+            'connexion' => $connexion
+        ]);
     }
 
     /**

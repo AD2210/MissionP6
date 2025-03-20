@@ -6,6 +6,7 @@ $author = $book->getAuthor();
 $decription = $book->getComment();
 $avatar = $user->getAvatar();
 $pseudo = $user->getPseudo();
+$idUser = $user->getId();
 
 $dynamicLink = <<<HTML
     <div class="navLink">
@@ -24,7 +25,7 @@ $dynamicLink = <<<HTML
                 <img src="$avatar" alt="photo du membre : $pseudo">
                 <p>$pseudo</p>
             </div>
-            <a href="index.php?action=messaging">
+            <a href="index.php?action=messaging&corresponding=$idUser">
                 <div class="button">Envoyer un message</div>
             </a>
         </div>

@@ -18,52 +18,57 @@ try {
     switch ($action) {
         // Pages d'affichage.
         case 'home':
-            $mainController = new MainController();
+            $mainController = new MainController;
             $mainController->showHome();
             break;
 
         case 'allBooks':
-            $mainController = new MainController();
+            $mainController = new MainController;
             $mainController->showAllBooks();
             break;
         
         case 'oneBook':
-            $mainController = new MainController();
+            $mainController = new MainController;
             $mainController->showOneBook();
             break;
 
         case 'loginPage':
-            $mainController = new MainController();
+            $mainController = new MainController;
             $mainController->showLogin();
             break;
 
         case 'privatePage':
-            $userController = new UserController();
+            $userController = new UserController;
             $userController->showPrivatePage();
             break;
 
         case 'publicPage':
-            $mainController = new MainController();
+            $mainController = new MainController;
             $mainController->showPublicPage();
             break;
     
         case 'messaging':
-            $messageController = new MessageController();
+            $messageController = new MessageController;
             $messageController->showMessaging();
             break;
         
         //Methode sans affichage, ex : Connexion
 
         case 'connectUser':
-            $userController = new UserController();
+            $userController = new UserController;
             $userController->connectUser();
             break;
 
         case 'disconnectUser':
-            $userController = new UserController();
+            $userController = new UserController;
             $userController->disconnectUser();
             break;
 
+        case 'newMessage':
+            $messageController = new MessageController;
+            $messageController->sendNewMessage();
+            break;
+        
         //Methodes pour fixture, décommenter pour utiliser
         /*  
         case 'addUsers':

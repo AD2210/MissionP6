@@ -75,14 +75,48 @@ class MessageManager
      * @return array
      */
     public function getAllUsersAndMessageByLastMessage(int $idReceiver): array
-    {        
-        $sql = 'SELECT idSender, avatar, pseudo, sendDate, readFlag, content FROM user INNER JOIN message ON user.id = message.idSender WHERE message.idReceiver = :idReceiver GROUP BY idSender ORDER BY message.id DESC';
+    {
+        $sql = 'SELECT idSender, avatar, pseudo, sendDate, readFlag, content 
+            FROM user INNER JOIN message ON user.id = message.idSender WHERE message.idReceiver = :idReceiver 
+            GROUP BY idSender ORDER BY message.id DESC';
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([
-           'idReceiver' => $idReceiver 
+            'idReceiver' => $idReceiver
         ]);
         return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Requête renvoyant l'id Sender du dernier message recu par un utilisateur
+     * @param int $idReceiver
+     * @return int
+     */
+    public function getLastIdSenderByIdReceiverFromLastMessage(int $idReceiver): int
+    {
+        $sql = 'SELECT idSender, MAX(id) FROM message WHERE idReceiver = :idReceiver GROUP BY idSender ORDER BY id DESC';
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'idReceiver' => $idReceiver
+        ]);
+        return $result->fetch(PDO::FETCH_ASSOC)['idSender'];
+    }
+
+    /**
+     * Requête permettant de mettre à jour le status Lu d'un message
+     * @param int $idSender
+     * @return void
+     */
+    public function updateReadflag(int $idSender): void
+    {
+
+        $sql = 'UPDATE message SET readFlag = 1 WHERE idSender = :idSender';
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'idSender' => $idSender
+        ]);
     }
 
     /**

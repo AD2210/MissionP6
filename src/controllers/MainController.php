@@ -113,35 +113,6 @@ require_once 'src\models\BookFixture.php';
         ]);
     }
 
-    /**
-     * Affichage de la messagerie, necessite d'être logué
-     * Données d'entrées :
-     * - User sconnecté : User
-     * - Tableau des derniers messages recu par correspondant aggrégé avec les données users : Array
-     * - le correspondant permettant d'afficher les message d'un fil de discussion : User
-     * - le fil de discussion : Array(Message)
-     * @return void
-     */
-    public function showMessaging(): void
-    {   //récuperer le Get avec id member et vérifier connexion
-        $userManager = new UserManager;
-        $user = $userManager->getOneUserById(39);
-        $correspondingUser = $userManager->getOneUserById(29); //mettre par défault le dernier correspondant si aucun selectionné
-
-        $LastMessagesWithUsers = $userManager-> getAllUsersAndMessageByLastMessage($user->getId());
-
-        $messageManager = new MessageManager;
-        $messageThread = $messageManager->getAllMessagesByIdReceiverAndIdSender($user->getId(),$correspondingUser->getId());
-
-        $view = new View("Page publique de " .$user->getPseudo());
-        $view->render("messaging", [
-            'user' => $user,
-            'LastMessagesWithUsers' => $LastMessagesWithUsers,
-            'messageThread' => $messageThread,
-            'correspondingUser' => $correspondingUser
-        ]);
-    }
-
     /* -----Methodes pour fixtures----- */
 
     /**

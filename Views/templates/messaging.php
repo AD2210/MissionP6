@@ -35,6 +35,7 @@
     <?php
         $avatar = $correspondingUser->getAvatar();
         $pseudo = $correspondingUser->getPseudo();
+        $correspondingId = $correspondingUser->getId();
 
         $sender = <<<HTML
             <div class="senderAvatar">
@@ -69,9 +70,10 @@
                 }
             ?>
         </div>
-        <form class = "messagingForm" action="#">
+        <form class = "messagingForm" action="index.php?action=newMessage" method="POST">
+            <input type="hidden" name="correspondingId" id="correspondingId" value="<?= $correspondingId ?>"></input>
             <input type ="text" name="message" id="message" placeholder="Tapez votre message ici"></input>
-            <button type="submit">Envoyer</button>
+            <button class="button" type="submit">Envoyer</button>
         </form>
     </div>
 </section>

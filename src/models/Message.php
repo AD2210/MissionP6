@@ -17,7 +17,7 @@ class Message
     private int $idSender;
     private int $idReceiver;
     private string $content;
-    private DateTime|string $sendDate;
+    private DateTime|string $sendDate = '';
     private bool $readFlag;
 
     /**
@@ -104,7 +104,7 @@ class Message
      */
     public function setContent(string $content): void
     {
-        $this->content = $content;
+        $this->content = htmlspecialchars($content);
     }
 
     /**

@@ -10,18 +10,18 @@
                 $pseudo = $lastMessage['pseudo'];
                 $dateLastMessage = Service::dateFormater($lastMessage['sendDate'],'H:i');
                 $messageReadClass = $lastMessage['readFlag'] ? 'read' : 'unread'; //affecte la classe correspondante si le message est lu ou non 
-                $contentLastMessage = Message::stringTrucator($lastMessage['content'],28);
+                $contentLastMessage = $lastMessage['content'];
 
                 $messaging = <<<HTML
                     <a href="index.php?action=messaging&corresponding=$idCorresponding">
                         <div class="inboxContainer $messageReadClass">
                             <img class ="avatarMedium" src="$avatar" alt="photo du membre : $pseudo">
-                            <div class="inboxContainerContent">  
+                            <div class ="inboxContainerContent">  
                                 <div class="inboxContentInformations">
                                     <p>$pseudo</p>
                                     <p>$dateLastMessage</p>
                                 </div>
-                                <span>$contentLastMessage</span>
+                                <span class ="textOverFlow">$contentLastMessage</span>
                             </div>  
                         </div>
                     </a>

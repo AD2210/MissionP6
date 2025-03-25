@@ -67,7 +67,7 @@ class User
      */
     public function setPseudo(string $pseudo): void
     {
-        $this->pseudo = $pseudo;
+        $this->pseudo = htmlspecialchars($pseudo);
     }
 
     /**
@@ -105,7 +105,7 @@ class User
      */
     public function setEmail(string $email): void
     {
-        $this->email = $email;
+        $this->email = htmlspecialchars($email);
     }
 
     /**

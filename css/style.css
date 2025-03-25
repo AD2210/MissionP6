@@ -902,6 +902,11 @@ tbody .odd {
     width: 132px;
     height: 49px;
     padding: 0;
-    text-align: center;
-    
+    text-align: center;   
+}
+
+.textOverFlow{
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    max-width: 170px;
 }

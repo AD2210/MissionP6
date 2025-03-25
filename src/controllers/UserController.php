@@ -40,10 +40,12 @@ class UserController
      */
     public function showPublicPage(): void
     {   
+        // On récupère les données du formulaire.
+        $id = Service::request("id");
         $privatePage = false;
-        //récuperer le Get avec id member
+
         $userManager = new UserManager;
-        $user = $userManager->getOneUserById(33);
+        $user = $userManager->getOneUserById($id);
         $bookManager = new BookManager;
         $books = $bookManager->getAllBooksByIdMember($user->getId());
 

@@ -99,4 +99,19 @@ class BookManager
             'picture' => $book->getPicture()
         ]);
     }
+
+    /**
+     * Requête permettant de suppirmer un livre de la BDD
+     * @param int $id
+     * @return void
+     */
+    public function deleteBook(int $id): void
+    {
+        $sql = "DELETE FROM book WHERE id= :id";
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'id' => $id
+        ]);
+    }
 }

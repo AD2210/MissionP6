@@ -75,6 +75,11 @@ try {
             $userController->updateUser();
             break;
 
+        case 'deleteBook':
+            $bookController = new BookController;
+            $bookController->deletebook();
+            break;    
+
         case 'newMessage':
             $messageController = new MessageController;
             $messageController->sendNewMessage();

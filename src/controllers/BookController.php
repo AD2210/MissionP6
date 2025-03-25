@@ -62,15 +62,15 @@ class BookController
 
     public function deleteBook(): void
     {
+        // On vérifie si l'utilisateur est loggé et on récupère l'id du livre à supprimer
         UserController::checkIfUserIsConnected();
         $id=Service::request('id');
-        
+                
+        //On supprime le livre de la base
         $bookManager = new bookManager;
-        $book = $bookManager->getOneBookById($id);
-        
-        $view = new View("Edition du livre");
-        $view->render("editBook", [
-            'book' => $book
-        ]);
+        $bookManager->deleteBook($id);
+
+        // On redirige vers la page du membre.
+        Service::redirect("privatePage");
     }
 }

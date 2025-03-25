@@ -156,7 +156,7 @@ class UserController
         $userManager = new UserManager;
         $userManager->updateUser($user);
 
-        // On redirige vers la page d'accueil.
+        // On redirige vers la page du membre.
         Service::redirect("privatePage");
     }
 }

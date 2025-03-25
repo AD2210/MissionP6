@@ -114,7 +114,7 @@ $headerTable = <<<HTML
                 <td>
                     <div class="actionTable">
                         <a class="actionLink actionEdit" href="index.php?action=editBook&id=$id">Editer</a>
-                        <a class="actionLink actionDelete" href="#">Supprimer</a>
+                        <a class="actionLink actionDelete" href="index.php?action=deleteBook&id=$id">Supprimer</a>
                     </div>
                 </td>
             HTML;

@@ -21,10 +21,12 @@ $dynamicLink = <<<HTML
             <p class="partTitle">DESCRIPTION</p>
             <p class="bookDescription">$decription</p>
             <p class="partTitle">PROPRIÉTAIRE</p>
-            <div class="ownerCard">
-                <img src="$avatar" alt="photo du membre : $pseudo">
-                <p>$pseudo</p>
-            </div>
+            <a href="index.php?action=publicPage&id=$idUser">
+                <div class="ownerCard">
+                    <img src="$avatar" alt="photo du membre : $pseudo">
+                    <p>$pseudo</p>
+                </div>
+            </a>
             <a href="index.php?action=messaging&corresponding=$idUser">
                 <div class="button">Envoyer un message</div>
             </a>

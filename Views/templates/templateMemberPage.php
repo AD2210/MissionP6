@@ -2,7 +2,6 @@
 /********* Member Card *********/
 
 // Variable HereDoc communes
-$privatePage = true; //quel type de page doit être généré
 $avatar = $user->getAvatar();
 $pseudo = $user->getPseudo();
 $seniority = UserManager::calculationSeniority($user->getRegisterDate());
@@ -101,6 +100,7 @@ $headerTable = <<<HTML
     foreach ($books as $book) {
         $i++;
         // Variable Heredoc pour l'affichage de la page
+        $id = $book->getId();
         $title = $book->getTitle();
         $author = $book->getAuthor();
         $description = $book->getComment(100);
@@ -113,7 +113,7 @@ $headerTable = <<<HTML
                 <td><div class ="bookStatus $availableClass">$available</div></td>
                 <td>
                     <div class="actionTable">
-                        <a class="actionLink actionEdit" href="#">Editer</a>
+                        <a class="actionLink actionEdit" href="index.php?action=editBook&id=$id">Editer</a>
                         <a class="actionLink actionDelete" href="#">Supprimer</a>
                     </div>
                 </td>

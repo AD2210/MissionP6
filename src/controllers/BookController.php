@@ -46,4 +46,31 @@ class BookController
             'user' => $user
         ]);
     }
+
+    public function showBookForm(): void
+    {
+        UserController::checkIfUserIsConnected();
+        $id=Service::request('id');
+        
+        $bookManager = new bookManager;
+        $book = $bookManager->getOneBookById($id);
+        $view = new View("Edition du livre");
+        $view->render("editBookForm", [
+            'book' => $book
+        ]);
+    }
+
+    public function deleteBook(): void
+    {
+        UserController::checkIfUserIsConnected();
+        $id=Service::request('id');
+        
+        $bookManager = new bookManager;
+        $book = $bookManager->getOneBookById($id);
+        
+        $view = new View("Edition du livre");
+        $view->render("editBook", [
+            'book' => $book
+        ]);
+    }
 }

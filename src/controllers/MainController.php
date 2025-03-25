@@ -7,7 +7,6 @@ require_once 'src\models\BookFixture.php';
 
 /**
  * Contrôleur Principale qui gère l'acceuil et les methodes communes
- * @todo redistribuer les methodes dans les contrôleurs dédiés
  */
 
  class MainController{

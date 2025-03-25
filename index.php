@@ -32,6 +32,11 @@ try {
             $bookController = new BookController;
             $bookController->showOneBook();
             break;
+        
+        case 'editBook':
+            $bookController = new BookController;
+            $bookController->showBookForm();
+            break;
 
         case 'loginPage':
             $userController = new UserController;
@@ -51,8 +56,8 @@ try {
         case 'messaging':
             $messageController = new MessageController;
             $messageController->showMessaging();
-            break;
-        
+            break;        
+
         //Methode sans affichage, ex : Connexion
 
         case 'connectUser':

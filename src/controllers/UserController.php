@@ -16,6 +16,7 @@ class UserController
     {   
         // On vérifie que l'utilisateur est connecté, si non on le renvoie vers la page login
         $this->checkIfUserIsConnected();
+        $privatePage = true;
 
         $userManager = new UserManager;
         $user = $userManager->getOneUserById($_SESSION['idUser']);
@@ -25,7 +26,8 @@ class UserController
         $view = new View("Page personelle de " .$user->getPseudo());
         $view->render("privatePage", [
             'user' => $user,
-            'books' => $books
+            'books' => $books,
+            'privatePage' => $privatePage
         ]);
     }
 
@@ -37,7 +39,9 @@ class UserController
      * @return void
      */
     public function showPublicPage(): void
-    {   //récuperer le Get avec id member
+    {   
+        $privatePage = false;
+        //récuperer le Get avec id member
         $userManager = new UserManager;
         $user = $userManager->getOneUserById(33);
         $bookManager = new BookManager;
@@ -46,7 +50,8 @@ class UserController
         $view = new View("Page publique de " .$user->getPseudo());
         $view->render("publicPage", [
             'user' => $user,
-            'books' => $books
+            'books' => $books,
+            'privatePage' => $privatePage
         ]);
     }
 

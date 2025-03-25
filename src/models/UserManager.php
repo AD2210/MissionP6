@@ -63,6 +63,23 @@ class UserManager
     }
 
     /**
+     * Requête renvoyant un utilisateur grâce a son email
+     * @param string $email
+     * @return User
+     */
+    public function getOneUserByEmail(string $email): User
+    {
+        $sql = "SELECT * FROM user WHERE email = :email";
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'email' => $email
+        ]);
+        $result->setFetchMode(PDO::FETCH_CLASS, User::class);
+        return $result->fetch();
+    }
+
+    /**
      * Requête permettant d'ajouter en BDD un nouvel utilisateur
      * @param User $user
      * @return void

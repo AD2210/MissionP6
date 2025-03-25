@@ -70,6 +70,11 @@ try {
             $userController->disconnectUser();
             break;
 
+        case 'createUser':
+            $userController = new UserController;
+            $userController->createUser();
+            break;
+
         case 'updateUser':
             $userController = new UserController;
             $userController->updateUser();

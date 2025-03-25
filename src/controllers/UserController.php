@@ -133,6 +133,37 @@ class UserController
         Service::redirect("home");
     }
 
+    public function createUser() : void{
+        // On récupère les données du formulaire.
+        $pseudo = Service::request("pseudo");
+        $email = Service::request("email");
+        $password = Service::request("password");
+
+        // On vérifie que les données sont valides. 
+        if (empty($email) || empty($password) || empty($pseudo)) {
+            throw new Exception("Tous les champs sont obligatoires.");
+        }
+
+        //On créer l'utilisateur
+        $user = new User;
+        $user->setPseudo($pseudo);
+        $user->setEmail($email);
+        $user->setPassword($password);
+        $user->setAvatar('');
+
+        //On l'enregistre en BDD
+        $userManager = new UserManager;
+        $userManager->addNewUser($user);
+
+        $user = $userManager->getUserByEmail($email);
+        // On connecte l'utilisateur.
+        $_SESSION['user'] = $user;
+        $_SESSION['idUser'] = $user->getId();
+
+        // On redirige vers la page privée du membre.
+        Service::redirect("privatePage");
+    }
+
     /**
      * Mise à jour des informaitons personnelles d'un utilisateur
      * @return void

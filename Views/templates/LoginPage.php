@@ -1,5 +1,6 @@
 <?php
     // page par défaut : inscription
+    $actionForm = 'index.php?action=connectUser';
     $title = 'Connexion';
     $ConnexionForm = <<<HTML
             <div class="formField">
@@ -24,6 +25,7 @@
         HTML;
 
     if ($connexion == "false"){
+        $actionForm = 'index.php?action=createUser';
         $connexionMessage = <<<HTML
                 <div class="formField">
                     <button class="button" type="submit">S’inscrire</button>
@@ -44,7 +46,7 @@
     $loginPage = <<<HTML
         <div class="loginForm">
             <h1>$title</h1>
-            <form action="index.php?action=connectUser" method="post">
+            <form action="$actionForm" method="POST">
                 $inscriptionForm
                 $ConnexionForm
             $connexionMessage

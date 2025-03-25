@@ -2,6 +2,7 @@
 /********* Member Card *********/
 
 // Variable HereDoc communes
+$idUser = $user->getId();
 $avatar = $user->getAvatar();
 $pseudo = $user->getPseudo();
 $seniority = UserManager::calculationSeniority($user->getRegisterDate());
@@ -21,7 +22,7 @@ if ($privatePage){
     $titleH1 = null;
     $modifyLink = null;
     $buttonWriteMessage =<<<HTML
-        <button type="submit">Envoyer un message</button>
+        <a href="index.php?action=messaging&corresponding=$idUser" class="button">Envoyer un message</a>
     HTML;
     $classTopContainer = 'publicPageTopContainer';
 }

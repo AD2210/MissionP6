@@ -130,4 +130,33 @@ class UserController
         // On redirige vers la page d'accueil.
         Service::redirect("home");
     }
+
+    /**
+     * Mise à jour des informaitons personnelles d'un utilisateur
+     * @return void
+     * @todo vérifier prk mise a jour de la date
+     */
+    public function updateUser():void {
+        
+        // On récupère les données du formulaire et de la session.
+        $id = $_SESSION['idUser'];
+        $pseudo = Service::request("pseudo");
+        $email = Service::request("email");
+        $password = Service::request("password");
+        
+        // On créer l'instance avec les nouvelles datas
+        $user = new User;
+        $user->setId($id);
+        $user->setPseudo($pseudo);
+        $user->setEmail($email);
+        $user->setPassword($password);
+
+        var_dump($user);
+
+        $userManager = new UserManager;
+        $userManager->updateUser($user);
+
+        // On redirige vers la page d'accueil.
+        Service::redirect("privatePage");
+    }
 }

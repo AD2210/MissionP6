@@ -11,7 +11,7 @@ $password = $user->getPassword();
 
 $personalInformations = <<<HTML
             <div class="memberPageInformationMember privatePageTopContainer loginForm">
-                <form action="#">
+                <form action="index.php?action=updateUser" method="POST">
                     <p>Vos informations personnelles</p>
                     <div class="formField">
                         <label for="email">Adresse email</label>

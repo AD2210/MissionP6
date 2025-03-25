@@ -14,12 +14,12 @@
 #[\AllowDynamicProperties]
 class User
 {
-    private int $id;
+    private int $id = -1;
     private string $pseudo;
     private ?string $avatar;
     private string $email;
     private string $password;
-    private DateTime|string $registerDate;
+    private DateTime|string $registerDate ='';
 
     /**
      * Contructeur de classe 
@@ -121,13 +121,13 @@ class User
     }
 
     /**
-     * Setter mot de passe utilisateur, le mot de passe doit être Hash avant d'être set
+     * Setter mot de passe utilisateur, le mot est hasher lors de l'enristrement de l'attribut
      * @param string $password
      * @return void
      */
     public function setPassword(string $password): void
     {
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
     /**

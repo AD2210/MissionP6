@@ -70,6 +70,11 @@ try {
             $userController->disconnectUser();
             break;
 
+        case 'updateUser':
+            $userController = new UserController;
+            $userController->updateUser();
+            break;
+
         case 'newMessage':
             $messageController = new MessageController;
             $messageController->sendNewMessage();

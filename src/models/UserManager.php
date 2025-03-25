@@ -113,6 +113,23 @@ class UserManager
         return $result->fetchAll();
     }
 
+    /**
+     * Requête permettant de mettre à jour le pseudo, l'email ou le mot de passe d'un profil membre
+     * @param User $user
+     * @return void
+     */
+    public function updateUser (User $user) : void {
+        $sql = "UPDATE user SET pseudo = :pseudo, email = :email, password = :password WHERE id= :id";
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'id' => $user->getId(),
+            'pseudo' => $user->getPseudo(),
+            'email' => $user->getEmail(),
+            'password' => $user->getPassword()
+        ]);
+    }
+
     /* ----- Methodes Autres ----- */
 
     /**

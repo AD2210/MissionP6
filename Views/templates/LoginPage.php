@@ -16,7 +16,7 @@
         <div class="formField">
                 <button class="button" type="submit">Se connecter</button>
             </div>
-            <p>Pas de compte ? <a href="#">Inscrivez-vous</a></p> 
+            <p>Pas de compte ? <a href="index.php?action=loginPage&connexion=false">Inscrivez-vous</a></p> 
         </form> 
     HTML;
 
@@ -28,7 +28,7 @@
                 <div class="formField">
                     <button class="button" type="submit">S’inscrire</button>
                 </div>
-                <p>Déjà inscrit ? <a href="#">Connectez-vous</a></p> 
+                <p>Déjà inscrit ? <a href="index.php?action=loginPage&connexion=true">Connectez-vous</a></p> 
             </form>     
             HTML;
 

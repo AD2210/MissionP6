@@ -47,6 +47,12 @@ class BookController
         ]);
     }
 
+    /**
+     *  Affichage du formulaire d'edition d'un livre
+     * Données d'entrées :
+     * - le livre selectionné : Book
+     * @return void
+     */
     public function showBookForm(): void
     {
         UserController::checkIfUserIsConnected();
@@ -60,6 +66,43 @@ class BookController
         ]);
     }
 
+    /**
+     * Mise à jour des informaitons d'un livre
+     * @return void
+     */
+    public function updateBook():void {
+        
+        // On vérifie que l'utilisateur est connecté, si non on le renvoie vers la page login
+        UserController::checkIfUserIsConnected();
+
+        // On récupère les données du formulaire et de la session.
+        $id = Service::request("id");
+        $title = Service::request("title");
+        $author = Service::request("author");
+        $comment = Service::request("comment");
+        $available = Service::request("availability");
+        $available = $available == "true" ? true : false; // On convertie le string en bool
+
+        // On créer l'instance avec les nouvelles datas
+        $book = new Book;
+        $book->setId($id);
+        $book->setTitle($title);
+        $book->setAuthor($author);
+        $book->setComment($comment);
+        $book->setAvailable($available);
+
+        // On fait la mise à jour
+        $bookManager = new BookManager;
+        $bookManager->updateBook($book);
+
+        // On redirige vers la page du membre.
+        Service::redirect("privatePage");
+    }
+
+    /**
+     * Methode pour supprimer un livre de la base de donnée
+     * @return void
+     */
     public function deleteBook(): void
     {
         // On vérifie si l'utilisateur est loggé et on récupère l'id du livre à supprimer

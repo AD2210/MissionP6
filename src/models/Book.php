@@ -57,7 +57,7 @@ class Book
      */
     public function setTitle(string $title): void
     {
-        $this->title = $title;
+        $this->title = htmlspecialchars($title);
     }
 
     /**
@@ -76,7 +76,7 @@ class Book
      */
     public function setAuthor(string $author): void
     {
-        $this->author = $author;
+        $this->author = htmlspecialchars($author);
     }
 
     /**
@@ -105,7 +105,7 @@ class Book
      */
     public function setComment(string $comment): void
     {
-        $this->comment = $comment;
+        $this->comment = htmlspecialchars($comment);
     }
 
     /**

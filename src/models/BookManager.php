@@ -16,7 +16,7 @@ class BookManager
         $sql = "SELECT * FROM book";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
-        return $result->fetchAll(PDO::FETCH_CLASS,Book::class);
+        return $result->fetchAll(PDO::FETCH_CLASS, Book::class);
     }
 
     /**
@@ -32,7 +32,7 @@ class BookManager
         $result->execute([
             'idMember' => $idMember
         ]);
-        return $result->fetchAll(PDO::FETCH_CLASS,Book::class);
+        return $result->fetchAll(PDO::FETCH_CLASS, Book::class);
     }
 
     /**
@@ -44,7 +44,7 @@ class BookManager
         $sql = "SELECT * FROM book ORDER BY id DESC LIMIT 4";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
-        return $result->fetchAll(PDO::FETCH_CLASS,Book::class);
+        return $result->fetchAll(PDO::FETCH_CLASS, Book::class);
     }
 
     /**
@@ -52,14 +52,15 @@ class BookManager
      * @return int
      * @annotation Methode utilisé pour le fonctionnement des fixtures
      */
-    public function getLastBookId() : int {
+    public function getLastBookId(): int
+    {
         //Requête pour sortir le dernier ID utilisé
         $sql = 'SELECT id FROM book';
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
         $array = $result->fetchAll();
-        
-        return $array[count($array)-1]['id'];
+
+        return $array[count($array) - 1]['id'];
     }
 
     /**
@@ -69,13 +70,13 @@ class BookManager
      */
     public function getOneBookById(int $id): Book
     {
-        $sql = "SELECT * FROM book WHERE id = :id" ;
+        $sql = "SELECT * FROM book WHERE id = :id";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([
             'id' => $id
         ]);
-        $result->setFetchMode(PDO::FETCH_CLASS,Book::class);
+        $result->setFetchMode(PDO::FETCH_CLASS, Book::class);
         return $result->fetch();
     }
 
@@ -97,6 +98,25 @@ class BookManager
             'available' => $book->getAvailable(),
             'idMember' => $book->getIdMember(),
             'picture' => $book->getPicture()
+        ]);
+    }
+
+    /**
+     * Requête permettant de mettre à jour un livre de la BDD
+     * @param Book $book
+     * @return void
+     */
+    public function updateBook(Book $book): void
+    {
+        $sql = "UPDATE book SET title= :title, author= :author, comment= :comment, available= :available WHERE id= :id";
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'id' => $book->getId(),
+            'title' => $book->getTitle(),
+            'author' => $book->getAuthor(),
+            'comment' => $book->getComment(),
+            'available' => $book->getAvailable()
         ]);
     }
 

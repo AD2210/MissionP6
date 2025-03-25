@@ -134,10 +134,12 @@ class UserController
     /**
      * Mise à jour des informaitons personnelles d'un utilisateur
      * @return void
-     * @todo vérifier prk mise a jour de la date
      */
     public function updateUser():void {
         
+        // On vérifie que l'utilisateur est connecté, si non on le renvoie vers la page login
+        $this->checkIfUserIsConnected();
+
         // On récupère les données du formulaire et de la session.
         $id = $_SESSION['idUser'];
         $pseudo = Service::request("pseudo");
@@ -150,8 +152,6 @@ class UserController
         $user->setPseudo($pseudo);
         $user->setEmail($email);
         $user->setPassword($password);
-
-        var_dump($user);
 
         $userManager = new UserManager;
         $userManager->updateUser($user);

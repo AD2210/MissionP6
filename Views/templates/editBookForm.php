@@ -17,7 +17,8 @@ $dynamicLink = <<<HTML
         <p>Photo</p>
         <img src="$picture" alt="photo du livre : $title">
         <a href="#">Modifier la photo</a>
-        <form action="index.php?action=updateBook&id=$id">
+        <form action="index.php?action=updateBook&id=$id" method="POST">
+            <input type="hidden" name="id" value="$id">
             <label for="title">Titre</label>
             <input type="text" name="title" id="title" value="$title">
             <label for="author">Auteur</label>
@@ -25,7 +26,7 @@ $dynamicLink = <<<HTML
             <label for="comment">Commentaire</label>
             <input type="text" name="comment" id="comment" value="$comment">
             <label for="availability">Disponibilité</label>
-            <select id="availability" name="availaibilityChoice">
+            <select id="availability" name="availability">
                 <option value="true">disponible</option>
                 <option value="false" $availableClass>non dispo.</option>
             </select>

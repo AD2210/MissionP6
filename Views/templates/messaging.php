@@ -21,7 +21,7 @@
                                     <p>$pseudo</p>
                                     <p>$dateLastMessage</p>
                                 </div>
-                                <span class ="textOverFlow">$contentLastMessage</span>
+                                <p class ="textOverFlow">$contentLastMessage</p>
                             </div>  
                         </div>
                     </a>
@@ -77,6 +77,7 @@
         </form>
     </div>
 </section>
+
 
 
 

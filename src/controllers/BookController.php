@@ -81,8 +81,7 @@ class BookController
         $author = Service::request("author");
         $comment = Service::request("comment");
         $available = Service::request("availability");
-        $available = $available == "true" ? true : false; // On convertie le string en bool
-
+        
         // On créer l'instance avec les nouvelles datas
         $book = new Book;
         $book->setId($id);

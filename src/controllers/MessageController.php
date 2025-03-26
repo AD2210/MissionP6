@@ -59,9 +59,7 @@ require_once 'src/models/MessageManager.php';
         
         // On récupère les données du formulaire.
         $content = Service::request("message");
-        var_dump($content);
         $correspondingId = Service::request("correspondingId");
-        var_dump($correspondingId);
 
         // On vérifie que les données sont valides. 
         if (empty($content) || empty($correspondingId)) {

@@ -31,7 +31,7 @@
 body {
     display: flex;
     align-items: center;
-    flex-direction: column;    
+    flex-direction: column;
 }
 
 main {
@@ -137,7 +137,7 @@ a {
     border-radius: 6.75px;
 }
 
-.noMessageUnread{
+.noMessageUnread {
     display: none;
 }
 
@@ -743,11 +743,12 @@ tbody .odd {
     padding-top: 65px;
 }
 
-.inboxContent{
+.inboxContent {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    max-height: calc(68vh); /* A faire plus propre car pas robuste avec taille d'ecran et header/footer en dure*/
+    max-height: calc(68vh);
+    /* A faire plus propre car pas robuste avec taille d'ecran et header/footer en dure*/
 }
 
 .inboxContainer {
@@ -809,14 +810,15 @@ tbody .odd {
     padding-top: 35px;
 }
 
-.messageTreadContainer{
+.messageTreadContainer {
     display: flex;
     flex-direction: column;
     gap: 25px;
     margin: 24px 0;
     padding-right: 10px;
     overflow-y: auto;
-    max-height: calc(60vh); /* A faire plus propre car pas robuste avec taille d'ecran et header/footer en dure*/
+    max-height: calc(60vh);
+    /* A faire plus propre car pas robuste avec taille d'ecran et header/footer en dure*/
 }
 
 .senderAvatar {
@@ -827,7 +829,7 @@ tbody .odd {
     font-weight: 600;
 }
 
-.senderInformation{
+.senderInformation {
     display: flex;
     flex-direction: row;
     gap: 6px;
@@ -837,51 +839,51 @@ tbody .odd {
     color: var(--subtitleColor);
 }
 
-.message{
+.message {
     padding: 10px 18px;
     border-radius: 3px;
     width: fit-content;
 }
 
-.message p{
+.message p {
     font-size: 12px;
 }
 
-.receivedContainer{
+.receivedContainer {
     align-items: start;
 }
 
-.sendContainer{
+.sendContainer {
     align-items: end;
 }
 
-.receivedMessage{
+.receivedMessage {
     text-align: start;
     background-color: white;
 }
 
-.sendMessage{
+.sendMessage {
     text-align: end;
-    background-color:#EDF2F6 ;
+    background-color: #EDF2F6;
 }
 
-.showAvatar{
+.showAvatar {
     justify-content: start;
 }
 
-.showAvatar img{
+.showAvatar img {
     display: inherit;
 }
 
-.hideAvatar{
+.hideAvatar {
     justify-content: end;
 }
 
-.hideAvatar img{
+.hideAvatar img {
     display: none;
 }
 
-.messagingForm{
+.messagingForm {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -898,15 +900,108 @@ tbody .odd {
     padding-left: 42px;
 }
 
-.messagingForm button{
+.messagingForm button {
     width: 132px;
     height: 49px;
     padding: 0;
-    text-align: center;   
+    text-align: center;
 }
 
-.textOverFlow{
+.textOverFlow {
+    /*a retravailler */
     text-overflow: ellipsis;
-    text-wrap: nowrap;
-    max-width: 170px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 170px;
+}
+
+/******** edit Book form ********/
+
+.editBookSection {
+    display: flex;
+    flex-direction: column;
+    background-color: #FAF9F7;
+    padding-left: 150px;
+    padding-bottom: 92px;
+}
+
+.editBookSection h1{
+    font-size: 26px;
+    padding-bottom:23px ;
+}
+
+.editBookContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 20px;
+    width: 1140px;
+    padding: 50px 56px;
+}
+
+.editBookForm {
+    width: 435px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 32px;
+}
+
+.editBookForm form {
+    padding-top: 56px;
+    padding-bottom: 40px;
+}
+
+.editBookForm .formField {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--subtitleColor);
+    font-size: 14px;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    width: 100%;
+}
+
+.editBookForm input,
+select,
+textarea {
+    background-color: white;
+    border: solid #F0F0F0 1px;
+    border-radius: 6px;
+}
+
+.formField>textarea {
+    display: block;
+    min-height: 100px;
+    height: fit-content;
+    resize: none;
+    overflow: hidden;
+}
+
+.editBookForm input[value] {
+    background-color: #EDF2F6;
+}
+
+.editBookForm button {
+    width: 322px;
+}
+
+.editBookForm p {
+    font-size: 14px;
+    color: #292929;
+}
+
+.editPictureContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.editPictureContainer img {
+    width: 488px;
+    height: 488px;
 }

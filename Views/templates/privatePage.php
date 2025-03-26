@@ -7,7 +7,7 @@ require_once 'templateMemberPage.php';
 
 //Variable HereDoc spécifique page privée
 $email = $user->getEmail();
-$password = $user->getPassword();
+$password = mb_substr($user->getPassword(), 0, 8);
 
 $personalInformations = <<<HTML
             <div class="memberPageInformationMember privatePageTopContainer loginForm">

@@ -16,7 +16,6 @@ class UserController
     {   
         // On vérifie que l'utilisateur est connecté, si non on le renvoie vers la page login
         $this->checkIfUserIsConnected();
-        $privatePage = true;
 
         $userManager = new UserManager;
         $user = $userManager->getOneUserById($_SESSION['idUser']);
@@ -27,7 +26,7 @@ class UserController
         $view->render("privatePage", [
             'user' => $user,
             'books' => $books,
-            'privatePage' => $privatePage
+            'privatePage' => true
         ]);
     }
 
@@ -42,7 +41,6 @@ class UserController
     {   
         // On récupère les données du formulaire.
         $id = Service::request("id");
-        $privatePage = false;
 
         $userManager = new UserManager;
         $user = $userManager->getOneUserById($id);
@@ -53,7 +51,7 @@ class UserController
         $view->render("publicPage", [
             'user' => $user,
             'books' => $books,
-            'privatePage' => $privatePage
+            'privatePage' => false
         ]);
     }
 
@@ -61,11 +59,13 @@ class UserController
      * Vérifie que l'utilisateur est connecté.
      * @return void
      */
-    public static function checkIfUserIsConnected(): void
+    public static function checkIfUserIsConnected(string $redirectUrl = 'privatePage'): void
     {
         // On vérifie que l'utilisateur est connecté.
         if (!isset($_SESSION['user'])) {
-            Service::redirect("loginPage");
+            Service::redirect("loginPage",[
+                'redirectUrl' => $redirectUrl
+            ]);
         }
     }
 
@@ -77,10 +77,12 @@ class UserController
      */
     public function showLogin(): void
     {
+        $redirectUrl = Service::request('redirectUrl','privatePage');
         $connexion = Service::request('connexion',false);
         $view = new View("Login");
         $view->render("loginPage", [
-            'connexion' => $connexion
+            'connexion' => $connexion,
+            'redirectUrl' => $redirectUrl
         ]);
     }
 
@@ -90,9 +92,10 @@ class UserController
      */
     public function connectUser(): void
     {
-        // On récupère les données du formulaire.
+        // On récupère les données du formulaire et de la pag d'origine.
         $email = Service::request("email");
         $password = Service::request("password");
+        $redirectUrl = Service::request("redirectUrl");
 
         // On vérifie que les données sont valides. 
         if (empty($email) || empty($password)) {
@@ -109,15 +112,18 @@ class UserController
         // On vérifie que le mot de passe est correct.
         if (!password_verify($password, $user->getPassword())) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            throw new Exception("Le mot de passe est incorrect : $hash");
+            throw new Exception("Le mot de passe est incorrect");
         }
 
         // On connecte l'utilisateur.
         $_SESSION['user'] = $user;
         $_SESSION['idUser'] = $user->getId();
 
-        // On redirige vers la page privée du membre.
-        Service::redirect("privatePage");
+        // On redirige vers la page précédente ou par defaut la page privée du membre.
+        if(isset($redirectUrl)){
+            Service::redirect($redirectUrl);
+        }
+        Service::redirect('privatePage');
     }
 
     /**

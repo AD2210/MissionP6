@@ -55,7 +55,7 @@ class BookController
      */
     public function showBookForm(): void
     {
-        UserController::checkIfUserIsConnected();
+        UserController::checkIfUserIsConnected('privatePage');
         $id=Service::request('id');
         
         $bookManager = new bookManager;
@@ -73,7 +73,7 @@ class BookController
     public function updateBook():void {
         
         // On vérifie que l'utilisateur est connecté, si non on le renvoie vers la page login
-        UserController::checkIfUserIsConnected();
+        UserController::checkIfUserIsConnected('privatePage');
 
         // On récupère les données du formulaire et de la session.
         $id = Service::request("id");
@@ -105,7 +105,7 @@ class BookController
     public function deleteBook(): void
     {
         // On vérifie si l'utilisateur est loggé et on récupère l'id du livre à supprimer
-        UserController::checkIfUserIsConnected();
+        UserController::checkIfUserIsConnected('privatePage');
         $id=Service::request('id');
                 
         //On supprime le livre de la base

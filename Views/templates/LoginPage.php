@@ -1,8 +1,10 @@
 <?php
     // page par défaut : inscription
     $actionForm = 'index.php?action=connectUser';
+    
     $title = 'Connexion';
     $ConnexionForm = <<<HTML
+            <input type="hidden" name="redirectUrl" value=$redirectUrl>
             <div class="formField">
                 <label for="email">Adresse email</label>
                 <input type="email" name="email" id="email">

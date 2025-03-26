@@ -23,6 +23,15 @@ class Service
     }
 
     /**
+     * Redirige vers l'URL relative précedente.
+     * @return void
+     */
+    public static function getPreviousUrl(): string
+    {
+        return $_SERVER['REQUEST_URI'];
+    }
+
+    /**
      * Cette méthode retourne le code js a insérer en attribut d'un bouton.
      * pour ouvrir une popup "confirm", et n'effectuer l'action que si l'utilisateur
      * a bien cliqué sur "ok".

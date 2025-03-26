@@ -1005,3 +1005,20 @@ textarea {
     width: 488px;
     height: 488px;
 }
+
+/******** Error Page ********/
+
+.error{
+    display: flex;
+    flex-direction: column;
+    width: 1140px;
+    height: 85vh;
+    justify-content: start;
+    padding-top: 150px;
+    align-items: center;
+    gap: 16px;
+}
+
+.error a{
+    text-decoration: underline;
+}

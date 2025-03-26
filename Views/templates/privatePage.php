@@ -1,7 +1,6 @@
 <?php
 /**
  * La PrivatePage affiche les vues HereDoc généré dans le templateMemberpage ainsi que les vue spécifique à cette page
- * @todo refacto avec le form Login
  */
 require_once 'templateMemberPage.php';
 

@@ -4,18 +4,66 @@
  * Doit recevoir en variable : 
  * string $title : Titre de la page
  * string $content : Contenu du main
+ * @todo mettre un hereDoc ici pour plus de lisibilité
  * */
-
 require_once 'src\models\MessageManager.php';
-// Variable d'affichage conditionné
+
+/**
+ * Variable d'affichage conditionné
+ */
+
+ //On récupère le nombe de message non lu si l'utilisateur est loggé
 if(isset($_SESSION['user'])){
     $messageManager = new MessageManager;
     $nbMessagesUnread = $messageManager->getNumberOfMessagesByIdReceiver($_SESSION['idUser']);
 }else{
     $nbMessagesUnreadClass = 'noMessageUnread';
 }
+
+// On applique une class css dans la navbar pour mettre en gras la page active
 $activePage = Service::request('action', 'home');
-var_dump($activePage);
+
+//initialisation des variables
+$homePageClass = '';
+$allBooksClass = '';
+$messagingClass = '';
+$memberPageClass = '';
+$loginPageClass ='';
+
+//On applique la class en fonction de la page active
+switch ($activePage) {
+    case 'home' :
+        $homePageClass = 'activePage';
+        break;
+    case 'allBooks' :
+        $allBooksClass = 'activePage';
+        break;
+    case 'oneBook' :
+        $allBooksClass = 'activePage';
+        break;
+    case 'messaging' :
+        $messagingClass = 'activePage';
+        break;
+    case 'editBook' :
+        $memberPageClass = 'activePage';
+        break;
+    case 'privatePage' :
+        $memberPageClass = 'activePage';
+        break;
+    case 'publicPage' :
+        $memberPageClass = 'activePage';
+        break;
+    case 'loginPage' :
+        $loginPageClass = 'activePage';
+        break;
+    default :
+    $homePageClass = 'activePage';
+}
+
+
+/**
+ * Template header/footer du site auquel on ajoute le contenu de la page demandé
+ */
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,16 +80,16 @@ var_dump($activePage);
             <nav class="navbar">
                 <img src="\ressources\logo.png" alt="Logo Tom Troc">
                 <div class="navbarNav">
-                    <a href="index.php?action=home">Accueil</a>
-                    <a href="index.php?action=allBooks">Nos livres à l'échange</a>
+                    <a class ="<?= $homePageClass; ?>" href="index.php?action=home">Accueil</a>
+                    <a class ="<?= $allBooksClass; ?>" href="index.php?action=allBooks">Nos livres à l'échange</a>
                 </div>    
                 <div class="navbarNav navAdmin">
-                        <a class ="iconLink" href="index.php?action=messaging">
+                        <a class ="iconLink <?= $messagingClass; ?>" href="index.php?action=messaging">
                                 <img src="ressources\Icon messagerie.png" alt="icone messagerie">
                                 Messagerie
-                                <span class="<?= $nbMessagesUnreadClass ?>"><?= $nbMessagesUnread ?></span>
+                                <span class="<?= $nbMessagesUnreadClass; ?>"><?= $nbMessagesUnread; ?></span>
                         </a>
-                    <a class ="iconLink" href="index.php?action=privatePage">
+                    <a class ="iconLink <?= $memberPageClass; ?>" href="index.php?action=privatePage">
                         <img src="ressources\Icon mon compte.png" alt="icone mon compte">
                         Mon compte
                     </a>
@@ -50,7 +98,7 @@ var_dump($activePage);
                 if (isset($_SESSION['user'])) {
                     echo '<a href="index.php?action=disconnectUser">Déconnexion</a>';
                 }else{
-                    echo '<a href="index.php?action=loginPage&connexion=true">Connexion</a>';
+                    echo '<a class="'.$loginPageClass. '" href="index.php?action=loginPage&connexion=true">Connexion</a>';
                 }
                 ?>
                 </div>

@@ -164,6 +164,10 @@ header {
     display: none;
 }
 
+.activePage{
+    font-weight: 600;
+}
+
 /****** Footer *****/
 
 footer {

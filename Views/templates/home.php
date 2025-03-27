@@ -10,12 +10,15 @@
         <p>Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture. Nous croyons en
             la
             magie du partage de connaissances et d'histoires à travers les livres.</p>
-        <a href="#howToDoSection">
+        <a href="index.php?action=allBooks">
             <div class="button">Découvrir</div>
         </a>
     </div>
-    <img class="homePicture" src="\ressources\e67398fca2185c7e020225c880309454.jpeg"
-        alt="Homme lisant un livre autour de plusieurs piles de livres">
+    <div class="introPictureContainer">
+        <img class="homePicture" src="\ressources\e67398fca2185c7e020225c880309454.jpeg"
+            alt="Homme lisant un livre autour de plusieurs piles de livres">
+        <span>Hamza</span>
+    </div>
 </section>
 <section class="lastAddedSection">
     <h2>Les derniers livres ajoutés</h2>
@@ -49,7 +52,7 @@
         <div class="button">Voir tous les livres</div>
     </a>
 </section>
-<section class="howToDoSection" id="howToDoSection">
+<section class="howToDoSection">
     <h2>Comment ça marche ?</h2>
     <p>Échanger des livres avec TomTroc c’est simple et</p>
     <p>amusant ! Suivez ces étapes pour commencer :</p>
@@ -87,5 +90,5 @@
         </div>
         <span>L’équipe Tom Troc</span>
     </div>
-    <img src="\ressources\coeur.png" alt="Coeur dessiné au crayon">
+    <img class="valueLogo" src="\ressources\coeur.png" alt="Coeur dessiné au crayon">
 </section>

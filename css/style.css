@@ -14,7 +14,7 @@
 }
 
 /**
- * Déclaration des couleurs.
+ * Déclaration des constantes.
  */
 :root {
     --backgroundColorMain: #F5F3EF;
@@ -32,17 +32,22 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 100vw;
+    /* fixe la largeur à la largeur de l'ecran pour etendre les backgrounds et avoir un rendu plus estétique*/
+    overflow-x: hidden;
+    /* On masque la barre de défilement horizontale */
 }
 
 main {
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 100%;
 }
 
 section {
     padding-top: 80px;
-    width: 1440px;
+    width: 100%;
 }
 
 h1,
@@ -93,20 +98,24 @@ a {
 }
 
 /****** Navbar *****/
+header {
+    background-color: var(--backgroundColorMain);
+    width: 100%;
+    justify-items: center;
+}
+
 .navbar {
-    height: 80px;
     width: 1440px;
+    height: 80px;
     font-size: 14px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding: 0 150px;
-    background-color: var(--backgroundColorMain);
-    background-size: cover;
 }
 
-.navbar img {
+.navbar>img {
     height: 51px;
     width: 155px;
 }
@@ -114,7 +123,16 @@ a {
 .navbarNav {
     display: flex;
     flex-direction: row;
-    gap: 50px;
+    gap: 44px;
+    margin-right: 184px;
+}
+
+.navbarNav a {
+    letter-spacing: 0.02em;
+}
+
+.navAdmin {
+    margin-right: 0px;
 }
 
 .activePage {
@@ -126,6 +144,11 @@ a {
     flex-direction: row;
     align-items: center;
     gap: 5px;
+}
+
+.iconLink>img {
+    height: 13px;
+    aspect-ratio: 1/1;
 }
 
 .iconLink span {
@@ -733,6 +756,7 @@ tbody .odd {
 }
 
 .messagingSection h1 {
+    font-size: 26px;
     padding-left: 34px;
     padding-bottom: 27px;
 }
@@ -741,14 +765,13 @@ tbody .odd {
     width: 308px;
     background-color: var(--backgroundColorSecond);
     padding-top: 65px;
+    height: 893px;
 }
 
 .inboxContent {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    max-height: calc(68vh);
-    /* A faire plus propre car pas robuste avec taille d'ecran et header/footer en dure*/
 }
 
 .inboxContainer {
@@ -850,11 +873,11 @@ tbody .odd {
 }
 
 .receivedContainer {
-    align-items: start;
+    align-self: start;
 }
 
 .sendContainer {
-    align-items: end;
+    align-self: end;
 }
 
 .receivedMessage {
@@ -908,7 +931,6 @@ tbody .odd {
 }
 
 .textOverFlow {
-    /*a retravailler */
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -925,9 +947,9 @@ tbody .odd {
     padding-bottom: 92px;
 }
 
-.editBookSection h1{
+.editBookSection h1 {
     font-size: 26px;
-    padding-bottom:23px ;
+    padding-bottom: 23px;
 }
 
 .editBookContainer {
@@ -1008,7 +1030,7 @@ textarea {
 
 /******** Error Page ********/
 
-.error{
+.error {
     display: flex;
     flex-direction: column;
     width: 1140px;
@@ -1019,6 +1041,6 @@ textarea {
     gap: 16px;
 }
 
-.error a{
+.error a {
     text-decoration: underline;
 }

@@ -14,8 +14,8 @@ if(isset($_SESSION['user'])){
 }else{
     $nbMessagesUnreadClass = 'noMessageUnread';
 }
-
-
+$activePage = Service::request('action', 'home');
+var_dump($activePage);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -25,7 +25,6 @@ if(isset($_SESSION['user'])){
         <title>Tom Troc - <?= $title ?></title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel='stylesheet' href='./css/style.css'>
-        <script src="https://kit.fontawesome.com/988c8cacf7.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
@@ -33,17 +32,17 @@ if(isset($_SESSION['user'])){
             <nav class="navbar">
                 <img src="\ressources\logo.png" alt="Logo Tom Troc">
                 <div class="navbarNav">
-                    <a href="index.php">Accueil</a>
+                    <a href="index.php?action=home">Accueil</a>
                     <a href="index.php?action=allBooks">Nos livres à l'échange</a>
                 </div>    
-                <div class="navbarNav">
+                <div class="navbarNav navAdmin">
                         <a class ="iconLink" href="index.php?action=messaging">
-                                <i class="fa-regular fa-comment"></i>
+                                <img src="ressources\Icon messagerie.png" alt="icone messagerie">
                                 Messagerie
                                 <span class="<?= $nbMessagesUnreadClass ?>"><?= $nbMessagesUnread ?></span>
                         </a>
                     <a class ="iconLink" href="index.php?action=privatePage">
-                        <i class="fa-regular fa-user"></i>
+                        <img src="ressources\Icon mon compte.png" alt="icone mon compte">
                         Mon compte
                     </a>
                     <?php

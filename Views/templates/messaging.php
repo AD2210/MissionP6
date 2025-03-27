@@ -1,10 +1,17 @@
+<?php
+/**
+ * Page d'affichage de la messagerie
+ */
+?>
+
 <section class="messagingSection">
     <div class="inbox">
         <h1>Messagerie</h1>
         <div class="inboxContent">
             <?php
-            //page d'affichage de la messagerie
+            //Affichage partie Inbox
             foreach ($LastMessagesWithUsers as $lastMessage){
+                //Variable pour HereDoc
                 $idCorresponding = $lastMessage['idSender'];
                 $avatar = $lastMessage['avatar'];
                 $pseudo = $lastMessage['pseudo'];
@@ -12,6 +19,7 @@
                 $messageReadClass = $lastMessage['readFlag'] ? 'read' : 'unread'; //affecte la classe correspondante si le message est lu ou non 
                 $contentLastMessage = $lastMessage['content'];
 
+                //Template de l'inbox avec intégration des variables
                 $messaging = <<<HTML
                     <a href="index.php?action=messaging&corresponding=$idCorresponding">
                         <div class="inboxContainer $messageReadClass">
@@ -26,13 +34,16 @@
                         </div>
                     </a>
                 HTML;
-                echo $messaging;
+                echo $messaging; // On affiche le template
             }
             ?>
         </div>
     </div>
 
     <?php
+        //Affichage de la partie Fil de discussion
+        
+        //On récupère les variable pour HereDoc et on génère le template pour la carte pseudo + avatar
         $avatar = $correspondingUser->getAvatar();
         $pseudo = $correspondingUser->getPseudo();
         $correspondingId = $correspondingUser->getId();
@@ -45,19 +56,21 @@
         HTML;
     ?>
     <div class="messageTreadSection">
-        <?= $sender;?>
+        <?= $sender; //On affiche le template avec les variables ?>  
         <div Class="messageTreadContainer">
             <?php
                 foreach ($messageThread as $message){
+                    // Varaibles pour HereDoc
                     $sendDate = Service::dateFormater($message->getSendDate(),'d.m H:i');
                     $messageContent = $message->getContent();
                     $messageClass = $user->getId() == $message->getIdReceiver() ? 'receivedMessage' : 'sendMessage';
                     $avatarClass = $messageClass == 'receivedMessage' ? 'showAvatar' : 'hideAvatar';
                     $messageContainerClass = $messageClass == 'receivedMessage' ? 'receivedContainer' : 'sendContainer';
 
+                    //Template du fil de discussion avec intégration des variables
                     $showMessages = <<<HTML
                         <div class="$messageContainerClass">
-                            <div class="senderInformation $avatarClass">
+                            <div class="senderInformation $avatarClass ">
                                 <img class ="avatarSmall" src="$avatar" alt="">
                                 <span>$sendDate</span>
                             </div>
@@ -66,7 +79,7 @@
                             </div>
                         </div>
                     HTML;
-                    echo $showMessages;
+                    echo $showMessages; // on affiche le template
                 }
             ?>
         </div>

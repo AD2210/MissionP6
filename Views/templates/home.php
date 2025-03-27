@@ -71,9 +71,9 @@
         <div class="button">Voir tous les livres</div>
     </a>
 </section>
-<img class="valuePicture" src="\ressources\4c3f0a4a254acb5010dd96d3fb7321e4.jpeg"
-    alt="Femme cherchant un livre dans une bibliothèque">
 <section class="valueSection">
+    <img class="valuePicture" src="\ressources\4c3f0a4a254acb5010dd96d3fb7321e4.jpeg"
+    alt="Femme cherchant un livre dans une bibliothèque">
     <div class="valueContainer">
         <h2>Nos valeurs</h2>
         <div class="valueText">

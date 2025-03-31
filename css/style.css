@@ -837,9 +837,15 @@ tbody .odd {
 /******** Messaging/ Inbox ********/
 
 .messagingSection {
+    background-color: var(--backgroundColorMain);
+    padding-top: 0;
+    justify-items: center;
+}
+
+.messagingContainer{
+    width: 1440px;
     display: flex;
     flex-direction: row;
-    background-color: var(--backgroundColorMain);
     height: auto;
     padding: 0 150px;
 }
@@ -853,7 +859,7 @@ tbody .odd {
 .inbox {
     width: 308px;
     background-color: var(--backgroundColorSecond);
-    padding-top: 65px;
+    padding-top: 55px;
     height: 893px;
 }
 
@@ -904,11 +910,11 @@ tbody .odd {
 }
 
 .unread {
-    background-color: white;
+    font-weight: bolder;
 }
 
 .read {
-    background-color: inherit;
+    font-weight: initial;
 }
 
 /******** Messaging/ tread ********/

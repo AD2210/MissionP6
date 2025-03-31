@@ -73,12 +73,13 @@ class MessageManager
      * agrégé avec les données des utilisateurs ayant envoyé chacun des messages
      * @param int $idReceiver
      * @return array
+     * @todo problème dans la requète, ce n'est pas le dernier message de chaque fil qui sort
      */
     public function getAllUsersAndMessageByLastMessage(int $idReceiver): array
     {
-        $sql = 'SELECT idSender, avatar, pseudo, sendDate, readFlag, content 
+        $sql = 'SELECT idSender, avatar, pseudo, sendDate, readFlag, content
             FROM user INNER JOIN message ON user.id = message.idSender WHERE message.idReceiver = :idReceiver 
-            GROUP BY idSender ORDER BY message.id DESC';
+            GROUP BY idSender ORDER BY sendDate DESC';
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([

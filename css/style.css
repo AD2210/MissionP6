@@ -408,7 +408,7 @@ footer img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 64px;
+    padding-bottom: 32px;
 }
 
 .oursBooksContainer .bookCardsContainer{
@@ -440,6 +440,9 @@ footer img {
 
 input {
     border: none;
+    border-top:solid #F0F0F0 1px;
+    border-bottom:solid #F0F0F0 1px;
+    border-radius: 0 6px 6px 0;
     color: var(--subtitleColor);
     height: 50px;
     width: 100%;
@@ -448,7 +451,6 @@ input {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    border: none;
 }
 
 .searchBar input::placeholder {
@@ -462,20 +464,33 @@ input {
 
 /******** Detail livre ********/
 
-.navLink {
-    color: var(--subtitleColor);
+.navLinkContainer{
     background-color: var(--backgroundColorMain);
     width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.navLink {
+    color: var(--subtitleColor);
+    width: 1440px;
     justify-self: flex-start;
     padding-left: 150px;
     padding-top: 16px;
-    padding-bottom: 20px;
+    padding-bottom: 16px;
     font-size: 10px;
     font-weight: 300;
 }
 
 .oneBookSection {
     background-color: var(--backgroundColorSecond);
+    display: flex;
+    justify-content: center;
+    padding-top: 0;
+}
+
+.oneBookMainContainer {
+    width: 1440px;
     padding-top: 0;
     display: flex;
     flex-direction: row;
@@ -483,7 +498,7 @@ input {
 }
 
 
-.oneBookSection>img {
+.oneBookMainContainer>img {
     height: 863px;
     width: 720px;
     object-fit: cover;
@@ -497,6 +512,10 @@ input {
     color: #292929;
 }
 
+.oneBookContainer>h1 {
+    color: black;
+}
+
 .oneBookContainer>span {
     color: var(--subtitleColor);
 }
@@ -505,9 +524,15 @@ input {
     font-size: 14px;
 }
 
-.partTitle {
+.oneBookContainer .partTitle {
     font-size: 8px;
-    letter-spacing: 8%;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+.oneBookContainer .separator{
+    margin: 8px 0;
+    font-size: 12px;
     font-weight: 600;
 }
 
@@ -543,28 +568,36 @@ input {
 
 .loginPageSection {
     padding-top: 0;
+    background-color: var(--backgroundColorSecond);
+    justify-items: center;
+}
+
+.loginContainer{
+    width: 1440px;
+    padding-top: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: var(--backgroundColorSecond);
 }
 
-.loginPageSection img {
+.loginContainer img {
     height: 886px;
-    width: 720;
+    width: 720px;
 }
 
 .loginForm {
-    width: 720px;
+    width: 570px;
+    padding-left: 150px;
+    padding-top: 130px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: start;
+    justify-content: start;
+    
 }
 
 .loginForm form {
     padding-top: 56px;
-    padding-bottom: 40px;
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -595,6 +628,10 @@ input {
 
 .loginForm button {
     width: 100%;
+}
+
+.loginForm .connexionMessage{
+    margin-top: 8px;
 }
 
 .loginForm p {

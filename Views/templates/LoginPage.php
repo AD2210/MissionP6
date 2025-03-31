@@ -32,7 +32,7 @@
                 <div class="formField">
                     <button class="button" type="submit">S’inscrire</button>
                 </div>
-                <p>Déjà inscrit ? <a href="index.php?action=loginPage&connexion=true">Connectez-vous</a></p> 
+                <p class="connexionMessage">Déjà inscrit ? <a href="index.php?action=loginPage&connexion=true">Connectez-vous</a></p> 
             </form>     
             HTML;
 
@@ -56,6 +56,8 @@
         HTML;
 ?> 
 <section class="loginPageSection">
-    <?= $loginPage; ?>
-    <img src="\ressources\dd6bbafe9a461f128299f90d445728dd.jpeg" alt="photo d'une bibliothèque">
+    <div class="loginContainer">
+        <?= $loginPage; ?>
+        <img src="\ressources\dd6bbafe9a461f128299f90d445728dd.jpeg" alt="photo d'une bibliothèque">
+    </div>
 </section>

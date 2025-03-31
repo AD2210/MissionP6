@@ -110,7 +110,12 @@ class UserManager
         $result = $pdo->query($sql);
         $array = $result->fetchAll();
         
-        return $array[count($array)-1]['id'];
+        if(!empty($array)){
+            return $array[count($array)-1]['id'];
+            
+        }
+        
+        return 0;
     }
 
     /**

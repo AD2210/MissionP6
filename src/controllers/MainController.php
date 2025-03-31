@@ -41,7 +41,7 @@ require_once 'src\models\BookFixture.php';
      */
     public function geretateUsers() : void {
         $userFixture = new UserFixture;
-        $userFixture->createSomeUsers(1);
+        $userFixture->createSomeUsers(10);
     }
 
     /**
@@ -52,7 +52,7 @@ require_once 'src\models\BookFixture.php';
      */
     public function geretateMessages() : void {
         $userFixture = new MessageFixture;
-        $userFixture->createSomeMessages(10);
+        $userFixture->createSomeMessages(100);
     }
 
     /**
@@ -63,6 +63,6 @@ require_once 'src\models\BookFixture.php';
      */
     public function geretateBooks() : void {
         $userFixture = new BookFixture;
-        $userFixture->createSomeBooks(10);
+        $userFixture->createSomeBooks(30);
     }
  }

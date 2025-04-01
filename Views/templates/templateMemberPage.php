@@ -29,33 +29,35 @@ if ($privatePage){
 
 $personalContent = <<<HTML
     <section class="memberPageSection">
-        $titleH1
-        <div class="memberPageTopContainer">
-            <div class="memberPageInformationMember $classTopContainer">
-                <div class="avatarContainer"> 
-                    <img class ="bigAvatar" src="$avatar" alt="photo du membre : $pseudo">
-                    $modifyLink
-                </div>
-                <span>———————————————</span>
-                <div class="infoMember">
-                    <h2>$pseudo</h2>
-                    <span>$seniority</span>
-                    <p class="partTitle">BIBLIOTHEQUE</p>
-                    <div class="nbBooks">
-                        <img src="ressources\Vector.png" alt="icone livres">
-                        <p>$nbBooks</p>
+        <div class="memberPageMainContainer">
+            $titleH1
+            <div class="memberPageTopContainer">
+                <div class="memberPageInformationMember $classTopContainer">
+                    <div class="avatarContainer"> 
+                        <img class ="bigAvatar" src="$avatar" alt="photo du membre : $pseudo">
+                        $modifyLink
                     </div>
+                    <span>———————————————</span>
+                    <div class="infoMember">
+                        <h2>$pseudo</h2>
+                        <span>$seniority</span>
+                        <p class="partTitle">BIBLIOTHEQUE</p>
+                        <div class="nbBooks">
+                            <img src="ressources\Vector.png" alt="icone livres">
+                            <p>$nbBooks</p>
+                        </div>
+                    </div>
+                    $buttonWriteMessage
                 </div>
-                $buttonWriteMessage
-            </div>
 HTML;
 
 /********* Book Table *********/
 // Variables HereDoc communes
 $booksTable = null;
 $bookTableClose = <<<HTML
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </section>
     HTML;
 // Variable Heredoc conditionné en fonction de la visibilité du profil (Public/privée)

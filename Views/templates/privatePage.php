@@ -25,7 +25,7 @@ $personalInformations = <<<HTML
                         <input type="text" name="pseudo" id="pseudo" value="$pseudo">
                     </div>
                     <div class="formField">
-                        <button type="submit">Enregistrer</button>
+                        <button class="button" type="submit">Enregistrer</button>
                     </div>
                 </form>
             </div>

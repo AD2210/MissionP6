@@ -14,6 +14,8 @@
                 $title = $book->getTitle();
                 $author = $book->getAuthor();
                 $picture = $book->getPicture();
+                $available = $book->getAvailable() ? '' : 'non dispo.';
+                $availableClass = $book->getAvailable() ? 'HideAvailable' : 'unavailable';
                 $pseudo = $userManager
                     ->getOneUserById($book->getIdMember())
                     ->getPseudo();
@@ -22,7 +24,10 @@
                 $bookCard = <<<HTML
                     <a href="index.php?action=oneBook&id=$id">
                         <article class="bookCard">
-                            <img src="$picture" alt="photo d'un livre">
+                            <div class="pictureAllBook">
+                                <img src="$picture" alt="photo d'un livre">
+                                <div class ="bookStatus $availableClass">$available</div>
+                            </div>    
                             <div class="bookCardText">
                                 <h3>$title</h3>
                                 <h4>$author</h4>

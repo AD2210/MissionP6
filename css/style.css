@@ -525,7 +525,8 @@ input {
 }
 
 .oneBookContainer .partTitle,
-.infoMember .partTitle {
+.infoMember .partTitle, 
+.bookTableHead .partTitle {
     font-size: 8px;
     letter-spacing: 0.08em;
     font-weight: 600;
@@ -767,24 +768,42 @@ input {
     background-color: white;
     border-radius: 20px;
     border-collapse: collapse;
+    color: #292929;
+}
+
+.tPicture{
+    width: 19%;
+    padding-left: 66px;
+}
+
+.tTitle{
+    width: 16%;
+}
+
+.tAuthor{
+    width: 15%;
+}
+
+.tDescription{
+    width: 19%;
+    padding-right: 8%;
+}
+
+.tAvailable{
+    width: 13%;
+}
+
+.tAction{
+    width: 13%;
 }
 
 .publicTableWidth {
     width: 66%;
 }
 
-tHead {
-    padding-right: 66px;
-    padding-left: 66px;
-    width: 15%;
+.bookTableHead {
     text-align: start;
-    height: 50px;
-}
-
-.thDesc {
-    width: 20%;
-    text-align: start;
-    height: 50px;
+    height: 53px;
 }
 
 .bookTable img {
@@ -797,7 +816,6 @@ tHead {
     padding-top: 26px;
     padding-bottom: 26px;
     border-top: 1px solid var(--backgroundColorMain);
-    padding-left: 66px;
 }
 
 tbody .pair {
@@ -809,7 +827,6 @@ tbody .odd {
 }
 
 .bookTable tbody td {
-    padding-right: 40px;
     font-family: "Inter", serif;
     font-optical-sizing: auto;
     font-weight: 400;

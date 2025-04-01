@@ -19,11 +19,12 @@
                     $dateLastMessage = Service::dateFormater($lastMessage['sendDate'],'H:i');
                     $messageReadClass = $lastMessage['readFlag'] ? 'read' : 'unread'; //affecte la classe correspondante si le message est lu ou non 
                     $contentLastMessage = $lastMessage['content'];
+                    $selectedThreadClass = $idCorresponding == $correspondingUser->getId() ? 'selectedThread' : 'otherThread';
 
                     //Template de l'inbox avec intégration des variables
                     $messaging = <<<HTML
                         <a href="index.php?action=messaging&corresponding=$idCorresponding">
-                            <div class="inboxContainer">
+                            <div class="inboxContainer $selectedThreadClass">
                                 <img class ="avatarMedium" src="$avatar" alt="photo du membre : $pseudo">
                                 <div class ="inboxContainerContent">  
                                     <div class="inboxContentInformations">

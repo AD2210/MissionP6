@@ -917,6 +917,14 @@ tbody .odd {
     font-weight: initial;
 }
 
+.selectedThread {
+    background-color: white;
+}
+
+.otherThread {
+    background-color: initial;
+}
+
 /******** Messaging/ tread ********/
 
 .messageTreadSection {
@@ -944,6 +952,9 @@ tbody .odd {
     flex-direction: row;
     gap: 12px;
     align-items: center;
+}
+
+.senderAvatar p{
     font-weight: 600;
 }
 
@@ -1006,7 +1017,7 @@ tbody .odd {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 50px;
+    padding-bottom: 98px;
 }
 
 .messagingForm input {

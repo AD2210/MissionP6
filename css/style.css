@@ -1080,16 +1080,27 @@ tbody .odd {
 /******** edit Book form ********/
 
 .editBookSection {
+    background-color: #FAF9F7;
+    justify-items: center;
+    padding-top: 40px;
+}
+
+.editBookMainContainer{
+    width: 1140px;
     display: flex;
     flex-direction: column;
     background-color: #FAF9F7;
-    padding-left: 150px;
     padding-bottom: 92px;
+}
+
+.editBookMainContainer span{
+    color: var(--subtitleColor);
+    font-size: 14px;
 }
 
 .editBookSection h1 {
     font-size: 26px;
-    padding-bottom: 23px;
+    padding: 23px 0;
 }
 
 .editBookContainer {
@@ -1129,38 +1140,54 @@ tbody .odd {
     width: 100%;
 }
 
-.editBookForm input,
-select,
-textarea {
-    background-color: white;
+.editBookForm input {
     border: solid #F0F0F0 1px;
     border-radius: 6px;
 }
 
-.formField>textarea {
-    display: block;
-    min-height: 100px;
-    height: fit-content;
-    resize: none;
-    overflow: hidden;
+.formField>textarea,
+.formField>input,
+.formField>select{
+    height: 50px;
+    color: var(--secondTextColor);
+    background-color: #EDF2F6;
+    border: solid #F0F0F0 1px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    padding: 14px 16px;
 }
 
-.editBookForm input[value] {
-    background-color: #EDF2F6;
+.formField>textarea {
+    resize: none;
+    height: fit-content;
+    
 }
 
 .editBookForm button {
     width: 322px;
 }
 
-.editBookForm p {
-    font-size: 14px;
-    color: #292929;
-}
-
 .editPictureContainer {
     display: flex;
     flex-direction: column;
+}
+
+.editPictureContainer p{
+    color: var(--subtitleColor);
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+
+.editPictureContainer a{
+    color: var(--subtitleColor);
+    font-size: 14px;
+    padding-top: 23px;
+    text-decoration: underline;
+    align-self: end;
 }
 
 .editPictureContainer img {

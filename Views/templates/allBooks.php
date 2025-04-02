@@ -3,7 +3,7 @@
         <div class="SectionTitle">
             <h1>Nos livres à l’échange</h1>
             <div class="searchBar">
-                <img src="ressources\icon search.png" alt="icone recherche">
+                <img src="/ressources/iconSearch.png" alt="icone recherche">
                 <input type="search" name="bookSearch" id="bookSearch" placeholder="Rechercher un livre">
             </div>
         </div>

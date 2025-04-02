@@ -6,7 +6,7 @@
  * string $content : Contenu du main
  * @todo mettre un hereDoc ici pour plus de lisibilité
  * */
-require_once 'src\models\MessageManager.php';
+require_once 'src/models/MessageManager.php';
 
 /**
  * Variable d'affichage conditionné
@@ -78,19 +78,19 @@ switch ($activePage) {
     <body>
         <header>
             <nav class="navbar">
-                <img src="\ressources\logo.png" alt="Logo Tom Troc">
+                <img src="/ressources/logo.png" alt="Logo Tom Troc">
                 <div class="navbarNav">
                     <a class ="<?= $homePageClass; ?>" href="index.php?action=home">Accueil</a>
                     <a class ="<?= $allBooksClass; ?>" href="index.php?action=allBooks">Nos livres à l'échange</a>
                 </div>    
                 <div class="navbarNav navAdmin">
                         <a class ="iconLink <?= $messagingClass; ?>" href="index.php?action=messaging">
-                                <img src="ressources\Icon messagerie.png" alt="icone messagerie">
+                                <img src="/ressources/IconMessagerie.png" alt="icone messagerie">
                                 Messagerie
                                 <span class="<?= $nbMessagesUnreadClass; ?>"><?= $nbMessagesUnread; ?></span>
                         </a>
                     <a class ="iconLink <?= $memberPageClass; ?>" href="index.php?action=privatePage">
-                        <img src="ressources\Icon mon compte.png" alt="icone mon compte">
+                        <img src="/ressources/IconMonCompte.png" alt="icone mon compte">
                         Mon compte
                     </a>
                     <?php
@@ -111,9 +111,9 @@ switch ($activePage) {
         
         <footer>
             <a href="Politique-de-confidentialite-rgpd.pdf" target="_blank">Politique de confidentialité</a>
-            <a href="Vos mentions légales.pdf" target="_blank">Mentions légales</a>
+            <a href="VosMentionsLégales.pdf" target="_blank">Mentions légales</a>
             <a href="PHP+Sf+P6+-+Specifications+fonctionnelles.pdf" target="_blank">Tom Troc <i class="fa-regular fa-copyright"></i></a>
-            <img src="\ressources\Logo_footer.png" alt="Logo double T Tom Troc">
+            <img src="/ressources/Logo_footer.png" alt="Logo double T Tom Troc">
         </footer>
     </body>
 </html>

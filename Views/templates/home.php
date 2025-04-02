@@ -15,7 +15,7 @@
         </a>
     </div>
     <div class="introPictureContainer">
-        <img class="homePicture" src="\ressources\e67398fca2185c7e020225c880309454.jpeg"
+        <img class="homePicture" src="/ressources/e67398fca2185c7e020225c880309454.jpeg"
             alt="Homme lisant un livre autour de plusieurs piles de livres">
         <span>Hamza</span>
     </div>
@@ -75,7 +75,7 @@
     </a>
 </section>
 <section class="valueSection">
-    <img class="valuePicture" src="\ressources\4c3f0a4a254acb5010dd96d3fb7321e4.jpeg"
+    <img class="valuePicture" src="/ressources/4c3f0a4a254acb5010dd96d3fb7321e4.jpeg"
     alt="Femme cherchant un livre dans une bibliothèque">
     <div class="valueContainer">
         <h2>Nos valeurs</h2>
@@ -90,5 +90,5 @@
         </div>
         <span>L’équipe Tom Troc</span>
     </div>
-    <img class="valueLogo" src="\ressources\coeur.png" alt="Coeur dessiné au crayon">
+    <img class="valueLogo" src="/ressources/coeur.png" alt="Coeur dessiné au crayon">
 </section>

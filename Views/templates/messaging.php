@@ -86,8 +86,8 @@
                 ?>
             </div>
             <form class = "messagingForm" action="index.php?action=newMessage" method="POST">
-                <input type="hidden" name="correspondingId" id="correspondingId" value="<?= $correspondingId ?>"></input>
-                <input type ="text" name="message" id="message" placeholder="Tapez votre message ici"></input>
+                <input type="hidden" name="correspondingId" id="correspondingId" value="<?= $correspondingId ?>"/>
+                <input type ="text" name="message" id="message" placeholder="Tapez votre message ici"/>
                 <button class="button" type="submit">Envoyer</button>
             </form>
         </div>

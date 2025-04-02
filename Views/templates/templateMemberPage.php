@@ -43,23 +43,19 @@ $personalContent = <<<HTML
                         <span>$seniority</span>
                         <p class="partTitle">BIBLIOTHEQUE</p>
                         <div class="nbBooks">
-                            <img src="ressources\Vector.png" alt="icone livres">
+                            <img src="/ressources/Vector.png" alt="icone livres">
                             <p>$nbBooks</p>
                         </div>
                     </div>
                     $buttonWriteMessage
                 </div>
+            
 HTML;
 
 /********* Book Table *********/
 // Variables HereDoc communes
 $booksTable = null;
-$bookTableClose = <<<HTML
-                </tbody>
-            </table>
-        </div>
-    </section>
-    HTML;
+
 // Variable Heredoc conditionné en fonction de la visibilité du profil (Public/privée)
 if ($privatePage){
     $headerTablePrivate = <<<HTML
@@ -71,10 +67,24 @@ if ($privatePage){
         </th>
     HTML;
     $tableWidth = '';
+
+    $bookTableClose = <<<HTML
+                </tbody>
+            </table>
+        </div>
+    </section>
+    HTML;
 }else{
     $headerTablePrivate = null;
     $contentTablePrivate = null;
     $tableWidth = 'publicTableWidth';
+    $bookTableClose = <<<HTML
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    HTML;
 }
 
 $headerTable = <<<HTML

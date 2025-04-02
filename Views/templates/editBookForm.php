@@ -33,7 +33,7 @@ $dynamicLink = <<<HTML
                     </div>
                     <div class="formField">
                         <label for="comment">Commentaire</label>
-                        <textarea name="comment" id="comment" cols="" rows="20">$comment</textarea>
+                        <textarea name="comment" id="comment" rows="20">$comment</textarea>
                     </div>
                     <div class="formField">
                         <label for="availability">Disponibilité</label>

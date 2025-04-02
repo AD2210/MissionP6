@@ -77,9 +77,9 @@ class MessageManager
      */
     public function getAllUsersAndMessageByLastMessage(int $idReceiver): array
     {
-        $sql = 'SELECT idSender, avatar, pseudo, sendDate, readFlag, content
-            FROM user INNER JOIN message ON user.id = message.idSender WHERE message.idReceiver = :idReceiver 
-            GROUP BY idSender ORDER BY sendDate DESC';
+        $sql = 'SELECT MAX(message.id), idSender, avatar, pseudo, sendDate, readFlag, content
+            FROM message JOIN user ON user.id = message.idSender WHERE message.idReceiver = :idReceiver
+            GROUP BY idSender ORDER BY message.sendDate DESC';
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([

@@ -1079,6 +1079,10 @@ tbody .odd {
     padding-left: 42px;
 }
 
+.messagingForm label{
+    display: none;
+}
+
 .messagingForm button {
     width: 132px;
     height: 49px;

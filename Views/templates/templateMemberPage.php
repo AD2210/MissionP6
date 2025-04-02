@@ -59,10 +59,10 @@ $booksTable = null;
 // Variable Heredoc conditionné en fonction de la visibilité du profil (Public/privée)
 if ($privatePage){
     $headerTablePrivate = <<<HTML
-        <th class="bookTableHead tAvailable" scope="col">
+        <th class="bookTableHead tAvailable" scope="col" id="head-E">
             <p class="partTitle">DISPONIBILITE</p>
         </th>
-        <th class="bookTableHead tAction" scope="col">
+        <th class="bookTableHead tAction" scope="col" id="head-F">
             <p class="partTitle">ACTION</p>
         </th>
     HTML;
@@ -91,16 +91,16 @@ $headerTable = <<<HTML
     <table class="bookTable $tableWidth">
         <thead>
             <tr>
-                <th class="bookTableHead tPicture" scope="col">
+                <th class="bookTableHead tPicture" scope="col" id="head-A">
                     <p class="partTitle">PHOTO</p>
                 </th>
-                <th class="bookTableHead tTitle" scope="col">
+                <th class="bookTableHead tTitle" scope="col" id="head-B">
                     <p class="partTitle">TITRE</p>
                 </th>
-                <th class="bookTableHead tAuthor" scope="col">
+                <th class="bookTableHead tAuthor" scope="col" id="head-C">
                     <p class="partTitle">AUTEUR</p>
                 </th>
-                <th class="bookTableHead tDescription" scope="col">
+                <th class="bookTableHead tDescription" scope="col" id="head-D">
                     <p class="partTitle">DESCRIPTION</p>
                 </th>
                 $headerTablePrivate
@@ -124,8 +124,8 @@ $headerTable = <<<HTML
         //Affichage des lignes pour la partie Privée
         if ($privatePage){
             $contentTablePrivate = <<<HTML
-                <td class="tAvailable"><div class ="bookStatus $availableClass">$available</div></td>
-                <td class="tAction">
+                <td class="tAvailable" headers="head-$i head-E"><div class ="bookStatus $availableClass">$available</div></td>
+                <td class="tAction" headers="head-$i head-F">
                     <div class="actionTable">
                         <a class="actionLink actionEdit" href="index.php?action=editBook&id=$id">Editer</a>
                         <a class="actionLink actionDelete" href="index.php?action=deleteBook&id=$id">Supprimer</a>
@@ -137,10 +137,10 @@ $headerTable = <<<HTML
         //Affichage des lignes pour la partie public
         $booksTable .= <<<HTML
             <tr class="$idClass">
-                <th class="tPicture" scope="row"><img src="$picture" alt="Photo du livre : $title"></th>
-                <td class="tTitle">$title</td>
-                <td class="tAuthor">$author</td>
-                <td class="tDescription"><div class="italic">$description</div></td>
+                <th class="tPicture" scope="row" id="head-$i"><img src="$picture" alt="Photo du livre : $title"></th>
+                <td class="tTitle" headers="head-$i head-B">$title</td>
+                <td class="tAuthor" headers="head-$i head-C">$author</td>
+                <td class="tDescription" headers="head-$i head-D"><div class="italic">$description</div></td>
                 $contentTablePrivate
             </tr>
         HTML;

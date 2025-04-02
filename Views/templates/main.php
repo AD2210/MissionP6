@@ -13,11 +13,13 @@ require_once 'src/models/MessageManager.php';
  */
 
  //On récupère le nombe de message non lu si l'utilisateur est loggé
+ $nbMessagesUnreadClass = '';
 if(isset($_SESSION['user'])){
     $messageManager = new MessageManager;
     $nbMessagesUnread = $messageManager->getNumberOfMessagesByIdReceiver($_SESSION['idUser']);
 }else{
     $nbMessagesUnreadClass = 'noMessageUnread';
+    $nbMessagesUnread = 0;
 }
 
 // On applique une class css dans la navbar pour mettre en gras la page active
@@ -112,7 +114,7 @@ switch ($activePage) {
         <footer>
             <a href="Politique-de-confidentialite-rgpd.pdf" target="_blank">Politique de confidentialité</a>
             <a href="VosMentionsLégales.pdf" target="_blank">Mentions légales</a>
-            <a href="PHP+Sf+P6+-+Specifications+fonctionnelles.pdf" target="_blank">Tom Troc <i class="fa-regular fa-copyright"></i></a>
+            <a href="PHP+Sf+P6+-+Specifications+fonctionnelles.pdf" target="_blank">Tom Troc ©</a>
             <img src="/ressources/Logo_footer.png" alt="Logo double T Tom Troc">
         </footer>
     </body>

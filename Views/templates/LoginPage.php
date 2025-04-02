@@ -58,6 +58,6 @@
 <section class="loginPageSection">
     <div class="loginContainer">
         <?= $loginPage; ?>
-        <img src="\ressources\dd6bbafe9a461f128299f90d445728dd.jpeg" alt="photo d'une bibliothèque">
+        <img src="/ressources/dd6bbafe9a461f128299f90d445728dd.jpeg" alt="photo d'une bibliothèque">
     </div>
 </section>

@@ -30,7 +30,7 @@ Bien que d'autres versions de PHP puissent fonctionner, il n'est pas garanti que
 4) Pour la configuration du projet renomez le fichier '_config.php' (dans le dossier 'config') en 'config.php' et éditez le si nécessaire. 
 Ce fichier contient notamment les informations de connextion à la base de données. 
 
-5) Pour vous connecter à la partie reservé au Membre, les emails sont en clair dans la base sous la forme userxx@fixture.fr et MP = userxx
+5) Pour vous connecter à la partie reservé au Membre, les emails sont en clair dans la base sous la forme userxx@fixture.fr et MP = userxx, exemple user15@fixture.fr et MP = user15
 
 ## License
 

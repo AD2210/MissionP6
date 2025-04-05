@@ -1,5 +1,9 @@
 <?php
-// page par défaut : inscription
+/**
+ * Template d'affichage de la page Login
+ */
+
+//On initialise la variable de l'action du formulaire pour le cas Connection
 $actionForm = 'index.php?action=connectUser';
 
 $title = 'Connexion';
@@ -23,9 +27,9 @@ $connexionMessage = <<<HTML
         </form> 
     HTML;
 
-$inscriptionForm = <<<HTML
-        HTML;
+$inscriptionForm = null;
 
+//On test si l'utilisateur demande à s'inscrire et on régénère le formulaire correspondant
 if ($connexion == "false") {
     $actionForm = 'index.php?action=createUser';
     $connexionMessage = <<<HTML
@@ -45,19 +49,22 @@ if ($connexion == "false") {
             HTML;
 }
 
+
+//On génénère la vue finale avec les vues partielles paramétrés plus haut et on l'affiche
 $loginPage = <<<HTML
-        <div class="loginForm">
-            <h1>$title</h1>
-            <form action="$actionForm" method="POST">
-                $inscriptionForm
-                $ConnexionForm
-            $connexionMessage
+    <section class="loginPageSection">
+        <div class="loginContainer">
+            <div class="loginForm">
+                <h1>$title</h1>
+                <form action="$actionForm" method="POST">
+                    $inscriptionForm
+                    $ConnexionForm
+                    $connexionMessage
+            </div>
+            <img src="ressources/dd6bbafe9a461f128299f90d445728dd.jpeg" alt="photo d'une bibliothèque">
         </div>
-        HTML;
+    </section>
+    HTML;
+
+echo $loginPage;
 ?>
-<section class="loginPageSection">
-    <div class="loginContainer">
-        <?= $loginPage; ?>
-        <img src="ressources/dd6bbafe9a461f128299f90d445728dd.jpeg" alt="photo d'une bibliothèque">
-    </div>
-</section>

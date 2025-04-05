@@ -33,6 +33,11 @@ class UserManager
         return $result->fetchAll();
     }
 
+    /**
+     * Requête renvoyant un utilisateur grâce a son email, utiliser pour autologue après l'inscription
+     * @param string $email
+     * @return User|bool
+     */
     public function getUserByEmail(string $email): User|bool
     {
         $sql = "SELECT * FROM user WHERE email = :email";
@@ -63,23 +68,6 @@ class UserManager
     }
 
     /**
-     * Requête renvoyant un utilisateur grâce a son email
-     * @param string $email
-     * @return User
-     */
-    public function getOneUserByEmail(string $email): User
-    {
-        $sql = "SELECT * FROM user WHERE email = :email";
-        $pdo = DBManager::getInstance()->getPDO();
-        $result = $pdo->prepare($sql);
-        $result->execute([
-            'email' => $email
-        ]);
-        $result->setFetchMode(PDO::FETCH_CLASS, User::class);
-        return $result->fetch();
-    }
-
-    /**
      * Requête permettant d'ajouter en BDD un nouvel utilisateur
      * @param User $user
      * @return void
@@ -103,18 +91,21 @@ class UserManager
      * @return int
      * @annotation Methode utilisé pour le fonctionnement des fixtures
      */
-    public function getLastUserId() : int {
+    public function getLastUserId(): int
+    {
         //Requête pour sortir le dernier ID utilisé
         $sql = 'SELECT id FROM user';
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
         $array = $result->fetchAll();
-        
-        if(!empty($array)){
-            return $array[count($array)-1]['id'];
-            
+
+        // Si la requête renvoie un tableau on renvoie le dernier indice
+        if (!empty($array)) {
+            return $array[count($array) - 1]['id'];
+
         }
-        
+
+        // Si la requête renvoie false = BDD vide, on renvoie 0
         return 0;
     }
 
@@ -140,7 +131,8 @@ class UserManager
      * @param User $user
      * @return void
      */
-    public function updateUser (User $user) : void {
+    public function updateUser(User $user): void
+    {
         $sql = "UPDATE user SET pseudo = :pseudo, email = :email, password = :password WHERE id= :id";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
@@ -165,20 +157,21 @@ class UserManager
      * @param DateTime $dateTime
      * @return string
      */
-    static public function calculationSeniority(DateTime $dateTime):string {
+    static public function calculationSeniority(DateTime $dateTime): string
+    {
         $now = new DateTime('now');
-        $dateDiff = date_diff($dateTime,$now);
-        $array = json_decode(json_encode($dateDiff),true); // on convertie l'objet en tableau associatif
+        $dateDiff = date_diff($dateTime, $now);
+        $array = json_decode(json_encode($dateDiff), true); // on convertie l'objet en tableau associatif
 
-        if ($array['y']>1){
+        if ($array['y'] > 1) {
             return $dateDiff->format('Membre depuis %y ans');
-        }elseif($array['y']>0){
+        } elseif ($array['y'] > 0) {
             return $dateDiff->format('Membre depuis %y an');
-        }elseif($array['m']>0){
+        } elseif ($array['m'] > 0) {
             return $dateDiff->format('Membre depuis %m mois');
-        }elseif($array['d']>0){
+        } elseif ($array['d'] > 0) {
             return $dateDiff->format('Membre depuis %d jours');
-        }else{
+        } else {
             return 'Nouveau membre';
         }
     }

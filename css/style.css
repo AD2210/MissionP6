@@ -462,15 +462,15 @@ input {
     font-style: normal;
 }
 
-.hideAvailable{
+.hideAvailable {
     display: none;
 }
 
-.pictureAllBook{
+.pictureAllBook {
     height: 210px;
 }
 
-.pictureAllBook .bookStatus{
+.pictureAllBook .bookStatus {
     z-index: 2;
     position: relative;
     font-size: 9px;
@@ -1079,7 +1079,7 @@ tbody .odd {
     padding-left: 42px;
 }
 
-.messagingForm label{
+.messagingForm label {
     display: none;
 }
 

@@ -1,3 +1,9 @@
+<?php
+/**
+ * Template de la partie tous les livres à l'échange
+ */
+
+?>
 <section class="oursBooksSection">
     <div class="oursBooksContainer">
         <div class="SectionTitle">
@@ -9,7 +15,7 @@
         </div>
         <div class="bookCardsContainer">
             <?php foreach ($books as $book) {
-                //Variable pour HereDoc
+                //Variable pour HereDoc, on recupère les informations du livre à afficher
                 $id = $book->getId();
                 $title = $book->getTitle();
                 $author = $book->getAuthor();

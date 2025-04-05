@@ -1,4 +1,8 @@
 <?php
+/**
+ * Template permettant de généré les vues communes à page privé et page public
+ */
+
 /********* Member Card *********/
 
 // Variable HereDoc communes
@@ -9,22 +13,22 @@ $seniority = UserManager::calculationSeniority($user->getRegisterDate());
 $nbBooks = count($books) > 1 ? count($books) . ' Livres' : count($books) . 'Livre';
 
 // Variable Heredoc conditionné en fonction de la visibilité du profil (Public/privée)
-if ($privatePage){
+if ($privatePage) {
     $titleH1 = <<<HTML
         <h1>Mon Compte</h1>
     HTML;
     $modifyLink = <<<HTML
         <a href="#">modifier</a>
     HTML;
-    $buttonWriteMessage =null;
-    $classTopContainer = 'privatePageTopContainer';
-}else{
+    $buttonWriteMessage = null;
+    $topContainerClass = 'privatePageTopContainer';
+} else {
     $titleH1 = null;
     $modifyLink = null;
-    $buttonWriteMessage =<<<HTML
+    $buttonWriteMessage = <<<HTML
         <a href="index.php?action=messaging&corresponding=$idUser" class="button">Envoyer un message</a>
     HTML;
-    $classTopContainer = 'publicPageTopContainer';
+    $topContainerClass = 'publicPageTopContainer';
 }
 
 $personalContent = <<<HTML
@@ -32,7 +36,7 @@ $personalContent = <<<HTML
         <div class="memberPageMainContainer">
             $titleH1
             <div class="memberPageTopContainer">
-                <div class="memberPageInformationMember $classTopContainer">
+                <div class="memberPageInformationMember $topContainerClass">
                     <div class="avatarContainer"> 
                         <img class ="bigAvatar" src="$avatar" alt="photo du membre : $pseudo">
                         $modifyLink
@@ -43,13 +47,12 @@ $personalContent = <<<HTML
                         <span>$seniority</span>
                         <p class="partTitle">BIBLIOTHEQUE</p>
                         <div class="nbBooks">
-                            <img src="/ressources/Vector.png" alt="icone livres">
+                            <img src="ressources/Vector.png" alt="icone livres">
                             <p>$nbBooks</p>
                         </div>
                     </div>
                     $buttonWriteMessage
-                </div>
-            
+                </div>       
 HTML;
 
 /********* Book Table *********/
@@ -57,7 +60,7 @@ HTML;
 $booksTable = null;
 
 // Variable Heredoc conditionné en fonction de la visibilité du profil (Public/privée)
-if ($privatePage){
+if ($privatePage) {
     $headerTablePrivate = <<<HTML
         <th class="bookTableHead tAvailable" scope="col" id="head-E">
             <p class="partTitle">DISPONIBILITE</p>
@@ -66,7 +69,7 @@ if ($privatePage){
             <p class="partTitle">ACTION</p>
         </th>
     HTML;
-    $tableWidth = '';
+    $tableWidthClass = '';
 
     $bookTableClose = <<<HTML
                 </tbody>
@@ -74,10 +77,10 @@ if ($privatePage){
         </div>
     </section>
     HTML;
-}else{
+} else {
     $headerTablePrivate = null;
     $contentTablePrivate = null;
-    $tableWidth = 'publicTableWidth';
+    $tableWidthClass = 'publicTableWidth';
     $bookTableClose = <<<HTML
                     </tbody>
                 </table>
@@ -88,7 +91,7 @@ if ($privatePage){
 }
 
 $headerTable = <<<HTML
-    <table class="bookTable $tableWidth">
+    <table class="bookTable $tableWidthClass">
         <thead>
             <tr>
                 <th class="bookTableHead tPicture" scope="col" id="head-A">
@@ -109,21 +112,22 @@ $headerTable = <<<HTML
         <tbody>
     HTML;
 
-    $i=1;
-    foreach ($books as $book) {
-        $i++;
-        // Variable Heredoc pour l'affichage de la page
-        $id = $book->getId();
-        $title = $book->getTitle();
-        $author = $book->getAuthor();
-        $description = $book->getComment(100);
-        $picture = $book->getPicture();
-        $available = $book->getAvailable() ? 'disponible' : 'non dispo.';
-        $availableClass = $book->getAvailable() ? 'available' : 'unavailable';
-        $idClass = $i % 2 == 0 ? 'pair' : 'odd';
-        //Affichage des lignes pour la partie Privée
-        if ($privatePage){
-            $contentTablePrivate = <<<HTML
+$i = 1;
+foreach ($books as $book) {
+    $i++; //Variable permettant un affichage différencier des ligne paires et impares
+    // Variable Heredoc pour l'affichage de la page
+    $id = $book->getId();
+    $title = $book->getTitle();
+    $author = $book->getAuthor();
+    $description = $book->getComment(100);
+    $picture = $book->getPicture();
+    $available = $book->getAvailable() ? 'disponible' : 'non dispo.';
+    $availableClass = $book->getAvailable() ? 'available' : 'unavailable';
+    $lineClass = $i % 2 == 0 ? 'pair' : 'odd';
+
+    //Affichage des lignes pour la partie Privée
+    if ($privatePage) {
+        $contentTablePrivate = <<<HTML
                 <td class="tAvailable" headers="head-$i head-E"><div class ="bookStatus $availableClass">$available</div></td>
                 <td class="tAction" headers="head-$i head-F">
                     <div class="actionTable">
@@ -132,11 +136,11 @@ $headerTable = <<<HTML
                     </div>
                 </td>
             HTML;
-        }
+    }
 
-        //Affichage des lignes pour la partie public
-        $booksTable .= <<<HTML
-            <tr class="$idClass">
+    //Affichage des lignes pour la partie public
+    $booksTable .= <<<HTML
+            <tr class="$lineClass">
                 <th class="tPicture" scope="row" id="head-$i"><img src="$picture" alt="Photo du livre : $title"></th>
                 <td class="tTitle" headers="head-$i head-B">$title</td>
                 <td class="tAuthor" headers="head-$i head-C">$author</td>
@@ -144,5 +148,5 @@ $headerTable = <<<HTML
                 $contentTablePrivate
             </tr>
         HTML;
-    }
-    $booksTable .= $bookTableClose;
+}
+$booksTable .= $bookTableClose;

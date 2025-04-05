@@ -55,12 +55,13 @@ class Service
      * @link https://www.php.net/manual/fr/datetime.format.php
      * @return string
      */
-    public static function dateFormater(DateTime|string $date, string $format) : string {
+    public static function dateFormater(DateTime|string $date, string $format): string
+    {
         // on vérifie le format d'entreé de la date, si c'est un string on le converti en objet DateTime
-        if(is_string($date)){
+        if (is_string($date)) {
             $date = new DateTime($date);
         }
-        return date_format($date,$format);
+        return date_format($date, $format);
     }
 
 }

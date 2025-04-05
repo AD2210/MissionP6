@@ -28,7 +28,7 @@ class MessageController
         $userManager = new UserManager;
         $user = $userManager->getOneUserById($_SESSION['idUser']);
 
-        //On choisi quel fil de discussion doit s'afficher, par défault le dernier reçu
+        //On choisi quel fil de discussion doit s'afficher, par défault le fil du dernier message reçu
         $messageManager = new MessageManager;
         $corresponding = Service::request(
             'corresponding',
@@ -58,6 +58,11 @@ class MessageController
         ]);
     }
 
+    /**
+     * Methode qui gère l'envoie d'un nouveau message, necessite d'être logué
+     * @throws \Exception
+     * @return void
+     */
     public function sendNewMessage(): void
     {
         // On vérifie que l'utilisateur est connecté, si non on le renvoie vers la page login
@@ -81,6 +86,7 @@ class MessageController
 
         $messageManager->addNewMessage($message);
 
+        //On redirige l'utilisateur vers le fil en cours
         Service::redirect('messaging', [
             'corresponding' => $correspondingId
         ]);

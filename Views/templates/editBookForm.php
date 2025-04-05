@@ -1,4 +1,9 @@
 <?php
+/**
+ * Template du formulaire d'edition d'un livre, accessible depuis l'espace privé
+ */
+
+
 // variable pour HereDoc
 $id = $book->getId();
 $title = $book->getTitle();
@@ -8,7 +13,8 @@ $comment = $book->getComment();
 $available = $book->getAvailable();
 $availableClass = $available ? '' : 'selected'; //permet de selectionner la valeur par défaut de la liste déroulante
 
-$dynamicLink = <<<HTML
+//Bloc d'affichage
+$editBookForm = <<<HTML
     <section class="editBookSection">
         <div class="editBookMainContainer">
             <div>
@@ -49,4 +55,4 @@ $dynamicLink = <<<HTML
     </section>
     HTML;
 
-    echo $dynamicLink;
+echo $editBookForm;

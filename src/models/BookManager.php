@@ -60,10 +60,12 @@ class BookManager
         $result = $pdo->query($sql);
         $array = $result->fetchAll();
 
-        if(!empty($array)){
+        // Si la requête renvoie un résultat on recupère le dernier indice du tableau de résultat
+        if (!empty($array)) {
             return $array[count($array) - 1]['id'];
         }
-        
+
+        // Si la requête renvoie False = BDD vide (cas possible lors de l'utilisation des Fixtures) dans ce cas on renvoie 0
         return 0;
     }
 

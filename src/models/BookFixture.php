@@ -2,8 +2,8 @@
 /**
  * Class de création de données fictives dans la base
  */
-require_once('BookManager.php');
-require_once('MessageFixture.php');
+require_once 'BookManager.php';
+require_once 'MessageFixture.php';
 
 class BookFixture
 {
@@ -17,10 +17,10 @@ class BookFixture
         $bookManager = new BookManager;
         $book = new Book;
 
-        //Utilisation de l'API Picsum pour généré un nom d'auteur
-        $title = 'https://picsum.photos/id/' .random_int(2,40) . '/info';
+        //Utilisation de l'API Picsum pour généré un nom d'auteur et un titre
+        $title = 'https://picsum.photos/id/' . random_int(2, 40) . '/info';
         $title = json_decode(file_get_contents($title), JSON_OBJECT_AS_ARRAY)['author'];
-        $author = 'https://picsum.photos/id/' .random_int(41,84) . '/info';
+        $author = 'https://picsum.photos/id/' . random_int(41, 84) . '/info';
         $author = json_decode(file_get_contents($author), JSON_OBJECT_AS_ARRAY)['author'];
 
         // Affectation des datas fictives pour allimenter la bdd durant le developpement

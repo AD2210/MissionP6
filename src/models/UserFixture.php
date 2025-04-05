@@ -2,7 +2,7 @@
 /**
  * Class de création de données fictives dans la base
  */
-require_once('UserManager.php');
+require_once 'UserManager.php';
 
 class UserFixture
 {
@@ -13,15 +13,16 @@ class UserFixture
      */
     function createOneUser(): void
     {
+        // On créer une instance de User et de son Manager
         $userManager = new UserManager;
         $user = new User;
 
-        // création des datas fictives pour allimenter la bdd durant le developpement
+        // On génère des datas fictives pour allimenter la bdd durant le developpement
         $user->setPseudo('user' . $userManager->getLastUserId() + 1);
         $user->setAvatar('https://picsum.photos/200?random=' . $userManager->getLastUserId() + 1);
         $user->setEmail($user->getPseudo() . '@fixture.fr');
         $user->setPassword($user->getPseudo());
-        
+
         //on enregistre en BDD
         $userManager->addNewUser($user);
     }

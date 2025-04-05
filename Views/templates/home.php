@@ -1,6 +1,6 @@
 <?php
 /**
- * Affichage de La page d'accueil. 
+ * Template d'affichage de La page d'accueil. 
  */
 ?>
 
@@ -24,6 +24,7 @@
     <h2>Les derniers livres ajoutés</h2>
     <div class="bookCardsContainer">
         <?php foreach ($books as $book) {
+            //Variable pour HereDoc
             $id = $book->getId();
             $title = $book->getTitle();
             $author = $book->getAuthor();
@@ -32,7 +33,7 @@
                 ->getOneUserById($book->getIdMember())
                 ->getPseudo();
 
-            // hereDoc pour afficher les variables récupérés
+            // Bloc d'affichage
             $bookCard = <<<HTML
                 <a href="index.php?action=oneBook&id=$id">    
                     <article class="bookCard">

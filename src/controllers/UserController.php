@@ -13,16 +13,18 @@ class UserController
      * @return void
      */
     public function showPrivatePage(): void
-    {   
+    {
         // On vérifie que l'utilisateur est connecté, si non on le renvoie vers la page login
         $this->checkIfUserIsConnected();
 
+        //On récupère les informations de l'utilisateur et les livres dont il est propriétaire
         $userManager = new UserManager;
         $user = $userManager->getOneUserById($_SESSION['idUser']);
         $bookManager = new BookManager;
         $books = $bookManager->getAllBooksByIdMember($user->getId());
 
-        $view = new View("Page personelle de " .$user->getPseudo());
+        //On génère la vue
+        $view = new View("Page personelle de " . $user->getPseudo());
         $view->render("privatePage", [
             'user' => $user,
             'books' => $books,
@@ -38,16 +40,18 @@ class UserController
      * @return void
      */
     public function showPublicPage(): void
-    {   
-        // On récupère les données du formulaire.
+    {
+        // On récupère les données de la requête
         $id = Service::request("id");
 
+        //On récupère les informations de l'utilisateur selectionné et les livres dont il est propriétaire
         $userManager = new UserManager;
         $user = $userManager->getOneUserById($id);
         $bookManager = new BookManager;
         $books = $bookManager->getAllBooksByIdMember($user->getId());
 
-        $view = new View("Page publique de " .$user->getPseudo());
+        //On génère la vue
+        $view = new View("Page publique de " . $user->getPseudo());
         $view->render("publicPage", [
             'user' => $user,
             'books' => $books,
@@ -56,14 +60,16 @@ class UserController
     }
 
     /**
-     * Vérifie que l'utilisateur est connecté.
+     * Vérifie que l'utilisateur est connecté. si non on le rédirige vers la page Login
+     * On garde en mémoire la page visité avant la vérification pour le rédirigé avec s'est inscrit ou logué
+     * exemple : messagerie
      * @return void
      */
     public static function checkIfUserIsConnected(string $redirectUrl = 'privatePage'): void
     {
         // On vérifie que l'utilisateur est connecté.
         if (!isset($_SESSION['user'])) {
-            Service::redirect("loginPage",[
+            Service::redirect("loginPage", [
                 'redirectUrl' => $redirectUrl
             ]);
         }
@@ -77,8 +83,11 @@ class UserController
      */
     public function showLogin(): void
     {
-        $redirectUrl = Service::request('redirectUrl','privatePage');
-        $connexion = Service::request('connexion',false);
+        //On récupère la mémoire de la page précedente et le flag connexion/inscription
+        $redirectUrl = Service::request('redirectUrl', 'privatePage');
+        $connexion = Service::request('connexion', false);
+
+        //On génère la vue
         $view = new View("Login");
         $view->render("loginPage", [
             'connexion' => $connexion,
@@ -119,8 +128,8 @@ class UserController
         $_SESSION['user'] = $user;
         $_SESSION['idUser'] = $user->getId();
 
-        // On redirige vers la page précédente ou par defaut la page privée du membre.
-        if(isset($redirectUrl)){
+        // On redirige vers la page précédente si renseigné ou par defaut la page privée du membre.
+        if (isset($redirectUrl)) {
             Service::redirect($redirectUrl);
         }
         Service::redirect('privatePage');
@@ -139,7 +148,8 @@ class UserController
         Service::redirect("home");
     }
 
-    public function createUser() : void{
+    public function createUser(): void
+    {
         // On récupère les données du formulaire.
         $pseudo = Service::request("pseudo");
         $email = Service::request("email");
@@ -161,7 +171,9 @@ class UserController
         $userManager = new UserManager;
         $userManager->addNewUser($user);
 
+        //On récupère l'utilisateur dépuis la BDD (pour avoir l'id autogénéré)
         $user = $userManager->getUserByEmail($email);
+
         // On connecte l'utilisateur.
         $_SESSION['user'] = $user;
         $_SESSION['idUser'] = $user->getId();
@@ -174,8 +186,9 @@ class UserController
      * Mise à jour des informaitons personnelles d'un utilisateur
      * @return void
      */
-    public function updateUser():void {
-        
+    public function updateUser(): void
+    {
+
         // On vérifie que l'utilisateur est connecté, si non on le renvoie vers la page login
         $this->checkIfUserIsConnected();
 
@@ -184,7 +197,7 @@ class UserController
         $pseudo = Service::request("pseudo");
         $email = Service::request("email");
         $password = Service::request("password");
-        
+
         // On créer l'instance avec les nouvelles datas
         $user = new User;
         $user->setId($id);
@@ -192,6 +205,7 @@ class UserController
         $user->setEmail($email);
         $user->setPassword($password);
 
+        //on enregistre en BDD
         $userManager = new UserManager;
         $userManager->updateUser($user);
 

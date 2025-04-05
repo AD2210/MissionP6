@@ -4,6 +4,7 @@
  */
 require_once 'DBManager.php';
 require_once 'Message.php';
+
 class MessageManager
 {
     /**
@@ -18,6 +19,11 @@ class MessageManager
         return $result->fetchAll(PDO::FETCH_CLASS, Message::class);
     }
 
+    /**
+     * Requête renvoyant le nombre de message non lu de l'utilisateur connecté pour affichage dans la barNav
+     * @param int $idReceiver
+     * @return int
+     */
     public function getNumberOfMessagesByIdReceiver(int $idReceiver): int
     {
         $sql = "SELECT id FROM message WHERE idReceiver = :idReceiver And readFlag = 0";
@@ -31,7 +37,7 @@ class MessageManager
     }
 
     /**
-     * Requête renvoyant tous les messages d'un fil de discussion en 2 Users
+     * Requête renvoyant tous les messages d'un fil de discussion entre 2 Users
      * le user connecté et le user du fil selectionné
      * @param int $idReceiver
      * @param int $idSender
@@ -73,7 +79,6 @@ class MessageManager
      * agrégé avec les données des utilisateurs ayant envoyé chacun des messages
      * @param int $idReceiver
      * @return array
-     * @todo problème dans la requète, ce n'est pas le dernier message de chaque fil qui sort
      */
     public function getAllUsersAndMessageByLastMessage(int $idReceiver): array
     {

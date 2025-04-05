@@ -51,7 +51,7 @@ class Book
     }
 
     /**
-     * Setter titre du livre
+     * Setter titre du livre, on contrôle ici la faille XSS en excluant les caractères spéciaux
      * @param string $title
      * @return void
      */
@@ -70,7 +70,7 @@ class Book
     }
 
     /**
-     * Setter auteur du livre
+     * Setter auteur du livre,on contrôle ici la faille XSS en excluant les caractères spéciaux
      * @param string $author
      * @return void
      */
@@ -85,7 +85,7 @@ class Book
      * @param int $length
      * @return string
      */
-    public function getComment(int $length = -1): string
+    public function getComment(int $length = 0): string
     {
         if ($length > 0) {
             // Ici, on utilise mb_substr et pas substr pour éviter de couper un caractère en deux (caractère multibyte comme les accents).
@@ -99,7 +99,7 @@ class Book
     }
 
     /**
-     * Setter commentaire sur le livre
+     * Setter commentaire sur le livre, on contrôle ici la faille XSS en excluant les caractères spéciaux
      * @param string $comment
      * @return void
      */

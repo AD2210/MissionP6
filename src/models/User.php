@@ -19,15 +19,16 @@ class User
     private ?string $avatar;
     private string $email;
     private string $password;
-    private DateTime|string $registerDate ='';
+    private DateTime|string $registerDate = '';
 
     /**
      * Contructeur de classe 
      * ce constructeur permet de convertir la date du string issu de la BDD en objet 
      * DateTime lors de la création dynamique pendant l'exécution des requêtes
      */
-    public function __construct(){
-        if (is_string($this->registerDate)){
+    public function __construct()
+    {
+        if (is_string($this->registerDate)) {
             $this->registerDate = new DateTime($this->registerDate);
         }
     }
@@ -61,7 +62,7 @@ class User
     }
 
     /**
-     * Setter pseudo utilisateur
+     * Setter pseudo utilisateur, on contrôle ici la faille XSS en excluant les caratères spéciaux
      * @param string $pseudo
      * @return void
      */
@@ -99,7 +100,7 @@ class User
     }
 
     /**
-     * Setter email utilisateur
+     * Setter email utilisateur, on contrôle ici la faille XSS en excluant les caratères spéciaux
      * @param string $email
      * @return void
      */
@@ -109,15 +110,14 @@ class User
     }
 
     /**
-     * Getter mot de passe utilisateur, on conserve le hash et l'on renvoie 8 caractères quelque soit la longueur du mot de passe
-     * @todo attention à la vérification MP
+     * Getter mot de passe utilisateur
      * @return string
      */
     public function getPassword(): string
     {
-            // Ici, on utilise mb_substr et pas substr pour éviter de couper un caractère en deux (caractère multibyte comme les accents).
-            //$content = mb_substr($this->password, 0, 8);
-            return $this->password;
+        // Ici, on utilise mb_substr et pas substr pour éviter de couper un caractère en deux (caractère multibyte comme les accents).
+        //$content = mb_substr($this->password, 0, 8);
+        return $this->password;
     }
 
     /**
@@ -147,9 +147,9 @@ class User
      */
     public function setRegisterDate(DateTime|string $registerDate): void
     {
-        if (is_string($this->registerDate)){
+        if (is_string($this->registerDate)) {
             $this->registerDate = new DateTime($this->registerDate);
-        }else{
+        } else {
             $this->registerDate = $registerDate;
         }
     }

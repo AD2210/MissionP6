@@ -6,6 +6,7 @@ require_once 'templateMemberPage.php';
 
 //Variable HereDoc spécifique page privée
 $email = $user->getEmail();
+// On réduit de le nombre de caractère du password pour un affichage plus propre dans le formulaire
 $password = mb_substr($user->getPassword(), 0, 8);
 
 $personalInformations = <<<HTML

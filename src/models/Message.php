@@ -9,8 +9,8 @@
  * readFlag : bool pour savoir si le message a été lu ou non
  */
 
-// Permet la création dynamique d'objet lors des requetes en bdd en affectant les noms de table aux attributs de l'objet Book
- #[\AllowDynamicProperties]
+// Permet la création dynamique d'objet lors des requetes en bdd en affectant les noms de table aux attributs de l'objet Message
+#[\AllowDynamicProperties]
 class Message
 {
     private int $id;
@@ -22,11 +22,12 @@ class Message
 
     /**
      * Contructeur de classe 
-     * ce constructeur permet de convertir la date du string issu de la BDD en objet 
+     * ce constructeur permet de convertir la date en format string issu de la BDD en objet 
      * DateTime lors de la création dynamique pendant l'exécution des requêtes
      */
-    public function __construct(){
-        if (is_string($this->sendDate)){
+    public function __construct()
+    {
+        if (is_string($this->sendDate)) {
             $this->sendDate = new DateTime($this->sendDate);
         }
     }
@@ -98,7 +99,7 @@ class Message
     }
 
     /**
-     * Setter contenu du message
+     * Setter contenu du message, on contrôle la faille XSS ici en excluant les caratères spéciaux
      * @param string $content
      * @return void
      */
@@ -124,9 +125,9 @@ class Message
      */
     public function setSendDate(DateTime|string $sendDate): void
     {
-        if (is_string($this->sendDate)){
+        if (is_string($this->sendDate)) {
             $this->sendDate = new DateTime($this->sendDate);
-        }else{
+        } else {
             $this->sendDate = $sendDate;
         }
     }
@@ -150,16 +151,4 @@ class Message
         $this->readFlag = $readFlag;
     }
 
-    /* -----Methodes autres---- */
-
-    // Tronquage de message
-    //@todo tester avec text overflow en css
-
-    public static function stringTrucator(string $string, int $length) : string{
-            $content = mb_substr($string, 0, $length);
-            if (strlen($string) > $length) {
-                $content .= "...";
-            }
-            return $content;
-    }
 }

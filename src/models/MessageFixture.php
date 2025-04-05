@@ -2,8 +2,8 @@
 /**
  * Class de création de données fictives dans la base
  */
-require_once('MessageManager.php');
-require_once('UserManager.php');
+require_once 'MessageManager.php';
+require_once 'UserManager.php';
 
 class MessageFixture
 {
@@ -65,6 +65,10 @@ class MessageFixture
         }
     }
 
+    /**
+     * Génére une date alétoire pour l'envoie des messages
+     * @return DateTime
+     */
     function generateRandomPastDate(): DateTime
     {
         $now = new DateTime();

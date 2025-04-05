@@ -1,4 +1,8 @@
 <?php
+/**
+ * Template pour l'affichage du détail d'un livre
+ */
+
 // variable pour HereDoc
 $title = $book->getTitle();
 $picture = $book->getPicture();
@@ -8,7 +12,7 @@ $avatar = $user->getAvatar();
 $pseudo = $user->getPseudo();
 $idUser = $user->getId();
 
-$dynamicLink = <<<HTML
+$oneBook = <<<HTML
     <div class="navLinkContainer">
         <div class="navLink">
             <span ><a href="index.php?action=allBooks">Nos livres</a> > $title</span>
@@ -38,4 +42,4 @@ $dynamicLink = <<<HTML
     </section>
     HTML;
 
-    echo $dynamicLink;
+echo $oneBook;

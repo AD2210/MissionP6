@@ -1,4 +1,7 @@
 <?php
+/**
+ * Index qui sert de routeur pour l'affichage des différentes pages et actions demandé lors de la navigation.
+ */
 
 require_once 'config/config.php';
 require_once 'views/View.php';
@@ -7,7 +10,6 @@ require_once 'src/controllers/MainController.php';
 require_once 'src/controllers/BookController.php';
 require_once 'src/controllers/MessageController.php';
 require_once 'src/controllers/UserController.php';
-// a paramétré à la fin : require_once 'config/autoload.php';
 
 // On récupère l'action demandée par l'utilisateur.
 // Si aucune action n'est demandée, on affiche la page d'accueil.
@@ -96,7 +98,7 @@ try {
             break;
 
         //Methodes pour fixture, décommenter pour utiliser
-        /**/
+        /*
         case 'addUsers':
             $mainController = new MainController();
             $mainController->geretateUsers();
@@ -111,7 +113,7 @@ try {
             $mainController = new MainController();
             $mainController->geretateBooks();
             break;
-        /**/
+        */
 
         default:
             throw new Exception("La page demandée n'existe pas.");

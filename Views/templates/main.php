@@ -94,7 +94,7 @@ $mainTemplate = <<<HTML
                     <a class="iconLink $messagingClass" href="index.php?action=messaging">
                         <img src="ressources/IconMessagerie.png" alt="icone messagerie">
                         Messagerie
-                        <span class="$nbMessagesUnreadClass"><?= $nbMessagesUnread; ?></span>
+                        <span class="$nbMessagesUnreadClass">$nbMessagesUnread</span>
                     </a>
                     <a class="iconLink $memberPageClass" href="index.php?action=privatePage">
                         <img src="ressources/IconMonCompte.png" alt="icone mon compte">

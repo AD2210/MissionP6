@@ -68,22 +68,37 @@ class UserManager
     }
 
     /**
-     * Requête permettant d'ajouter en BDD un nouvel utilisateur
+     * Requête permettant d'ajouter en BDD un nouvel utilisateur, vérifie si l'avatar est défini si non renvoie un avatar par défault
      * @param User $user
      * @return void
      */
     public function addNewUser(User $user): void
     {
-        $sql = "INSERT INTO user (pseudo, avatar, email, password, registerDate) 
-            VALUES (:pseudo, :avatar, :email, :password, now())";
         $pdo = DBManager::getInstance()->getPDO();
-        $result = $pdo->prepare($sql);
-        $result->execute([
-            'pseudo' => $user->getPseudo(),
-            'avatar' => $user->getAvatar(),
-            'email' => $user->getEmail(),
-            'password' => $user->getPassword()
-        ]);
+
+        //Si pas d'avatar défini (cas normal) renvoie un avatar par défaut (paramétré dans la bdd)
+        if ($user->getAvatar() == null) {
+            $sql = "INSERT INTO user (pseudo, avatar, email, password, registerDate) 
+            VALUES (:pseudo, DEFAULT, :email, :password, now())";
+
+            $result = $pdo->prepare($sql);
+            $result->execute([
+                'pseudo' => $user->getPseudo(),
+                'email' => $user->getEmail(),
+                'password' => $user->getPassword()
+            ]);
+        } else {
+            $sql = "INSERT INTO user (pseudo, avatar, email, password, registerDate) 
+                VALUES (:pseudo, :avatar, :email, :password, now())";
+
+            $result = $pdo->prepare($sql);
+            $result->execute([
+                'pseudo' => $user->getPseudo(),
+                'avatar' => $user->getAvatar(),
+                'email' => $user->getEmail(),
+                'password' => $user->getPassword()
+            ]);
+        }
     }
 
     /**

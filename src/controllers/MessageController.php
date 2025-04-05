@@ -41,7 +41,6 @@ class MessageController
 
         //On récupère les derniers messages pour afficher une inbox avec les données utilisateurs
         $LastMessagesWithUsers = $messageManager->getAllUsersAndMessageByLastMessage($user->getId());
-        var_dump($LastMessagesWithUsers);
 
         //On récupère les message du fil correspondant
         $messageThread = $messageManager->getAllMessagesByIdReceiverAndIdSender(

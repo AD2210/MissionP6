@@ -1,9 +1,9 @@
 <?php
-    // page par défaut : inscription
-    $actionForm = 'index.php?action=connectUser';
-    
-    $title = 'Connexion';
-    $ConnexionForm = <<<HTML
+// page par défaut : inscription
+$actionForm = 'index.php?action=connectUser';
+
+$title = 'Connexion';
+$ConnexionForm = <<<HTML
             <input type="hidden" name="redirectUrl" value=$redirectUrl>
             <div class="formField">
                 <label for="email">Adresse email</label>
@@ -14,8 +14,8 @@
                 <input type="password" name="password" id="password">
             </div>
     HTML;
-    
-    $connexionMessage = <<<HTML
+
+$connexionMessage = <<<HTML
         <div class="formField">
                 <button class="button" type="submit">Se connecter</button>
             </div>
@@ -23,12 +23,12 @@
         </form> 
     HTML;
 
-    $inscriptionForm = <<<HTML
+$inscriptionForm = <<<HTML
         HTML;
 
-    if ($connexion == "false"){
-        $actionForm = 'index.php?action=createUser';
-        $connexionMessage = <<<HTML
+if ($connexion == "false") {
+    $actionForm = 'index.php?action=createUser';
+    $connexionMessage = <<<HTML
                 <div class="formField">
                     <button class="button" type="submit">S’inscrire</button>
                 </div>
@@ -36,16 +36,16 @@
             </form>     
             HTML;
 
-        $title = 'Inscription';
-        $inscriptionForm = <<<HTML
+    $title = 'Inscription';
+    $inscriptionForm = <<<HTML
                 <div class="formField">
                     <label for="pseudo">Pseudo</label>
                     <input type="text" name="pseudo" id="pseudo">
                 </div>
             HTML;
-    }
+}
 
-    $loginPage = <<<HTML
+$loginPage = <<<HTML
         <div class="loginForm">
             <h1>$title</h1>
             <form action="$actionForm" method="POST">
@@ -54,10 +54,10 @@
             $connexionMessage
         </div>
         HTML;
-?> 
+?>
 <section class="loginPageSection">
     <div class="loginContainer">
         <?= $loginPage; ?>
-        <img src="/ressources/dd6bbafe9a461f128299f90d445728dd.jpeg" alt="photo d'une bibliothèque">
+        <img src="ressources/dd6bbafe9a461f128299f90d445728dd.jpeg" alt="photo d'une bibliothèque">
     </div>
 </section>

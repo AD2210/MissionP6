@@ -77,13 +77,36 @@ class MessageManager
      */
     public function getAllUsersAndMessageByLastMessage(int $idReceiver): array
     {
-        $sql = 'SELECT MAX(message.id), idSender, avatar, pseudo, sendDate, readFlag, content
-            FROM message JOIN user ON user.id = message.idSender WHERE message.idReceiver = :idReceiver
-            GROUP BY idSender ORDER BY message.sendDate DESC';
+        $sql = 'SELECT 
+            u.id AS user_id,
+            u.avatar,
+            u.pseudo,
+            m.id AS message_id,
+            m.content,
+            m.idSender,
+            m.sendDate,
+            m.readFlag
+            FROM (
+                SELECT 
+                    CASE 
+                        WHEN idSender = :current_user_id THEN idReceiver
+                        ELSE idSender
+                    END AS contact_id,
+                    MAX(sendDate) AS last_message_date
+                FROM message
+                WHERE idReceiver = :current_user_id
+                GROUP BY contact_id
+            ) AS latest
+            JOIN message m 
+                ON ((m.idSender = :current_user_id AND m.idReceiver = latest.contact_id)
+                OR (m.idSender = latest.contact_id AND m.idReceiver = :current_user_id))
+                AND m.sendDate = latest.last_message_date
+            JOIN user u ON u.id = latest.contact_id
+            ORDER BY m.sendDate DESC;';
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([
-            'idReceiver' => $idReceiver
+            'current_user_id' => $idReceiver
         ]);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -95,7 +118,7 @@ class MessageManager
      */
     public function getLastIdSenderByIdReceiverFromLastMessage(int $idReceiver): int
     {
-        $sql = 'SELECT idSender, MAX(id) FROM message WHERE idReceiver = :idReceiver GROUP BY idSender ORDER BY id DESC';
+        $sql = 'SELECT idSender, MAX(sendDate) FROM message WHERE idReceiver = :idReceiver GROUP BY idSender ORDER BY sendDate DESC';
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([
@@ -125,16 +148,17 @@ class MessageManager
      * @param Message $message
      * @return void
      */
-    public function addNewMessage(Message $message): void //@todo faire les contrôles de saisie dans l'entité
+    public function addNewMessage(Message $message): void
     {
         $sql = "INSERT INTO message (idSender, idReceiver, content, sendDate, readFlag) 
-            VALUES (:idSender, :idReceiver, :content, NOW(), 0)";
+            VALUES (:idSender, :idReceiver, :content, :sendDate, 0)";
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([
             'idSender' => $message->getIdSender(),
             'idReceiver' => $message->getIdReceiver(),
-            'content' => $message->getContent()
+            'content' => $message->getContent(),
+            'sendDate' => $message->getSendDate()->format('Y-m-d H:i:s')
         ]);
     }
 

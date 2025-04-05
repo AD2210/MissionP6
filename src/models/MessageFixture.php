@@ -22,6 +22,7 @@ class MessageFixture
         $message->setIdSender($this->randId($message->getIdReceiver()));
         $message->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lectus lectus, tincidunt eget mi ac, aliquam semper mi. Nulla nec rhoncus nunc. Sed ultrices vehicula.');
         $message->setReadFlag(random_int(0, 1));
+        $message->setSendDate($this->generateRandomPastDate());
 
         //on enregistre en BDD
         $messageManager->addNewMessage($message);
@@ -62,6 +63,16 @@ class MessageFixture
             $array = array_column($array, 'id');
             return $array[array_rand($array)];
         }
+    }
+
+    function generateRandomPastDate(): DateTime
+    {
+        $now = new DateTime();
+
+        // Timestamp aléatoire entre 0 (le 1er janvier 1970) et maintenant - 1 seconde
+        $timestamp = mt_rand(0, $now->getTimestamp() - 1);
+
+        return (new DateTime())->setTimestamp($timestamp);
     }
 
 }

@@ -2,7 +2,7 @@
 
 require_once 'config/config.php';
 require_once 'views/View.php';
-require_once 'src\models\Service.php';
+require_once 'src/models/Service.php';
 require_once 'src/controllers/MainController.php';
 require_once 'src/controllers/BookController.php';
 require_once 'src/controllers/MessageController.php';
@@ -27,12 +27,12 @@ try {
             $bookController = new BookController;
             $bookController->showAllBooks();
             break;
-        
+
         case 'oneBook':
             $bookController = new BookController;
             $bookController->showOneBook();
             break;
-        
+
         case 'editBook':
             $bookController = new BookController;
             $bookController->showBookForm();
@@ -52,11 +52,11 @@ try {
             $userController = new UserController;
             $userController->showPublicPage();
             break;
-    
+
         case 'messaging':
             $messageController = new MessageController;
             $messageController->showMessaging();
-            break;        
+            break;
 
         //Methode sans affichage, ex : Connexion
 
@@ -88,15 +88,15 @@ try {
         case 'deleteBook':
             $bookController = new BookController;
             $bookController->deleteBook();
-            break;    
+            break;
 
         case 'newMessage':
             $messageController = new MessageController;
             $messageController->sendNewMessage();
             break;
-        
+
         //Methodes pour fixture, décommenter pour utiliser
-        /*
+        /**/
         case 'addUsers':
             $mainController = new MainController();
             $mainController->geretateUsers();
@@ -111,7 +111,7 @@ try {
             $mainController = new MainController();
             $mainController->geretateBooks();
             break;
-        */
+        /**/
 
         default:
             throw new Exception("La page demandée n'existe pas.");

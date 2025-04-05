@@ -121,7 +121,7 @@ class UserController
         // On vérifie que le mot de passe est correct.
         if (!password_verify($password, $user->getPassword())) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            throw new Exception("Le mot de passe est incorrect");
+            throw new Exception("Le mot de passe est incorrect : " . $hash);
         }
 
         // On connecte l'utilisateur.

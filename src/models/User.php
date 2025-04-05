@@ -115,8 +115,6 @@ class User
      */
     public function getPassword(): string
     {
-        // Ici, on utilise mb_substr et pas substr pour éviter de couper un caractère en deux (caractère multibyte comme les accents).
-        //$content = mb_substr($this->password, 0, 8);
         return $this->password;
     }
 

@@ -94,19 +94,15 @@ class UserManager
     public function getLastUserId(): int
     {
         //Requête pour sortir le dernier ID utilisé
-        $sql = 'SELECT id FROM user';
+        $sql = 'SELECT MAX(id) FROM user';
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
-        $array = $result->fetchAll();
-
-        // Si la requête renvoie un tableau on renvoie le dernier indice
-        if (!empty($array)) {
-            return $array[count($array) - 1]['id'];
-
+        $array = $result->fetch();
+        // Si la requête renvoie null = BDD vide ou false, on renvoie 0
+        if (is_null($array['MAX(id)']) || !$array) {
+            return 0;
         }
-
-        // Si la requête renvoie false = BDD vide, on renvoie 0
-        return 0;
+        return $array['MAX(id)'];
     }
 
     /**

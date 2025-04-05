@@ -55,18 +55,16 @@ class BookManager
     public function getLastBookId(): int
     {
         //Requête pour sortir le dernier ID utilisé
-        $sql = 'SELECT id FROM book';
+        $sql = 'SELECT MAX(id) FROM book';
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->query($sql);
-        $array = $result->fetchAll();
+        $array = $result->fetch();
 
-        // Si la requête renvoie un résultat on recupère le dernier indice du tableau de résultat
-        if (!empty($array)) {
-            return $array[count($array) - 1]['id'];
+        // Si la requête renvoie null = BDD vide ou false, on renvoie 0
+        if (is_null($array['MAX(id)']) || !$array) {
+            return 0;
         }
-
-        // Si la requête renvoie False = BDD vide (cas possible lors de l'utilisation des Fixtures) dans ce cas on renvoie 0
-        return 0;
+        return $array['MAX(id)'];
     }
 
     /**

@@ -1231,3 +1231,13 @@ tbody .odd {
 .error a {
     text-decoration: underline;
 }
+
+/******** Animations ********/
+
+a:hover .button,
+button:hover {
+    background-color: #006D41;
+    color: white;
+    border-color: #006D41;
+    cursor: pointer;
+}

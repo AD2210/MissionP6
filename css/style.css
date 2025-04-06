@@ -562,7 +562,7 @@ input {
     width: 485px;
 }
 
-.ownerCard {
+a .ownerCard {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -1240,4 +1240,15 @@ button:hover {
     color: white;
     border-color: #006D41;
     cursor: pointer;
+}
+
+.ownerCard:hover {
+    color: #00AC66;
+    font-weight: 500;
+}
+
+.ownerCard:hover img {
+    opacity: 50%;
+    background-color: #006D41;
+    background-blend-mode: multiply;
 }

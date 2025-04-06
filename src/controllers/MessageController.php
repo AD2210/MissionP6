@@ -28,7 +28,7 @@ class MessageController
         $userManager = new UserManager;
         $user = $userManager->getOneUserById($_SESSION['idUser']);
 
-        //On choisi quel fil de discussion doit s'afficher, par défault le fil du dernier message reçu
+        //On choisi quel fil de discussion doit s'afficher, par défault le dernier fil actif, si aucun fil on renvoie une erreur
         $messageManager = new MessageManager;
         $corresponding = Service::request(
             'corresponding',
@@ -36,13 +36,17 @@ class MessageController
         );
         $correspondingUser = $userManager->getOneUserById($corresponding);
 
+        if (!$correspondingUser) {
+            throw new Exception("La messagerie est vide, vous devez d'abord envoyer ou recevoir un message pour acceder à cette fonctionnalitée");
+        }
+
         //Lorsque l'on selectionne un fil, on mets à jour le status à Lu
         $messageManager->updateReadflag($corresponding);
 
         //On récupère les derniers messages pour afficher une inbox avec les données utilisateurs
         $LastMessagesWithUsers = $messageManager->getAllUsersAndMessageByLastMessage($user->getId());
 
-        //On récupère les message du fil correspondant
+        //On récupère les messages du fil correspondant
         $messageThread = $messageManager->getAllMessagesByIdReceiverAndIdSender(
             $user->getId(),
             $correspondingUser->getId()

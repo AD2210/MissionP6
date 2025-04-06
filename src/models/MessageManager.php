@@ -99,7 +99,7 @@ class MessageManager
                     END AS contact_id,
                     MAX(sendDate) AS last_message_date
                 FROM message
-                WHERE idReceiver = :current_user_id
+                WHERE idReceiver = :current_user_id OR idSender = :current_user_id
                 GROUP BY contact_id
             ) AS latest
             JOIN message m 
@@ -117,19 +117,24 @@ class MessageManager
     }
 
     /**
-     * Requête renvoyant l'id Sender du dernier message recu par un utilisateur
+     * Requête renvoyant l'id du dernier correspondant, renvoi 0 si la messagerie est vide
      * @param int $idReceiver
      * @return int
      */
     public function getLastIdSenderByIdReceiverFromLastMessage(int $idReceiver): int
     {
-        $sql = 'SELECT idSender, MAX(sendDate) FROM message WHERE idReceiver = :idReceiver GROUP BY idSender ORDER BY sendDate DESC';
+        $sql = 'SELECT idSender, idReceiver, MAX(sendDate) FROM message WHERE idReceiver = :idReceiver OR idSender = :idReceiver GROUP BY idSender ORDER BY sendDate DESC';
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([
             'idReceiver' => $idReceiver
         ]);
-        return $result->fetch(PDO::FETCH_ASSOC)['idSender'];
+        $array = $result->fetch(PDO::FETCH_ASSOC);
+
+        if (empty($array)) {
+            return 0;
+        }
+        return $array['idSender'];
     }
 
     /**

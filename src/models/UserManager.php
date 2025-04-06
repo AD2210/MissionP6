@@ -55,7 +55,7 @@ class UserManager
      * @param int $id
      * @return User
      */
-    public function getOneUserById(int $id): User
+    public function getOneUserById(int $id): User|bool
     {
         $sql = "SELECT * FROM user WHERE id = :id";
         $pdo = DBManager::getInstance()->getPDO();

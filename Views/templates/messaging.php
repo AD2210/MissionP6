@@ -13,7 +13,7 @@
                 //Affichage partie Inbox
                 foreach ($LastMessagesWithUsers as $lastMessage) {
                     //Variable pour HereDoc
-                    $idCorresponding = $lastMessage['idSender'];
+                    $idCorresponding = $lastMessage['user_id'];
                     $avatar = $lastMessage['avatar'];
                     $pseudo = $lastMessage['pseudo'];
                     $dateLastMessage = Service::dateFormater($lastMessage['sendDate'], 'H:i');

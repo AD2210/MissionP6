@@ -7,7 +7,7 @@
 if ($create){
     $id = '';
     $title = '';
-    $picture = '';
+    $picture = 'https://preview.free3d.com/img/2016/08/1851631529512404705/bvxq8qpk.jpg	'; //image par défaut
     $author = '';
     $comment = '';
     $available = true;

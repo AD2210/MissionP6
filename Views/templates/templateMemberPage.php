@@ -20,12 +20,14 @@ if ($privatePage) {
     $modifyLink = <<<HTML
         <a href="#">modifier</a>
     HTML;
-    $buttonWriteMessage = null;
+    $bottomButton = <<<HTML
+        <a href="index.php?action=editBook&id=-1" class="button notImplemented">Ajouter un livre</a>
+    HTML;;
     $topContainerClass = 'privatePageTopContainer';
 } else {
     $titleH1 = null;
     $modifyLink = null;
-    $buttonWriteMessage = <<<HTML
+    $bottomButton = <<<HTML
         <a href="index.php?action=messaging&corresponding=$idUser" class="button">Envoyer un message</a>
     HTML;
     $topContainerClass = 'publicPageTopContainer';
@@ -51,7 +53,7 @@ $personalContent = <<<HTML
                             <p>$nbBooks</p>
                         </div>
                     </div>
-                    $buttonWriteMessage
+                    $bottomButton
                 </div>       
 HTML;
 

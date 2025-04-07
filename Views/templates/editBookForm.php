@@ -3,18 +3,29 @@
  * Template du formulaire d'edition d'un livre, accessible depuis l'espace privé
  */
 
-
-// variable pour HereDoc
-$id = $book->getId();
-$title = $book->getTitle();
-$picture = $book->getPicture();
-$author = $book->getAuthor();
-$comment = $book->getComment();
-$available = $book->getAvailable();
-$availableClass = $available ? '' : 'selected'; //permet de selectionner la valeur par défaut de la liste déroulante
+// variable pour HereDoc conditionné si création ou edition
+if ($create){
+    $id = '';
+    $title = '';
+    $picture = '';
+    $author = '';
+    $comment = '';
+    $available = true;
+    $availableClass = $available ? '' : 'selected'; //permet de selectionner la valeur par défaut de la liste déroulante
+    $formAction = "index.php?action=createBook";
+}else{
+    $id = $book->getId();
+    $title = $book->getTitle();
+    $picture = $book->getPicture();
+    $author = $book->getAuthor();
+    $comment = $book->getComment();
+    $available = $book->getAvailable();
+    $availableClass = $available ? '' : 'selected'; //permet de selectionner la valeur par défaut de la liste déroulante
+    $formAction = "index.php?action=updateBook&id=$id";
+}
 
 //Bloc d'affichage
-$editBookForm = <<<HTML
+$bookForm = <<<HTML
     <section class="editBookSection">
         <div class="editBookMainContainer">
             <div>
@@ -27,7 +38,7 @@ $editBookForm = <<<HTML
                     <img src="$picture" alt="photo du livre : $title">
                     <a href="#">Modifier la photo</a>
                 </div>
-                <form class="editBookForm" action="index.php?action=updateBook&id=$id" method="POST">
+                <form class="editBookForm" action="$formAction" method="POST">
                     <input type="hidden" name="id" value="$id">
                     <div class="formField">
                         <label for="title">Titre</label>
@@ -55,4 +66,4 @@ $editBookForm = <<<HTML
     </section>
     HTML;
 
-echo $editBookForm;
+echo $bookForm;

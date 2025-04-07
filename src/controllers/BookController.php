@@ -71,19 +71,31 @@ class BookController
      */
     public function showBookForm(): void
     {
-        //On vérifie que l'utilisateur est connecté pour acceder à la modification et on récupère l'id du livre à modifier
+        //On vérifie que l'utilisateur est connecté pour acceder à la modification/création et on récupère l'id du livre à modifier si existant
         UserController::checkIfUserIsConnected('privatePage');
         $id = Service::request('id');
 
-        //On récupère les informations du livre à modifier
-        $bookManager = new bookManager;
-        $book = $bookManager->getOneBookById($id);
+        if($id == -1){
+            //Si l'id vaut -1 = creation on génére la vue avec un bool de paramétrage de la vue
+            $view = new View("Edition du livre");
+            $view->render("editBookForm", [
+                'create' => true
+            ]);  
+        }else{
+            //On récupère les informations du livre à modifier
+            $bookManager = new bookManager;
+            $book = $bookManager->getOneBookById($id);
+            if (!$book){
+                throw new Exception("Le livre demandé n'existe pas.");
+            }
 
-        //On génère la vue
-        $view = new View("Edition du livre");
-        $view->render("editBookForm", [
-            'book' => $book
-        ]);
+            //On génère la vue
+            $view = new View("Edition du livre");
+            $view->render("editBookForm", [
+                'book' => $book,
+                'create' => false
+            ]);    
+        }
     }
 
     /**
@@ -92,11 +104,10 @@ class BookController
      */
     public function updateBook(): void
     {
-
         // On vérifie que l'utilisateur est connecté, si non on le renvoie vers la page login
         UserController::checkIfUserIsConnected('privatePage');
 
-        // On récupère les données du formulaire et de la session.
+        // On récupère les données du formulaire
         $id = Service::request("id");
         $title = Service::request("title");
         $author = Service::request("author");
@@ -132,6 +143,39 @@ class BookController
         //On supprime le livre de la base
         $bookManager = new bookManager;
         $bookManager->deleteBook($id);
+
+        // On redirige vers la page du membre.
+        Service::redirect("privatePage");
+    }
+
+    /**
+     * Methode pour ajouter un livre en base de donnée
+     * @return void
+     */
+    public function createBook(): void
+    {
+        // On vérifie si l'utilisateur est loggé
+        UserController::checkIfUserIsConnected('privatePage');
+
+        // On récupère les données du formulaire et de la session.
+        $title = Service::request("title");
+        $author = Service::request("author");
+        $comment = Service::request("comment");
+        $available = Service::request("availability");
+        $idMember = $_SESSION['idUser'];
+
+        // On créer l'instance avec les nouvelles datas
+        $book = new Book;
+        $book->setTitle($title);
+        $book->setAuthor($author);
+        $book->setComment($comment);
+        $book->setAvailable($available);
+        $book->setPicture(null);
+        $book->setIdMember($idMember);
+
+        //On ajoute le livre dans la base
+        $bookManager = new bookManager;
+        $bookManager->addNewBook($book);
 
         // On redirige vers la page du membre.
         Service::redirect("privatePage");

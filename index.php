@@ -92,6 +92,11 @@ try {
             $bookController->deleteBook();
             break;
 
+        case 'createBook':
+            $bookController = new BookController;
+            $bookController->createBook();
+            break;
+
         case 'newMessage':
             $messageController = new MessageController;
             $messageController->sendNewMessage();

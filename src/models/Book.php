@@ -20,7 +20,7 @@ class Book
     private string $comment;
     private bool $available;
     private int $idMember;
-    private string $picture;
+    private ?string $picture;
 
     /**
      * Getter id libre
@@ -150,7 +150,7 @@ class Book
      * Getter photo du livre sous forme d'url
      * @return string
      */
-    public function getPicture(): string
+    public function getPicture(): ?string
     {
         return $this->picture;
     }
@@ -160,8 +160,8 @@ class Book
      * @param string $picture
      * @return void
      */
-    public function setPicture(string $picture): void
+    public function setPicture(?string $picture): void
     {
-        $this->picture = $picture;
+        $this->picture = htmlspecialchars($picture);
     }
 }

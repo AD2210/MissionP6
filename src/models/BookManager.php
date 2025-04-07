@@ -20,7 +20,7 @@ class BookManager
     }
 
     /**
-     * Requête renvoyant tous les livres présent en BDD
+     * Requête renvoyant les livres présent en BDD en fonction d'un mot clé lors d'un recherche
      * @return array
      */
     public function getAllBooksByTitleLikeKeyWord(string $keyWord): array
@@ -87,7 +87,7 @@ class BookManager
      * @param int $id
      * @return Book
      */
-    public function getOneBookById(int $id): Book
+    public function getOneBookById(int $id): Book|bool
     {
         $sql = "SELECT * FROM book WHERE id = :id";
         $pdo = DBManager::getInstance()->getPDO();
@@ -104,20 +104,37 @@ class BookManager
      * @param Book $book
      * @return void
      */
-    public function addNewBook(Book $book): void //@todo faire les contrôles de saisie dans l'entité
+    public function addNewBook(Book $book): void
     {
-        $sql = "INSERT INTO book (title, author, comment, available, idMember, picture) 
-            VALUES (:title, :author, :comment, :available, :idMember, :picture)";
         $pdo = DBManager::getInstance()->getPDO();
-        $result = $pdo->prepare($sql);
-        $result->execute([
-            'title' => $book->getTitle(),
-            'author' => $book->getAuthor(),
-            'comment' => $book->getComment(),
-            'available' => $book->getAvailable(),
-            'idMember' => $book->getIdMember(),
-            'picture' => $book->getPicture()
-        ]);
+        
+        //Si pas d'image défini (cas normal) renvoie une image par défaut (paramétré dans la bdd)
+        if($book->getPicture()==null){
+            $sql = "INSERT INTO book (title, author, comment, available, idMember, picture) 
+                VALUES (:title, :author, :comment, :available, :idMember, DEFAULT)";
+            
+            $result = $pdo->prepare($sql);
+            $result->execute([
+                'title' => $book->getTitle(),
+                'author' => $book->getAuthor(),
+                'comment' => $book->getComment(),
+                'available' => $book->getAvailable(),
+                'idMember' => $book->getIdMember(),
+            ]); 
+        }else{
+            $sql = "INSERT INTO book (title, author, comment, available, idMember, picture) 
+                VALUES (:title, :author, :comment, :available, :idMember, :picture)";
+            
+            $result = $pdo->prepare($sql);
+            $result->execute([
+                'title' => $book->getTitle(),
+                'author' => $book->getAuthor(),
+                'comment' => $book->getComment(),
+                'available' => $book->getAvailable(),
+                'idMember' => $book->getIdMember(),
+                'picture' => $book->getPicture()
+            ]);  
+        }      
     }
 
     /**

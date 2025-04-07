@@ -36,7 +36,7 @@ $bookForm = <<<HTML
                 <div class="editPictureContainer">
                     <p>Photo</p>
                     <img src="$picture" alt="photo du livre : $title">
-                    <a href="#">Modifier la photo</a>
+                    <a role="link" aria-disabled="true">Modifier la photo</a>
                 </div>
                 <form class="editBookForm" action="$formAction" method="POST">
                     <input type="hidden" name="id" value="$id">

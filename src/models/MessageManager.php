@@ -123,7 +123,7 @@ class MessageManager
      */
     public function getLastIdSenderByIdReceiverFromLastMessage(int $idReceiver): int
     {
-        $sql = 'SELECT idSender, idReceiver, MAX(sendDate) FROM message WHERE idReceiver = :idReceiver OR idSender = :idReceiver GROUP BY idSender ORDER BY sendDate DESC';
+        $sql = 'SELECT idSender, idReceiver, MAX(sendDate) FROM message WHERE idReceiver = :idReceiver OR idSender = :idReceiver ORDER BY sendDate DESC';
         $pdo = DBManager::getInstance()->getPDO();
         $result = $pdo->prepare($sql);
         $result->execute([

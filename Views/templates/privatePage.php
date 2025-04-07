@@ -19,7 +19,7 @@ $personalInformations = <<<HTML
                     </div>
                     <div class="formField">
                         <label for="password">Mot de passe</label>
-                        <input type="password" name="password" id="password" value="$password">
+                        <input type="password" name="password" id="password" value="" required>
                     </div>
                     <div class="formField">
                         <label for="pseudo">Pseudo</label>

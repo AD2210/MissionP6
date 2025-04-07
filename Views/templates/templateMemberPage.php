@@ -18,7 +18,7 @@ if ($privatePage) {
         <h1>Mon Compte</h1>
     HTML;
     $modifyLink = <<<HTML
-        <a href="#">modifier</a>
+        <a role="link" aria-disabled="true">modifier</a>
     HTML;
     $bottomButton = <<<HTML
         <a href="index.php?action=editBook&id=-1" class="button notImplemented">Ajouter un livre</a>

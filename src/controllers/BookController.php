@@ -13,9 +13,18 @@ class BookController
      */
     public function showAllBooks(): void
     {
-        //On récupère tous les livres
+        //On récupère le contenu de la recherche si existant
+        $keyWord = Service::request('bookSearch');
+        
         $bookManager = new BookManager;
-        $books = $bookManager->getAllBooks();
+
+        if (isset($keyWord)){
+            //On récupère tous les livres correspondant à la recherche
+            $books = $bookManager->getAllBooksByTitleLikeKeyWord($keyWord);
+        }else{
+            //si non on récupère tous les livres
+            $books = $bookManager->getAllBooks();
+        }
 
         //On passe un userManager en paramètre pour récupérer les informations utilisateur de chaque livre
         $userManager = new UserManager;

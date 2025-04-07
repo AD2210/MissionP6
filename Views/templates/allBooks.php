@@ -8,10 +8,10 @@
     <div class="oursBooksContainer">
         <div class="SectionTitle">
             <h1>Nos livres à l’échange</h1>
-            <div class="searchBar">
+            <form class="searchBar" action="index.php?action=allBooks" method="POST">
                 <label for="bookSearch"><img src="ressources/iconSearch.png" alt="icone recherche"></label>
                 <input type="search" name="bookSearch" id="bookSearch" placeholder="Rechercher un livre">
-            </div>
+            </form>
         </div>
         <div class="bookCardsContainer">
             <?php foreach ($books as $book) {

@@ -20,6 +20,21 @@ class BookManager
     }
 
     /**
+     * Requête renvoyant tous les livres présent en BDD
+     * @return array
+     */
+    public function getAllBooksByTitleLikeKeyWord(string $keyWord): array
+    {
+        $sql = "SELECT * FROM book WHERE title LIKE '%' :keyWord '%'";
+        $pdo = DBManager::getInstance()->getPDO();
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'keyWord' => $keyWord
+        ]);
+        return $result->fetchAll(PDO::FETCH_CLASS, Book::class);
+    }
+
+    /**
      * Requête renvoyant tous les livres appartenant à un membre grace à son id User
      * @param int $idMember
      * @return array

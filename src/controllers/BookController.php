@@ -53,6 +53,12 @@ class BookController
         $bookManager = new bookManager;
         $userManager = new UserManager;
         $book = $bookManager->getOneBookById($id);
+
+        //Renvoie un erreur si le livre n'existe pas
+        if (!$book){
+            throw new Exception("Le livre demandé n'existe pas.");
+        }
+
         $user = $userManager->getOneUserById($book->getIdMember());
 
         //On génère la vue
@@ -114,6 +120,11 @@ class BookController
         $comment = Service::request("comment");
         $available = Service::request("availability");
 
+        //Contrôle si les champs ne sont pas vide
+        if(empty($title) || empty($author) || empty($comment)){
+            throw new Exception("Tous les champs doivent être complétés");
+        }
+
         // On créer l'instance avec les nouvelles datas
         $book = new Book;
         $book->setId($id);
@@ -140,8 +151,13 @@ class BookController
         UserController::checkIfUserIsConnected('privatePage');
         $id = Service::request('id');
 
-        //On supprime le livre de la base
         $bookManager = new bookManager;
+        //On vérifie que le livre exite en BDD
+        $book = $bookManager->getOneBookById($id);
+        if (!$book){
+            throw new Exception("Le livre demandé n'existe pas.");
+        }
+        //On supprime le livre de la base
         $bookManager->deleteBook($id);
 
         // On redirige vers la page du membre.
@@ -163,6 +179,11 @@ class BookController
         $comment = Service::request("comment");
         $available = Service::request("availability");
         $idMember = $_SESSION['idUser'];
+
+        //Contrôle si les champs ne sont pas vide
+        if(empty($title) || empty($author) || empty($comment)){
+            throw new Exception("Tous les champs doivent être complétés");
+        }
 
         // On créer l'instance avec les nouvelles datas
         $book = new Book;

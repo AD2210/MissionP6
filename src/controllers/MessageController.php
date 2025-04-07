@@ -17,6 +17,7 @@ class MessageController
      * - Tableau des derniers messages recu par correspondant aggrégé avec les données users : Array
      * - le correspondant permettant d'afficher les message d'un fil de discussion : User
      * - le fil de discussion : Array(Message)
+     * @throws \Exception
      * @return void
      */
     public function showMessaging(): void
@@ -77,8 +78,8 @@ class MessageController
         $correspondingId = Service::request("correspondingId");
 
         // On vérifie que les données sont valides. 
-        if (empty($content) || empty($correspondingId)) {
-            throw new Exception("Tous les champs sont obligatoires.");
+        if (empty($content)) {
+            throw new Exception("Le message ne doit pas être vide");
         }
 
         // On créer le nouveau message puis on l'enregistre en BDD

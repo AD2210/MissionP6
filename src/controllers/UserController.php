@@ -198,6 +198,11 @@ class UserController
         $email = Service::request("email");
         $password = Service::request("password");
 
+        // On vérifie que les données sont valides. 
+        if (empty($email) || empty($password) || empty($pseudo)) {
+            throw new Exception("Tous les champs sont obligatoires.");
+        }
+
         // On créer l'instance avec les nouvelles datas
         $user = new User;
         $user->setId($id);

@@ -917,6 +917,7 @@ tbody .odd {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    max-height: 750px;
 }
 
 .inboxContainer {

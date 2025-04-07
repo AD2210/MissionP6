@@ -134,7 +134,8 @@ class MessageManager
         if (empty($array)) {
             return 0;
         }
-        return $array['idSender'];
+        $corresponding = $idReceiver == $array['idSender'] ? $array['idReceiver'] : $array['idSender'];
+        return $corresponding;
     }
 
     /**

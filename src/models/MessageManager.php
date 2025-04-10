@@ -131,9 +131,16 @@ class MessageManager
         ]);
         $array = $result->fetch(PDO::FETCH_ASSOC);
 
-        if (empty($array)) {
-            return 0;
+        if (is_null($array['idSender']) || is_null($array['idReceiver'])) {
+            return 0; // ici j'ai laissé le 0 : je corrige l'accès à la messagerie via le bouton de la barNav => erreur messagerie vide
+            // et je peux envoyer un message à un utilisateur via son profil.
+            // en mettant null je dois modifier une grosse partie du code pour intégré le fait que les variables peuvent être null.
         }
+
+        /*if (is_null($array['idSender']) || is_null($array['idReceiver'])) {
+            throw new Exception("La messagerie est vide, vous devez d'abord envoyer ou recevoir un message pour acceder à cette fonctionnalitée");
+        } //Corrige le bug mais empeche l'envoie de message lorsque la messagerie est vide */
+        
         $corresponding = $idReceiver == $array['idSender'] ? $array['idReceiver'] : $array['idSender'];
         return $corresponding;
     }
